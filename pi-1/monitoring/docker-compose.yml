@@ -1,0 +1,36 @@
+services:
+  prometheus:
+    container_name: prometheus
+    image: "prom/prometheus:latest"
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    volumes:
+      - "./prometheus/:/etc/prometheus"
+      - "prometheus_data:/prometheus"
+    networks:
+      - npm_network
+
+  grafana:
+    container_name: grafana
+    image: "grafana/grafana-oss"
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      # Set configuration for Grafana provisioning
+      - "./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources"
+      - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
+      - "grafana_data:/var/lib/grafana"
+    networks:
+      - npm_network
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  npm_network:
+    external: true

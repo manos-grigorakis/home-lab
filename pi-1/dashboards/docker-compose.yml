@@ -1,0 +1,48 @@
+services:
+  homarr:
+    container_name: homarr
+    image: "ghcr.io/homarr-labs/homarr:latest"
+    ports:
+      - "8080:7575"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock" # Optional, only for Docker integration
+      - "./homarr/appdata:/appdata"
+    environment:
+      - SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY}
+      - TZ=${TZ}
+    restart: unless-stopped
+    networks:
+      - npm_network
+
+  portainer:
+    container_name: portainer
+    image: "portainer/portainer-ce:latest"
+    ports:
+      #      - "8000:8000"
+      #      - "9443:9443" # Web UI HTTPS
+      - "9000:9000" # Web UI HTTP
+    command: "-H unix:///var/run/docker.sock" # Not Enable TLS 9443
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data"
+    restart: always
+    networks:
+      - npm_network
+
+  home-assistant:
+    container_name: home-assistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - "./home-assistant/config:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/run/dbus:/run/dbus:ro"
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+
+volumes:
+  portainer_data:
+
+networks:
+  npm_network:
+    external: true
