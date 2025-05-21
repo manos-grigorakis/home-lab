@@ -33,3 +33,25 @@ services:
       # Required if you are using Pi-hole as your DHCP server, else not needed
       - NET_ADMIN
     restart: unless-stopped
+
+  netdata:
+    container_name: netdata
+    image: netdata/netdata:latest
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./netdata/config:/etc/netdata
+      - ./netdata/lib:/var/lib/netdata
+      - ./netdata/cache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    environment:
+      - DO_NOT_TRACK=1
+    restart: unless-stopped
