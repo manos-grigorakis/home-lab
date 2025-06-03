@@ -81,3 +81,13 @@ $RECYCLE.BIN/
 
 # Pihole
 pihole/
+
+# Nginx
+nginx/
+
+# Homarr
+homarr/
+
+# Backup & Logs
+data/logs/
+data/backups/
