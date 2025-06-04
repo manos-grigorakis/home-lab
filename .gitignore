@@ -77,17 +77,13 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/git,macos,windows
 
-.env
+**/.env
 
 # Pihole
-pihole/
+**/pihole/
 
 # Nginx
-nginx/
+**/nginx/
 
 # Homarr
-homarr/
-
-# Backup & Logs
-data/logs/
-data/backups/
+**/homarr/
