@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Start from `pi-1` directory
 cd "$(dirname "$0")/.." || exit 1
 
