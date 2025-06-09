@@ -1,7 +1,7 @@
 services:
   pihole:
     container_name: pihole
-    image: "pihole/pihole:2025.04.0"
+    image: "pihole/pihole:latest"
     ports:
       # DNS Ports
       - "53:53/tcp"
@@ -26,6 +26,9 @@ services:
 
       # Set a password to access the web interfaces
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
+
+      # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
+      FTLCONF_dns_listeningMode: 'all'
     #cap_add:
     # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     # Required if you are using Pi-hole as your DHCP server, else not needed
