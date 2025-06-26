@@ -28,6 +28,17 @@ services:
     networks:
       - npm_network
 
+  home-assistant:
+    container_name: home-assistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - "./home-assistant/config:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/run/dbus:/run/dbus:ro"
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+
 volumes:
   portainer_data:
 

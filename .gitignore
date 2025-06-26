@@ -87,3 +87,6 @@ $RECYCLE.BIN/
 
 # Homarr
 **/homarr/
+
+# Home Assistant
+**/home-assistant/
