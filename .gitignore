@@ -90,3 +90,6 @@ $RECYCLE.BIN/
 
 # Home Assistant
 **/home-assistant/
+
+# MySQL
+mysql-data
