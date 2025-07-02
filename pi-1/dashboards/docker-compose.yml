@@ -10,6 +10,7 @@ services:
     environment:
       - SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY}
       - TZ=${TZ}
+    restart: unless-stopped
     networks:
       - npm_network
 
