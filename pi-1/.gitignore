@@ -1,0 +1,14 @@
+# Pihole
+dns/pihole/
+
+# Nginx
+reverse-proxy/nginx/
+
+# Homarr
+dashboards/homarr/
+
+# Home Assistant
+dashboards/home-assistant/
+
+# MySQL
+databases/mysql-data/

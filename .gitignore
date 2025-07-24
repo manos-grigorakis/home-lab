@@ -78,18 +78,3 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/git,macos,windows
 
 **/.env
-
-# Pihole
-**/pihole/
-
-# Nginx
-**/nginx/
-
-# Homarr
-**/homarr/
-
-# Home Assistant
-**/home-assistant/
-
-# MySQL
-mysql-data
