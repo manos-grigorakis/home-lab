@@ -2,7 +2,7 @@
 dns/pihole/
 
 # Nginx
-reverse-proxy/nginx/
+proxy/nginx/
 
 # Homarr
 dashboards/homarr/
