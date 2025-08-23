@@ -15,3 +15,6 @@ databases/mysql-data/
 
 # Plex
 media/plex
+
+# Immich
+photos/postgres
