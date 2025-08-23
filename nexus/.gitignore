@@ -12,3 +12,6 @@ dashboards/home-assistant/
 
 # MySQL
 databases/mysql-data/
+
+# Plex
+media/plex

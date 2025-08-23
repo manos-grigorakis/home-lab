@@ -1,0 +1,18 @@
+services:
+  plex:
+    container_name: plex
+    image: "lscr.io/linuxserver/plex:latest"
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - VERSION=${VERSION}
+#      - PLEX_CLAIM=${PLEX_CLAIM} # Only for initial setup
+    volumes:
+      - "./plex/config:/config"
+      - "/mnt/media:/data"
+      - "/mnt/transcode:/transcode"
+    devices:
+      - "/dev/dri:/dev/dri" # iGPU for transcoding
