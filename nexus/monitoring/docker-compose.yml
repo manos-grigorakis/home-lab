@@ -10,8 +10,10 @@ services:
     volumes:
       - "./prometheus/:/etc/prometheus"
       - "prometheus_data:/prometheus"
+    env_file:
+      - .env
     networks:
-      - npm_network
+      - monitoring
 
   grafana:
     container_name: grafana
@@ -25,12 +27,23 @@ services:
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
       - "grafana_data:/var/lib/grafana"
     networks:
-      - npm_network
+      - monitoring
+
+  pve-exporter:
+    container_name: pve-exporter
+    image: "prompve/prometheus-pve-exporter:latest"
+    restart: unless-stopped
+    ports:
+      - "9221:9221"
+    volumes:
+      - "./pve-exporter/pve.yml:/etc/prometheus/pve.yml"
+    networks:
+      - monitoring
+
 
 volumes:
   prometheus_data:
   grafana_data:
 
 networks:
-  npm_network:
-    external: true
+  monitoring:

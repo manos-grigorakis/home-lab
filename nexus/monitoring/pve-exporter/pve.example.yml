@@ -1,0 +1,5 @@
+default:
+  user: "" # User
+  token_name: "" # Token ID
+  token_value: "" # Token
+  verify_ssl: false # Optionally

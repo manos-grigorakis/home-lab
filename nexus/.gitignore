@@ -18,3 +18,10 @@ media/plex
 
 # Immich
 photos/postgres
+
+# PVE-Exporter
+monitoring/pve-exporter/pve.yml
+
+# Prometheus
+monitoring/prometheus/prometheus.yml
+monitoring/prometheus/ha_token
