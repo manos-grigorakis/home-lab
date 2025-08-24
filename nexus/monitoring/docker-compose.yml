@@ -23,8 +23,10 @@ services:
       - "3000:3000"
     volumes:
       # Set configuration for Grafana provisioning
+      - "./grafana/config/grafana.ini:/etc/grafana/grafana.ini"
       - "./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources"
       - "./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards"
+      - "./grafana/provisioning/alerting/:/etc/grafana/provisioning/alerting"
       - "grafana_data:/var/lib/grafana"
     networks:
       - monitoring
