@@ -199,13 +199,13 @@ groups:
               model:
                 editorMode: code
                 expr: |
-                    up{job="node"}
-                instant: true
+                    max_over_time(up{instance=~".*:9100"}[5m])
+                instant: false
                 interval: ""
                 intervalMs: 1000
                 legendFormat: __auto
                 maxDataPoints: 43200
-                range: false
+                range: true
                 refId: A
             - refId: B
               relativeTimeRange:
@@ -250,7 +250,7 @@ groups:
                         type: and
                       query:
                         params:
-                            - C
+                            - B
                       reducer:
                         params: []
                         type: last
