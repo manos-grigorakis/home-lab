@@ -11,7 +11,7 @@ services:
       - SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY}
       - TZ=${TZ}
     restart: unless-stopped
-
+    
   mealie:
     container_name: mealie
     image: ghcr.io/mealie-recipes/mealie:latest
