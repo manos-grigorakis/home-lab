@@ -13,9 +13,6 @@ services:
       # Default HTTPS Port. FTL will generate a self-signed certificate
       # - "443:443/tcp"
 
-      # Uncomment the below if using Pi-hole as your DHCP Server
-      # - "67:67/udp"
-
     # Volumes store your data betrweern container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
@@ -30,14 +27,9 @@ services:
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: 'all'
       FTLCONF_dns_upstreams: "unbound#53"
-    #cap_add:
-    # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    # Required if you are using Pi-hole as your DHCP server, else not needed
-    # - NET_ADMIN
     restart: unless-stopped
     networks:
-      - dns_pihole_net
-      - npm_network
+      - dns
 
   unbound:
     container_name: unbound
@@ -48,14 +40,12 @@ services:
       - "./unbound/unbound.conf:/etc/unbound/unbound.conf:ro"
     restart: unless-stopped
     networks:
-      - dns_pihole_net
+      - dns
 
 networks:
-  dns_pihole_net:
-    name: dns_pihole_net
+  dns:
+    name: dns
     driver: bridge
     ipam:
       config:
         - subnet: 172.20.0.0/24
-  npm_network:
-    external: true

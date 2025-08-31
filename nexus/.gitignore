@@ -2,7 +2,7 @@
 dns/pihole/
 
 # Nginx
-reverse-proxy/nginx/
+proxy/nginx/
 
 # Homarr
 dashboards/homarr/
@@ -12,3 +12,23 @@ dashboards/home-assistant/
 
 # MySQL
 databases/mysql-data/
+
+# Plex
+media/plex
+
+# Immich
+photos/postgres
+
+# PVE-Exporter
+monitoring/pve-exporter/pve.yml
+
+# Prometheus
+monitoring/prometheus/prometheus.yml
+monitoring/prometheus/ha_token
+
+# Melie
+dashboards/mealie/
+
+# Grafana
+monitoring/grafana/config/grafana.ini
+monitoring/grafana/provisioning/alerting/contact-points.yml
