@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: plex
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      securityContext:
+        supplementalGroups: [44, 993] # video and render
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: gpu
+                    operator: In
+                    values:
+                      - "true"
+      containers:
+        - name: plex
+          image: lscr.io/linuxserver/plex:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          securityContext:
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 32400
+              name: plex-ui
+          envFrom:
+            - configMapRef:
+                name: plex-configmap
+          volumeMounts:
+            - name: plex-config
+              mountPath: /config
+            - name: plex-media
+              mountPath: /data
+              readOnly: true
+            - name: transcode
+              mountPath: /transcode
+            - name: igpu-device
+              mountPath: /dev/dri
+      volumes:
+        - name: plex-config
+          persistentVolumeClaim:
+            claimName: plex-pvc
+        - name: plex-media
+          persistentVolumeClaim:
+            claimName: plex-media-pvc
+        - name: transcode
+          emptyDir: {}
+        - name: igpu-device
+          hostPath:
+            path: /dev/dri
