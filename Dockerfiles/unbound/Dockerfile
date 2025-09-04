@@ -15,5 +15,6 @@ RUN curl -o /etc/unbound/root.hints https://www.internic.net/domain/named.root
 # Start script
 CMD ["sh","-c", "\
   unbound-anchor -v -a /var/lib/unbound/root.key || true && \
+  chown -R unbound:unbound /var/lib/unbound && \
   ln -sf /var/lib/unbound/root.key /etc/unbound/root.key && \
   exec unbound -d -c /etc/unbound/unbound.conf"]
