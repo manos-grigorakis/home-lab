@@ -84,3 +84,6 @@ $RECYCLE.BIN/
 
 # Secrets
 **/*secret.yaml
+
+# Values
+**/*values.yaml
