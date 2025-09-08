@@ -20,3 +20,6 @@ dashboards/mealie/
 # Grafana
 monitoring/grafana/config/grafana.ini
 monitoring/grafana/provisioning/alerting/contact-points.yml
+
+# Cluster DB Data
+k3s-external/cluster-db/mariadb
