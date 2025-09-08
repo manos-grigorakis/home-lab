@@ -4,18 +4,6 @@ dns/pihole/
 # Nginx
 proxy/nginx/
 
-# Homarr
-dashboards/homarr/
-
-# Home Assistant
-dashboards/home-assistant/
-
-# MySQL
-databases/mysql-data/
-
-# Plex
-media/plex
-
 # Immich
 photos/postgres
 

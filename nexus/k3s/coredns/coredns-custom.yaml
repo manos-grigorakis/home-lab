@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  poolnode.server: |
+    poolnode.net:53 {
+      forward . 192.168.10.123 1.1.1.1 9.9.9.9 {
+        policy sequential
+        health_check 5s
+      }
+      cache 30
+    }

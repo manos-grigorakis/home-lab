@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homarr-dashboard
+  namespace: homarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`home.poolnode.net`)
+      kind: Rule
+      services:
+        - name: homarr
+          kind: Service
+          namespace: homarr
+          port: 7575
+  tls: 
+    secretName: homarr-wildcard-tls
