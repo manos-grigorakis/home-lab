@@ -14,9 +14,6 @@ monitoring/pve-exporter/pve.yml
 monitoring/prometheus/prometheus.yml
 monitoring/prometheus/ha_token
 
-# Melie
-dashboards/mealie/
-
 # Grafana
 monitoring/grafana/config/grafana.ini
 monitoring/grafana/provisioning/alerting/contact-points.yml
