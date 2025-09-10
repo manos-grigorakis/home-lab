@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`photos.poolnode.net`)
+      kind: Rule
+      services:
+        - name: immich-server-service
+          kind: Service
+          namespace: immich
+          scheme: http
+          port: 2283
+  tls: 
+    secretName: immich-wildcard-tls
