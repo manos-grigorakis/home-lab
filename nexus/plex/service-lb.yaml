@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-service-lb
+  namespace: plex
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.10.124
+spec:
+  selector:
+    app: plex
+  ports:
+    - port: 32400
+      targetPort: 32400
+  type: LoadBalancer

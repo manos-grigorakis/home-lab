@@ -15,6 +15,7 @@ spec:
       labels:
         app: plex
     spec:
+      dnsPolicy: ClusterFirst
       securityContext:
         supplementalGroups: [44, 993] # video and render
       affinity:
@@ -29,7 +30,7 @@ spec:
                       - "true"
       containers:
         - name: plex
-          image: lscr.io/linuxserver/plex:latest
+          image: plexinc/pms-docker:latest
           imagePullPolicy: IfNotPresent
           resources:
             requests:
