@@ -11,8 +11,8 @@ Kubernetes: `>=1.24.0-0`
 
 ### Configuration
 ```bash
-cp values.example.yaml values.yaml
-cp secret.example.yaml secret.yaml
+cp values.yaml.example values.yaml
+cp secret.yaml.example secret.yaml
 ```
 Modify both `values.yaml` and `secret.yaml`
 
