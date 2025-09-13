@@ -17,8 +17,8 @@ spec:
     spec:
       securityContext:
         runAsUser: 3003 # UID
-        runAsGroup: 3004 # GID
-        fsGroup: 3004
+        runAsGroup: 3006 # GID
+        fsGroup: 3006
       containers:
         - name: immich-server
           image: ghcr.io/immich-app/immich-server:release

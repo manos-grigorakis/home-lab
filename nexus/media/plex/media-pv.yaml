@@ -16,5 +16,5 @@ spec:
     - timeo=600 # Timeout 60s
     - retrans=2 # Retries
   nfs:
-    server: 192.168.10.50
-    path: /mnt/mainpool/media/plex
+    server: 192.168.10.100
+    path: /mnt/tank/services/media/plex
