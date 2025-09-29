@@ -1,5 +1,5 @@
 
-# Change Default Passowrds
+# Change Default Passwords
 
 ## Table of Contents
 
