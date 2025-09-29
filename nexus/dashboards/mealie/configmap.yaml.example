@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata:
+  name: mealie-configmap
+  namespace: dashboards
+data:
+  ALLOW_SIGNUP: "false"
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Europe/London"
+  BASE_URL: "https://mydomain.com"

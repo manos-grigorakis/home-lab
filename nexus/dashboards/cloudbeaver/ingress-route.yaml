@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cloudbeaver-dashboard
+  namespace: cloudbeaver
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`cloudbeaver.poolnode.net`)
+      kind: Rule
+      services:
+        - name: cloudbeaver
+          kind: Service
+          port: 8978
+  tls: 
+    secretName: cloudbeaver-wildcard-tls

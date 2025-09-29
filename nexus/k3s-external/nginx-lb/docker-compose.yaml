@@ -1,0 +1,9 @@
+services:
+  nginx:
+    container_name: nginx
+    image: "nginx:stable"
+    restart: unless-stopped
+    ports:
+      - "6443:6443"
+    volumes:
+      - "./.conf:/etc/nginx/nginx.conf:ro"

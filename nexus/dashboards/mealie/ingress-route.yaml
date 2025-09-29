@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mealie
+  namespace: dashboards
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`mealie.poolnode.net`)
+      kind: Rule
+      services:
+        - name: mealie-service
+          kind: Service
+          namespace: dashboards
+          scheme: http
+          port: 9000
+  tls: 
+    secretName: dashboards-wildcard-tls

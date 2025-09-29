@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-service
+  namespace: plex
+spec:
+  selector:
+    app: plex
+  ports:
+    - name: plex-ui
+      port: 32400
+      targetPort: 32400
+      nodePort: 32400
+  type: NodePort

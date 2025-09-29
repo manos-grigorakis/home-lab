@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: poolnode-wildcard
+  namespace: dns
+spec:
+  secretName: dns-wildcard-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-dns01
+  dnsNames:
+    - "poolnode.net"
+    - "*.poolnode.net"

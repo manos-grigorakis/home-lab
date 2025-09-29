@@ -1,0 +1,20 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wazuh-dashboard
+  namespace: wazuh
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`wazuh.poolnode.net`)
+      kind: Rule
+      services:
+        - name: dashboard
+          kind: Service
+          namespace: wazuh
+          scheme: http
+          port: 5601
+  tls: 
+    secretName: wazuh-wildcard-tls

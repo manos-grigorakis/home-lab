@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dns
+  namespace: dns
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: dns
+  template:
+    metadata:
+      labels:
+        app: dns
+    spec:
+      containers:
+        - name: pi-hole
+          image: pihole/pihole:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+          ports:
+            - containerPort: 53
+              protocol: TCP
+              name: dns-tcp
+            - containerPort: 53
+              protocol: UDP
+              name: dns-udp
+            - containerPort: 80
+              protocol: TCP
+              name: http-ui
+            - containerPort: 443
+              protocol: TCP
+              name: https-ui
+          envFrom:
+            - configMapRef:
+                name: pihole-configmap
+          volumeMounts:
+            - name: pihole-data
+              mountPath: /etc/pihole
+
+        - name: unbound
+          image: manosgrigorakis/unbound:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "384Mi"
+          volumeMounts:
+            - name: unbound-config-volume
+              mountPath: /etc/unbound/unbound.conf
+              subPath: unbound.conf
+              readOnly: true
+            - name: unbound-data
+              mountPath: /var/lib/unbound/
+
+      volumes:
+        - name: pihole-data
+          persistentVolumeClaim:
+            claimName: pihole-pvc
+        - name: unbound-config-volume
+          configMap:
+            name: unbound-config
+        - name: unbound-data
+          persistentVolumeClaim:
+            claimName: unbound-pvc

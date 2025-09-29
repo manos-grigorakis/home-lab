@@ -78,3 +78,12 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/git,macos,windows
 
 **/.env
+
+# ConfigMap files
+**/*configmap.yaml
+
+# Secrets
+**/*secret.yaml
+
+# Values
+**/*values.yaml

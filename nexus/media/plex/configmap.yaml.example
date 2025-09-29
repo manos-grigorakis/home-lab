@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plex-configmap
+  namespace: plex
+data:
+  # User and Groups IDs
+  PLEX_UID: "1000"
+  PLEX_GID: "1000"
+
+  # Timezone
+  TZ: "Europe/London"
+
+  # Plex claim
+  # Available from: https://plex.tv/claim
+  PLEX_CLAIM: ""
+
+  # Advertise IPs for local network detection
+  ADVERTISE_IP: "https://mydomain.com,http://<PLEX-SERVICE-LB-IP>:32400"
+
+  # Local Lan, Kubernetes Cluster LAN
+  ALLOWED_NETWORKS: "192.168.0.0/16,10.42.0.0/16"

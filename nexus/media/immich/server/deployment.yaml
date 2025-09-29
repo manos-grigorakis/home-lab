@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-server
+  namespace: immich
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: immich-server 
+  template:
+    metadata:
+      labels:
+        app: immich-server
+    spec:
+      securityContext:
+        runAsUser: 3003 # UID
+        runAsGroup: 3006 # GID
+        fsGroup: 3006
+      containers:
+        - name: immich-server
+          image: ghcr.io/immich-app/immich-server:release
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "3Gi"
+              cpu: "2"
+          ports:
+            - name: http
+              containerPort: 2283
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: immich-configmap
+            - secretRef:
+                name: immich-secrets
+          volumeMounts:
+            - name: library
+              mountPath: /data
+      volumes:
+        - name: library
+          persistentVolumeClaim:
+            claimName: immich-library-nfs-pvc

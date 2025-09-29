@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-dashboard
+  namespace: dns
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`pihole.poolnode.net`)
+      kind: Rule
+      middlewares:
+        - name: pihole-redirect-root
+      services:
+        - name: pihole-ui-service
+          kind: Service
+          namespace: dns
+          scheme: http
+          port: 80
+  tls: 
+    secretName: dns-wildcard-tls
