@@ -24,18 +24,17 @@
 3. Configure Kubernetes Secrets \
     Copy all `.yaml.example` files to `.yaml` extension.
     ```bash
-    cd secrets && \
-    cp dashboard-cred-secret.yaml.example dashboard-cred-secret.yaml && \
-    cp indexer-cred-secret.yaml.example indexer-cred-secret.yaml && \
-    cp wazuh-api-cred-secret.yaml.example wazuh-api-cred-secret.yaml && \
-    cp wazuh-authd-pass-secret.yaml.example wazuh-authd-pass-secret.yaml && \
-    cp wazuh-cluster-key-secret.yaml.example wazuh-cluster-key-secret.yaml
+    cp secrets/dashboard-cred-secret.yaml.example dashboard-cred-secret.yaml && \
+    cp secrets/indexer-cred-secret.yaml.example indexer-cred-secret.yaml && \
+    cp secrets/wazuh-api-cred-secret.yaml.example wazuh-api-cred-secret.yaml && \
+    cp secrets/wazuh-authd-pass-secret.yaml.example wazuh-authd-pass-secret.yaml && \
+    cp secrets/wazuh-cluster-key-secret.yaml.example wazuh-cluster-key-secret.yaml
     ```
     > Don't modify passwords yet!
 
 4. IP of Wazuh Manager \
     Modify the IP of Wazuh Manager Services in both:
-      - `/wazuh_managers/wazuh-registration-svc-lb.yaml`
+      - `/wazuh_managers/master-svc.yaml`
       - `/wazuh_managers/wazuh-workers-svc.yaml` 
 
 5. Apply all manifests using Kustomize
