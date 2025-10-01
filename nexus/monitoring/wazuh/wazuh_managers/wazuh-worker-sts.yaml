@@ -44,14 +44,12 @@ spec:
         - name: filebeat-certs
           secret:
             secretName: indexer-certs
-        - name: internal-options
-          configMap:
-            name: wazuh-internal-options
       securityContext:
         fsGroup: 101
       containers:
         - name: wazuh-manager
-          image: 'wazuh/wazuh-manager:4.13.0'
+          image: 'wazuh/wazuh-manager:4.13.1'
+          imagePullPolicy: IfNotPresent
           resources:
             limits:
               cpu: "500m"
@@ -59,12 +57,6 @@ spec:
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
-          command: ["sh", "-c"]
-          args:
-            - |
-              mkdir -p /var/ossec/etc \
-              && cp /custom_options/local_internal_options.conf /var/ossec/etc/ \
-              && exec /init
           volumeMounts:
             - name: config
               mountPath: /wazuh-config-mount/etc/ossec.conf
@@ -115,9 +107,6 @@ spec:
             - name: wazuh-manager-worker
               mountPath: /var/lib/filebeat
               subPath: filebeat/var/lib/filebeat
-            - name: internal-options
-              mountPath: /custom_options
-              readOnly: true
           ports:
             - containerPort: 1514
               name: agents-events
@@ -159,4 +148,4 @@ spec:
         storageClassName: wazuh-storage
         resources:
           requests:
-            storage: 10Gi
+            storage: 20Gi

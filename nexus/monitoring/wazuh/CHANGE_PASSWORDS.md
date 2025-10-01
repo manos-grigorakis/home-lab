@@ -86,20 +86,18 @@
     kubectl exec -it wazuh-indexer-0 -n wazuh -- /bin/bash
     ```
 
-8. Export path to a variable
+8. Set the following variables
     ```bash
+    export INSTALLATION_DIR=/usr/share/wazuh-indexer
+    CACERT=$INSTALLATION_DIR/certs/root-ca.pem
+    KEY=$INSTALLATION_DIR/certs/admin-key.pem
+    CERT=$INSTALLATION_DIR/certs/admin.pem
     export JAVA_HOME=/usr/share/wazuh-indexer/jdk
     ````
 
-9. Run `securityadmin.sh` for `internal_users.yml`
+9. Run `securityadmin.sh` script to apply changes
     ```bash
-    /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh \
-        -f /usr/share/wazuh-indexer/config/opensearch-security/internal_users.yml \
-        -t internalusers \
-        -icl -nhnv \
-        -cacert /usr/share/wazuh-indexer/config/certs/root-ca.pem \
-        -cert /usr/share/wazuh-indexer/config/certs/admin.pem \
-        -key /usr/share/wazuh-indexer/config/certs/admin-key.pem
+    bash /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/wazuh-indexer/opensearch-security/ -nhnv -cacert  $CACERT -cert $CERT -key $KEY -p 9200 -icl -h $NODE_NAME
     ```
 
 ## Create new User
@@ -143,20 +141,18 @@
     kubectl exec -it wazuh-indexer-0 -n wazuh -- /bin/bash
     ```
 
-7. Export path to a variable
+7. Set the following variables
     ```bash
+    export INSTALLATION_DIR=/usr/share/wazuh-indexer
+    CACERT=$INSTALLATION_DIR/certs/root-ca.pem
+    KEY=$INSTALLATION_DIR/certs/admin-key.pem
+    CERT=$INSTALLATION_DIR/certs/admin.pem
     export JAVA_HOME=/usr/share/wazuh-indexer/jdk
     ````
 
-8. Run `securityadmin.sh` for `internal_users.yml`
+8. Run `securityadmin.sh` script to apply changes
     ```bash
-    /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh \
-        -f /usr/share/wazuh-indexer/config/opensearch-security/internal_users.yml \
-        -t internalusers \
-        -icl -nhnv \
-        -cacert /usr/share/wazuh-indexer/config/certs/root-ca.pem \
-        -cert /usr/share/wazuh-indexer/config/certs/admin.pem \
-        -key /usr/share/wazuh-indexer/config/certs/admin-key.pem
+    bash /usr/share/wazuh-indexer/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/wazuh-indexer/opensearch-security/ -nhnv -cacert  $CACERT -cert $CERT -key $KEY -p 9200 -icl -h $NODE_NAME
     ```
 
 ## Other

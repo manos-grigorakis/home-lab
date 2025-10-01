@@ -32,7 +32,8 @@ spec:
             secretName: dashboard-certs
       containers:
         - name: wazuh-dashboard
-          image: 'wazuh/wazuh-dashboard:4.13.0'
+          image: 'wazuh/wazuh-dashboard:4.13.1'
+          imagePullPolicy: IfNotPresent
           resources:
             limits:
               cpu: "500m"
@@ -81,7 +82,7 @@ spec:
                   name: dashboard-cred
                   key: password
             - name: SERVER_SSL_ENABLED
-              value: "false" # default true (Traefik will handle it)
+              value: "false"
             - name: SERVER_SSL_CERTIFICATE
               value: /usr/share/wazuh-dashboard/certs/cert.pem
             - name: SERVER_SSL_KEY

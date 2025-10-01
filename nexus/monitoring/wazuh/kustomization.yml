@@ -41,9 +41,6 @@ configMapGenerator:
   - name: dashboard-conf
     files:
       - indexer_stack/wazuh-dashboard/dashboard_conf/opensearch_dashboards.yml
-  - name: wazuh-internal-options
-    files:
-      - wazuh_managers/wazuh_conf/local_internal_options.conf
 
 resources:
   - base/wazuh-ns.yaml
@@ -60,8 +57,6 @@ resources:
   - wazuh_managers/wazuh-workers-svc.yaml
   - wazuh_managers/wazuh-master-sts.yaml
   - wazuh_managers/wazuh-worker-sts.yaml
-  - wazuh_managers/wazuh-registration-svc-lb.yaml
-
 
   - indexer_stack/wazuh-indexer/indexer-svc.yaml
   - indexer_stack/wazuh-indexer/cluster/indexer-api-svc.yaml
@@ -69,4 +64,3 @@ resources:
 
   - indexer_stack/wazuh-dashboard/dashboard-svc.yaml
   - indexer_stack/wazuh-dashboard/dashboard-deploy.yaml
-  - indexer_stack/wazuh-dashboard/ingress-route.yaml
