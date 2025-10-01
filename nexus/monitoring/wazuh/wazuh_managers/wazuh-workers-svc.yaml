@@ -26,4 +26,3 @@ spec:
     - name: agents-events
       port: 1514
       targetPort: 1514
-      protocol: TCP

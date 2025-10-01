@@ -14,8 +14,11 @@ metadata:
   namespace: wazuh
   labels:
     app: wazuh-manager
+  annotations:
+    metallb.io/allow-shared-ip: "wazuh-agents"
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.10.125
   selector:
     app: wazuh-manager
     node-type: master
@@ -23,3 +26,6 @@ spec:
     - name: api
       port: 55000
       targetPort: 55000
+    - name: registration
+      port: 1515
+      targetPort: 1515
