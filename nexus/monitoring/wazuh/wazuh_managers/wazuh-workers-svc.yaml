@@ -21,7 +21,7 @@ spec:
   loadBalancerIP: 192.168.10.125
   selector:
     app: wazuh-manager
-    node-type: worker
+    node-type: master
   ports:
     - name: agents-events
       port: 1514
