@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: immich
+
+resources:
+  - immich-ns.yaml
+
+  - configmap.yaml
+  - secret.yaml
+
+  - db/pvc.yaml
+  - server/library-nfs-pv.yaml
+  - server/library-pvc.yaml
+
+  - db/deployment.yaml
+  - redis/deployment.yaml
+  - server/deployment.yaml
+  - ml/deployment.yaml
+
+  - db/service.yaml
+  - redis/service.yaml
+  - server/service.yaml
+  - server/ingress-route.yaml
+  - ml/service.yaml
