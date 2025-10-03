@@ -6,4 +6,5 @@ resources:
   - argocd-ns.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/v3.1.8/manifests/install.yaml
   - argocd-cmd-params-cm-configmap.yaml
+  - github-repo-secret.yaml
   - ingress-route.yaml
