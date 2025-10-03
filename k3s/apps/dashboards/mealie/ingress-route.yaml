@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: mealie
-  namespace: dashboards
+  namespace: mealie
 spec:
   entryPoints:
     - websecure
@@ -12,8 +12,8 @@ spec:
       services:
         - name: mealie-service
           kind: Service
-          namespace: dashboards
+          namespace: mealie
           scheme: http
           port: 9000
   tls: 
-    secretName: dashboards-wildcard-tls
+    secretName: mealie-wildcard-tls

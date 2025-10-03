@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap 
 metadata:
   name: mealie-configmap
-  namespace: dashboards
+  namespace: mealie
 data:
   ALLOW_SIGNUP: "false"
   PUID: "1000"
