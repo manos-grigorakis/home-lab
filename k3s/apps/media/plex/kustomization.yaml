@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: plex
+
+resources:
+  - plex-ns.yaml
+
+  - configmap.yaml
+
+  - media-pv.yaml
+  - media-pvc.yaml
+  - pvc.yaml
+
+  - deployment.yaml
+
+  - service-lb.yaml
+  - service.yaml
+  - ingress-route.yaml
