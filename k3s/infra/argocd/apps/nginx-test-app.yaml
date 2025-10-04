@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Nginx-ArgoCD-Test
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd-nginx-test
+    server: https://kubernetes.default.svc
+  source:
+    path: k3s/apps/argocd-test
+    repoURL: https://github.com/manos-grigorakis/home-lab.git
+    targetRevision: gitops/argocd
+  sources: []
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
