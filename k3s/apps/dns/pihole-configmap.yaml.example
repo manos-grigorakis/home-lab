@@ -8,9 +8,6 @@ data:
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones, e.g:
   TZ: "Europe/London"
 
-  # Set a password to access the web interface. Not setting one will result in a random password being assigned
-  FTLCONF_WEBSERVER_API_PASSWORD: "correct horse battery staple" 
-
   # Using Unbound as DNS
   FTLCONF_DNS_UPSTREAMS: "127.0.0.1#5335"
 
