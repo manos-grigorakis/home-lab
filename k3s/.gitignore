@@ -1,0 +1,2 @@
+# Disable configmaps to migrate to ArgoCD app by app
+!/apps/dashboards/mealie/configmap.yaml
