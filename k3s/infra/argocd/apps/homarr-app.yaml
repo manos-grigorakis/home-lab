@@ -13,7 +13,7 @@ spec:
       targetRevision: 5.11.0
       helm:
         valueFiles:
-          - values.yaml
+          - $values/k3s/dashboards/homarr/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
       targetRevision: gitops/argocd
