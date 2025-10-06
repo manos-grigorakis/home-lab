@@ -2,4 +2,5 @@
 !/apps/dashboards/mealie/configmap.yaml
 !/apps/dashboards/homarr/values.yaml
 !apps/dns/unbound-configmap.yaml
-!apps/dns/pihole-configmap.yaml
+!apps/dns/pihole-configmap.
+!apps/media/immich/configmap.yaml
