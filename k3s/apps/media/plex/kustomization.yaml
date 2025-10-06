@@ -6,6 +6,7 @@ namespace: plex
 resources:
   - plex-ns.yaml
 
+  - secret.sealed.yaml
   - configmap.yaml
 
   - media-pv.yaml
