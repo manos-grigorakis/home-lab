@@ -16,7 +16,7 @@ spec:
           - $values/k3s/apps/dashboards/homarr/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: gitops/argocd
+      targetRevision: main
       path: k3s/apps/dashboards/homarr
       ref: values
   project: default

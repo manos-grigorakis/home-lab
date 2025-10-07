@@ -10,7 +10,7 @@ spec:
   source:
     path: k3s/apps/dns
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: gitops/argocd
+    targetRevision: main
   sources: []
   project: default
   syncPolicy:
