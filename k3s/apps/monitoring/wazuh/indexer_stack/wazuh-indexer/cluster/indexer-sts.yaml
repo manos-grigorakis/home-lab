@@ -28,7 +28,13 @@ spec:
       volumes:
         - name: indexer-certs
           secret:
-            secretName: indexer-certs
+            secretName: wazuh-indexer-cert
+        - name: indexer-admin-certs
+          secret:
+            secretName: wazuh-indexer-admin-cert
+        - name: indexer-root-ca
+          secret:
+            secretName: root-secret
         - name: indexer-conf
           configMap:
             name: indexer-conf
@@ -95,23 +101,23 @@ spec:
               mountPath: /var/lib/wazuh-indexer
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/node-key.pem
-              subPath: node-key.pem
+              subPath: tls.key
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/node.pem
-              subPath: node.pem
+              subPath: tls.crt
               readOnly: true
-            - name: indexer-certs
+            - name: indexer-root-ca
               mountPath: /usr/share/wazuh-indexer/certs/root-ca.pem
-              subPath: root-ca.pem
+              subPath: ca.crt
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/admin.pem
-              subPath: admin.pem
+              subPath: tls.crt
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/admin-key.pem
-              subPath: admin-key.pem
+              subPath: tls.key
               readOnly: true
             - name: indexer-conf
               mountPath: /usr/share/wazuh-indexer/opensearch.yml
