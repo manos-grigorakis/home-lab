@@ -1,8 +1,2 @@
-# Certificates
-certs/dashboard_http/*.pem
-certs/indexer_cluster/*.pem 
-certs/indexer_cluster/*.csr 
-certs/indexer_cluster/*.srl
-
 # Users
 indexer_stack/wazuh-indexer/indexer_conf/internal_users.yml
