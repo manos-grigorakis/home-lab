@@ -11,12 +11,6 @@ kind: Kustomization
 # Adds wazuh namespace to all resources.
 namespace: wazuh
 
-secretGenerator:
-  - name: indexer-certs
-    files:
-      - certs/indexer_cluster/filebeat.pem
-      - certs/indexer_cluster/filebeat-key.pem
-
 configMapGenerator:
   - name: indexer-conf
     files:
@@ -32,6 +26,12 @@ configMapGenerator:
 resources:
   - base/wazuh-ns.yaml
   - base/storage-class.yaml
+
+  # Self signed certs with Cert-Manager
+  - certs/wazuh-selfsigned.yaml
+  - certs/dashboard_http/dashboard-selfsigned-certificate.yaml
+  - certs/indexer_cluster/indexer-selfsigned-certificate.yaml
+  - certs/filebeat/filebeat-selfsigned-certificate.yaml
 
   - secrets/internal-users-secret.sealed.yaml
   - secrets/wazuh-api-cred-secret.sealed.yaml
