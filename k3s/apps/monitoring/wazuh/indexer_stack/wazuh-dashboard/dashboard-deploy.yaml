@@ -27,12 +27,15 @@ spec:
         - name: config
           configMap:
             name: dashboard-conf
-        - name: dashboard-certs
+        - name: dashboard-http-cert
           secret:
-            secretName: dashboard-certs
+            secretName: wazuh-dashboard-http-cert
+        - name: dashboard-root-ca
+          secret:
+            secretName: root-secret
       containers:
         - name: wazuh-dashboard
-          image: 'wazuh/wazuh-dashboard:4.13.1'
+          image: "wazuh/wazuh-dashboard:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -43,24 +46,24 @@ spec:
               mountPath: /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
               subPath: opensearch_dashboards.yml
               readOnly: false
-            - name: dashboard-certs
+            - name: dashboard-http-cert
               mountPath: /usr/share/wazuh-dashboard/certs/cert.pem
               readOnly: true
-              subPath: cert.pem
-            - name: dashboard-certs
+              subPath: tls.crt
+            - name: dashboard-http-cert
               mountPath: /usr/share/wazuh-dashboard/certs/key.pem
               readOnly: true
-              subPath: key.pem
-            - name: dashboard-certs
+              subPath: tls.key
+            - name: dashboard-root-ca
               mountPath: /usr/share/wazuh-dashboard/certs/root-ca.pem
-              subPath: root-ca.pem
+              subPath: ca.crt
               readOnly: true
           ports:
             - containerPort: 5601
               name: dashboard
           env:
             - name: INDEXER_URL
-              value: 'https://indexer:9200'
+              value: "https://indexer:9200"
             - name: INDEXER_USERNAME
               valueFrom:
                 secretKeyRef:
