@@ -32,6 +32,9 @@ spec:
         - name: indexer-conf
           configMap:
             name: indexer-conf
+        - name: internal-users
+          secret:
+            secretName: internal-users
       initContainers:
         - name: volume-mount-hack
           image: busybox
@@ -44,8 +47,8 @@ spec:
               memory: "256Mi"
           command:
             - sh
-            - '-c'
-            - 'chown -R 1000:1000 /var/lib/wazuh-indexer'
+            - "-c"
+            - "chown -R 1000:1000 /var/lib/wazuh-indexer"
           volumeMounts:
             - name: wazuh-indexer
               mountPath: /var/lib/wazuh-indexer
@@ -59,7 +62,7 @@ spec:
             privileged: true
       containers:
         - name: wazuh-indexer
-          image: 'wazuh/wazuh-indexer:4.13.1'
+          image: "wazuh/wazuh-indexer:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -67,7 +70,7 @@ spec:
               memory: "3Gi"
           env:
             - name: OPENSEARCH_JAVA_OPTS
-              value: '-Xms1g -Xmx1g -Dlog4j2.formatMsgNoLookups=true'
+              value: "-Xms1g -Xmx1g -Dlog4j2.formatMsgNoLookups=true"
             - name: CLUSTER_NAME
               value: wazuh
             - name: NETWORK_HOST
@@ -83,7 +86,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: DISABLE_INSTALL_DEMO_CONFIG
-              value: 'true'
+              value: "true"
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
@@ -114,7 +117,7 @@ spec:
               mountPath: /usr/share/wazuh-indexer/opensearch.yml
               subPath: opensearch.yml
               readOnly: true
-            - name: indexer-conf
+            - name: internal-users
               mountPath: /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
               subPath: internal_users.yml
               readOnly: true

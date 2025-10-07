@@ -33,7 +33,6 @@ configMapGenerator:
   - name: indexer-conf
     files:
       - indexer_stack/wazuh-indexer/indexer_conf/opensearch.yml
-      - indexer_stack/wazuh-indexer/indexer_conf/internal_users.yml
   - name: wazuh-conf
     files:
       - wazuh_managers/wazuh_conf/master.conf
@@ -46,6 +45,7 @@ resources:
   - base/wazuh-ns.yaml
   - base/storage-class.yaml
 
+  - secrets/internal-users-secret.sealed.yaml
   - secrets/wazuh-api-cred-secret.sealed.yaml
   - secrets/wazuh-authd-pass-secret.sealed.yaml
   - secrets/wazuh-cluster-key-secret.sealed.yaml
