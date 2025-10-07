@@ -40,7 +40,7 @@ spec:
             - name: CLOUDBEAVER_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-db-pass
+                  name: cloudbeaver-db-password
                   key: postgres-pass
             - name: CLOUDBEAVER_QM_DB_DRIVER
               value: "{{ .Values.backend.cloudbeaver_db_driver }}"
@@ -53,7 +53,7 @@ spec:
             - name: CLOUDBEAVER_QM_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-db-pass
+                  name: cloudbeaver-db-password
                   key: postgres-pass
           ports:
             - containerPort: 8978

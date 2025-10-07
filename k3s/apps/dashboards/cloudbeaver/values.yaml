@@ -5,17 +5,17 @@
 # cloudbeaver general values for all EE services
 cloudbeaver:
   replicaCount: 1
-  image: dbeaver/cloudbeaver-ee
+  image: dbeaver/cloudbeaver
   imageTag: "25.1.0"
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # pullCredsName - name of a secret config map that contains docker repo auths
   # pullCredsName: regcred
 
 # Ingress Values
 # Supported ingress controllers: nginx, haproxy
-ingressController: nginx
+ingressController: disabled
 # Domain name for ingress endpoint
-cloudbeaverBaseDomain: "cloudbeaver.local"
+cloudbeaverBaseDomain: "cloudbeaver.poolnode.net"
 # LoadBallancer secure mode. Possible values - http, https
 httpScheme: http
 # If httpScheme is https.
