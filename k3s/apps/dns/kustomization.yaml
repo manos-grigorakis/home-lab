@@ -9,6 +9,7 @@ resources:
   - pihole-pvc.yaml
   - unbound-pvc.yaml
 
+  - pihole-secret.sealed.yaml
   - pihole-configmap.yaml
   - unbound-configmap.yaml
 

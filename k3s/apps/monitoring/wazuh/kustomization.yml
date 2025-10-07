@@ -11,29 +11,10 @@ kind: Kustomization
 # Adds wazuh namespace to all resources.
 namespace: wazuh
 
-secretGenerator:
-  - name: indexer-certs
-    files:
-      - certs/indexer_cluster/root-ca.pem
-      - certs/indexer_cluster/node.pem
-      - certs/indexer_cluster/node-key.pem
-      - certs/indexer_cluster/dashboard.pem
-      - certs/indexer_cluster/dashboard-key.pem
-      - certs/indexer_cluster/admin.pem
-      - certs/indexer_cluster/admin-key.pem
-      - certs/indexer_cluster/filebeat.pem
-      - certs/indexer_cluster/filebeat-key.pem
-  - name: dashboard-certs
-    files:
-      - certs/dashboard_http/cert.pem
-      - certs/dashboard_http/key.pem
-      - certs/indexer_cluster/root-ca.pem
-
 configMapGenerator:
   - name: indexer-conf
     files:
       - indexer_stack/wazuh-indexer/indexer_conf/opensearch.yml
-      - indexer_stack/wazuh-indexer/indexer_conf/internal_users.yml
   - name: wazuh-conf
     files:
       - wazuh_managers/wazuh_conf/master.conf
@@ -46,11 +27,18 @@ resources:
   - base/wazuh-ns.yaml
   - base/storage-class.yaml
 
-  - secrets/wazuh-api-cred-secret.yaml
-  - secrets/wazuh-authd-pass-secret.yaml
-  - secrets/wazuh-cluster-key-secret.yaml
-  - secrets/dashboard-cred-secret.yaml
-  - secrets/indexer-cred-secret.yaml
+  # Self signed certs with Cert-Manager
+  - certs/wazuh-selfsigned.yaml
+  - certs/dashboard_http/dashboard-selfsigned-certificate.yaml
+  - certs/indexer_cluster/indexer-selfsigned-certificate.yaml
+  - certs/filebeat/filebeat-selfsigned-certificate.yaml
+
+  - secrets/internal-users-secret.sealed.yaml
+  - secrets/wazuh-api-cred-secret.sealed.yaml
+  - secrets/wazuh-authd-pass-secret.sealed.yaml
+  - secrets/wazuh-cluster-key-secret.sealed.yaml
+  - secrets/dashboard-cred-secret.sealed.yaml
+  - secrets/indexer-cred-secret.sealed.yaml
 
   - wazuh_managers/wazuh-cluster-svc.yaml
   - wazuh_managers/wazuh-master-svc.yaml

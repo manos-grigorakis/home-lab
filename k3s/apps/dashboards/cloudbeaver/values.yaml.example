@@ -29,4 +29,4 @@ backend:
   cloudbeaver_db_driver: postgres-jdbc
   cloudbeaver_db_url: jdbc:postgresql://postgres:5432/cloudbeaver
   cloudbeaver_db_user: postgres
-  cloudbeaver_db_password: StR0NgP2sSw0rD
+  # Setup db_password in `templates/secrets/db-password-secret.yaml`

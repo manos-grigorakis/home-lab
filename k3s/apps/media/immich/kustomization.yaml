@@ -7,7 +7,7 @@ resources:
   - immich-ns.yaml
 
   - configmap.yaml
-  - secret.yaml
+  - secret.sealed.yaml
 
   - db/pvc.yaml
   - server/library-nfs-pv.yaml

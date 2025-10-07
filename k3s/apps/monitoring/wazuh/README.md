@@ -6,14 +6,8 @@
 - [Official Repo](https://github.com/wazuh/wazuh-kubernetes)
 
 ## Set up
-
-1. Generate certificates
-    ```bash
-    ./certs/dashboard_http/generate_certs.sh \
-    && ./certs/indexer_cluster/generate_certs.sh
-    ```
-
-2. Configure storage class \
+> Certs are being handled with Cert-Mananger
+1. Configure storage class \
     Modify `/base/storage-class.yaml` with your provisioner.
 
     Find your provisioner
@@ -21,23 +15,24 @@
     kubectl get sc
     ```
 
-3. Configure Kubernetes Secrets \
+2. Configure Kubernetes Secrets \
     Copy all `.yaml.example` files to `.yaml` extension.
     ```bash
-    cp secrets/dashboard-cred-secret.yaml.example dashboard-cred-secret.yaml && \
-    cp secrets/indexer-cred-secret.yaml.example indexer-cred-secret.yaml && \
-    cp secrets/wazuh-api-cred-secret.yaml.example wazuh-api-cred-secret.yaml && \
-    cp secrets/wazuh-authd-pass-secret.yaml.example wazuh-authd-pass-secret.yaml && \
-    cp secrets/wazuh-cluster-key-secret.yaml.example wazuh-cluster-key-secret.yaml
+    cp secrets/dashboard-cred-secret.yaml.example secrets/dashboard-cred-secret.yaml && \
+    cp secrets/indexer-cred-secret.yaml.example secrets/indexer-cred-secret.yaml && \
+    cp secrets/wazuh-api-cred-secret.yaml.example secrets/wazuh-api-cred-secret.yaml && \
+    cp secrets/wazuh-authd-pass-secret.yaml.example secrets/wazuh-authd-pass-secret.yaml && \
+    cp secrets/wazuh-cluster-key-secret.yaml.example secrets/wazuh-cluster-key-secret.yaml && \
+    cp secrets/internal-users-secret.yaml.example secrets/internal-users-secret.yaml && \
     ```
     > Don't modify passwords yet!
 
-4. IP of Wazuh Manager \
+3. IP of Wazuh Manager \
     Modify the IP of Wazuh Manager Services in both:
       - `/wazuh_managers/master-svc.yaml`
       - `/wazuh_managers/wazuh-workers-svc.yaml` 
 
-5. Apply all manifests using Kustomize
+4. Apply all manifests using Kustomize
     ```bash
     kubectl apply -k .
     ```

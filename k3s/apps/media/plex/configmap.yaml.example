@@ -11,10 +11,6 @@ data:
   # Timezone
   TZ: "Europe/London"
 
-  # Plex claim
-  # Available from: https://plex.tv/claim
-  PLEX_CLAIM: ""
-
   # Advertise IPs for local network detection
   ADVERTISE_IP: "https://mydomain.com,http://<PLEX-SERVICE-LB-IP>:32400"
 

@@ -41,6 +41,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: pihole-configmap
+            - secretRef:
+                name: pihole-secrets
           volumeMounts:
             - name: pihole-data
               mountPath: /etc/pihole

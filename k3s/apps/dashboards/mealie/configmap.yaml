@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mealie-configmap
+  namespace: mealie
+data:
+  ALLOW_SIGNUP: "false"
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Europe/Athens"
+  BASE_URL: "https://mealie.poolnode.net"

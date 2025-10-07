@@ -28,10 +28,19 @@ spec:
       volumes:
         - name: indexer-certs
           secret:
-            secretName: indexer-certs
+            secretName: wazuh-indexer-cert
+        - name: indexer-admin-certs
+          secret:
+            secretName: wazuh-indexer-admin-cert
+        - name: indexer-root-ca
+          secret:
+            secretName: root-secret
         - name: indexer-conf
           configMap:
             name: indexer-conf
+        - name: internal-users
+          secret:
+            secretName: internal-users
       initContainers:
         - name: volume-mount-hack
           image: busybox
@@ -44,8 +53,8 @@ spec:
               memory: "256Mi"
           command:
             - sh
-            - '-c'
-            - 'chown -R 1000:1000 /var/lib/wazuh-indexer'
+            - "-c"
+            - "chown -R 1000:1000 /var/lib/wazuh-indexer"
           volumeMounts:
             - name: wazuh-indexer
               mountPath: /var/lib/wazuh-indexer
@@ -59,7 +68,7 @@ spec:
             privileged: true
       containers:
         - name: wazuh-indexer
-          image: 'wazuh/wazuh-indexer:4.13.1'
+          image: "wazuh/wazuh-indexer:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -67,7 +76,7 @@ spec:
               memory: "3Gi"
           env:
             - name: OPENSEARCH_JAVA_OPTS
-              value: '-Xms1g -Xmx1g -Dlog4j2.formatMsgNoLookups=true'
+              value: "-Xms1g -Xmx1g -Dlog4j2.formatMsgNoLookups=true"
             - name: CLUSTER_NAME
               value: wazuh
             - name: NETWORK_HOST
@@ -83,7 +92,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: DISABLE_INSTALL_DEMO_CONFIG
-              value: 'true'
+              value: "true"
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
@@ -92,29 +101,29 @@ spec:
               mountPath: /var/lib/wazuh-indexer
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/node-key.pem
-              subPath: node-key.pem
+              subPath: tls.key
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/node.pem
-              subPath: node.pem
+              subPath: tls.crt
               readOnly: true
-            - name: indexer-certs
+            - name: indexer-root-ca
               mountPath: /usr/share/wazuh-indexer/certs/root-ca.pem
-              subPath: root-ca.pem
+              subPath: ca.crt
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/admin.pem
-              subPath: admin.pem
+              subPath: tls.crt
               readOnly: true
             - name: indexer-certs
               mountPath: /usr/share/wazuh-indexer/certs/admin-key.pem
-              subPath: admin-key.pem
+              subPath: tls.key
               readOnly: true
             - name: indexer-conf
               mountPath: /usr/share/wazuh-indexer/opensearch.yml
               subPath: opensearch.yml
               readOnly: true
-            - name: indexer-conf
+            - name: internal-users
               mountPath: /usr/share/wazuh-indexer/opensearch-security/internal_users.yml
               subPath: internal_users.yml
               readOnly: true

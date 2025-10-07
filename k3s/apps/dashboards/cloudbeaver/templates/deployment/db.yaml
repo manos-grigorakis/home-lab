@@ -32,7 +32,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-db-pass
+                  name: cloudbeaver-db-password
                   key: postgres-pass
           ports:
             - containerPort: 5432

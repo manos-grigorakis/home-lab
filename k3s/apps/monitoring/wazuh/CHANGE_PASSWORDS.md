@@ -31,7 +31,7 @@
     Copy the generated hashed value
 
 4. Replace Hash \
-    **File:** `wazuh-indexer/indexer_conf/internal_users.yml`
+    **File:** `secrets/internal-users-secret.yml`
 
     - `admin`
         ```yaml
@@ -119,7 +119,7 @@
     Copy the generated hashed value
 
 4. Modify default user \
-    **File:** `wazuh-indexer/indexer_conf/internal_users.yml`
+    **File:** `secrets/internal-users-secret.yml`
     
     ```yaml
     user:

@@ -43,12 +43,15 @@ spec:
             name: wazuh-conf
         - name: filebeat-certs
           secret:
-            secretName: indexer-certs
+            secretName: wazuh-filebeat-cert
+        - name: worker-root-ca
+          secret:
+            secretName: root-secret
       securityContext:
         fsGroup: 101
       containers:
         - name: wazuh-manager
-          image: 'wazuh/wazuh-manager:4.13.1'
+          image: "wazuh/wazuh-manager:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -62,17 +65,17 @@ spec:
               mountPath: /wazuh-config-mount/etc/ossec.conf
               subPath: worker.conf
               readOnly: true
-            - name: filebeat-certs
+            - name: worker-root-ca
               mountPath: /etc/ssl/root-ca.pem
               readOnly: true
-              subPath: root-ca.pem
+              subPath: ca.crt
             - name: filebeat-certs
               mountPath: /etc/ssl/filebeat.pem
-              subPath: filebeat.pem
+              subPath: tls.crt
               readOnly: true
             - name: filebeat-certs
               mountPath: /etc/ssl/filebeat.key
-              subPath: filebeat-key.pem
+              subPath: tls.key
               readOnly: true
             - name: wazuh-manager-worker
               mountPath: /var/ossec/api/configuration
@@ -114,7 +117,7 @@ spec:
               name: cluster
           env:
             - name: INDEXER_URL
-              value: 'https://indexer:9200'
+              value: "https://indexer:9200"
             - name: INDEXER_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -126,7 +129,7 @@ spec:
                   name: indexer-cred
                   key: password
             - name: FILEBEAT_SSL_VERIFICATION_MODE
-              value: 'full'
+              value: "full"
             - name: SSL_CERTIFICATE_AUTHORITIES
               value: /etc/ssl/root-ca.pem
             - name: SSL_CERTIFICATE
