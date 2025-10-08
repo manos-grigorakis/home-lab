@@ -6,3 +6,4 @@
 !apps/media/immich/configmap.yaml
 !apps/media/plex/configmap.yaml
 !apps/dashboards/cloudbeaver/values.yaml
+!apps/monitoring/kube-prometheus-stack/values.yaml
