@@ -17,7 +17,7 @@ spec:
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
       targetRevision: k3s-monitoring
-      path: k3s/apps/monitoring/kube-prometheus-stack
+      #path: k3s/apps/monitoring/kube-prometheus-stack
       ref: values
   project: default
   syncPolicy:
