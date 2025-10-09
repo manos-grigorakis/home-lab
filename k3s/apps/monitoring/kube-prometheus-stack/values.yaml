@@ -241,8 +241,12 @@ grafana:
   ##
   defaultDashboardsInterval: 1m
 
-  adminUser: admin
-  adminPassword: prom-operator
+  # Use an existing secret for the admin user.
+  admin:
+    ## Name of the secret. Can be templated.
+    existingSecret: "grafana-cred-secret"
+    userKey: admin-user
+    passwordKey: admin-password
 
   # # To make Grafana persistent (Using Statefulset)
   # #
