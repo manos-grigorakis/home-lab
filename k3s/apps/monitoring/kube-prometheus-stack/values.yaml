@@ -476,6 +476,11 @@ prometheusOperator:
   ##
   strategy: {}
 
+  ## Prometheus-Operator v0.39.0 and later support TLS natively.
+  ##
+  tls:
+    enabled: false
+
   ## Create a servicemonitor for the operator
   ##
   serviceMonitor:
