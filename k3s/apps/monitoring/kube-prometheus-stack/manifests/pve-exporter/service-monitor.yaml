@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pve-exporter
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: pve-exporter-svc
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  endpoints:
+    - port: http-metrics
+      scheme: http
+      interval: 30s
+      path: /pve
+      params:
+        target: ["192.168.10.20"]
+        module: ["default"]
+        cluster: ["1"]
+        node: ["1"]
+      relabelings:
+        - sourceLabels: [__param_target]
+          targetLabel: instance

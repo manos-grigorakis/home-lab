@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: node-exporter-proxmox
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobName: "host"
+  staticConfigs:
+    - targets: ["192.168.10.20:9100"]
+  metricsPath: /metrics
+  scheme: http
+  relabelings:
+    - sourceLabels: [__address__]
+      targetLabel: instance
