@@ -242,8 +242,10 @@ grafana:
   defaultDashboardsInterval: 1m
 
   # Use an existing secret for the admin user.
+  # To use an existing secret effectively, secret must be added during the first Grafana setup,
+  # so it is stored in the database
+  # Otherwise Grafana will use it's own credentials.
   admin:
-    ## Name of the secret. Can be templated.
     existingSecret: "grafana-cred-secret"
     userKey: admin-user
     passwordKey: admin-password
