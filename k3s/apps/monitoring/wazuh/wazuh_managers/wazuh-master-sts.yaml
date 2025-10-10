@@ -40,6 +40,9 @@ spec:
         - name: wazuh-authd-pass
           secret:
             secretName: wazuh-authd-pass
+        - name: internal-options
+          configMap:
+            name: wazuh-internal-options
       securityContext:
         fsGroup: 101
       containers:
@@ -53,6 +56,12 @@ spec:
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
+          command: ["sh", "-c"]
+          args:
+            - |
+              mkdir -p /var/ossec/etc  && \
+              cp /custom_options/local_internal_options.conf /var/ossec/etc/  && \
+              exec /init
           volumeMounts:
             - name: config
               mountPath: /wazuh-config-mount/etc/ossec.conf
@@ -107,6 +116,9 @@ spec:
             - name: wazuh-manager-master
               mountPath: /var/lib/filebeat
               subPath: filebeat/var/lib/filebeat
+            - name: internal-options
+              mountPath: /custom-options
+              readOnly: true
           ports:
             - containerPort: 1515
               name: registration

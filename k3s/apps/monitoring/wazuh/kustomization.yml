@@ -22,6 +22,9 @@ configMapGenerator:
   - name: dashboard-conf
     files:
       - indexer_stack/wazuh-dashboard/dashboard_conf/opensearch_dashboards.yml
+  - name: wazuh-internal-options
+    files:
+      - wazuh_managers/wazuh_conf/local_internal_options.conf
 
 resources:
   - base/wazuh-ns.yaml
