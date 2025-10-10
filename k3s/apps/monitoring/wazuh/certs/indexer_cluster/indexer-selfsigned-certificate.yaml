@@ -12,6 +12,7 @@ spec:
   usages:
     - server auth
   dnsNames:
+    - indexer
     - indexer.wazuh.svc
     - indexer.wazuh.svc.cluster.local
     - wazuh-indexer-0.wazuh-indexer.wazuh.svc
