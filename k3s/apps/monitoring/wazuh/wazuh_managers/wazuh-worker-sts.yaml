@@ -120,7 +120,7 @@ spec:
               mountPath: /var/lib/filebeat
               subPath: filebeat/var/lib/filebeat
             - name: internal-options
-              mountPath: /custom-options
+              mountPath: /custom_options
               readOnly: true
           ports:
             - containerPort: 1514
