@@ -666,10 +666,15 @@ prometheus:
       # name:
       # key:
 
-    ## External labels to add to any time series or alerts when communicating with external systems
-    ##
-    externalLabels:
-      cluster: home-lab
+    scrapeClasses:
+      - default: true
+        name: cluster-relabeling
+        relabelings:
+          - sourceLabels: [__name__]
+            regex: (.*)
+            targetLabel: cluster
+            replacement: home-lab
+            action: replace
 
 ## Configuration for thanosRuler
 ## ref: https://thanos.io/tip/components/rule.md/
