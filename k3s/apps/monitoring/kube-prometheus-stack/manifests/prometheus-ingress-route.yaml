@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-web
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus2.poolnode.net`)
+      kind: Rule
+      services:
+        - name: kube-prometheus-stack-prometheus
+          kind: Service
+          namespace: monitoring
+          scheme: http
+          port: 9090
+  tls:
+    secretName: monitoring-wildcard-tls
