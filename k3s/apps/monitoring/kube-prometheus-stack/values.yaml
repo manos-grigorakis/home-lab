@@ -666,6 +666,11 @@ prometheus:
       # name:
       # key:
 
+    ## External labels to add to any time series or alerts when communicating with external systems
+    ##
+    externalLabels:
+      cluster: home-lab
+
 ## Configuration for thanosRuler
 ## ref: https://thanos.io/tip/components/rule.md/
 ##
