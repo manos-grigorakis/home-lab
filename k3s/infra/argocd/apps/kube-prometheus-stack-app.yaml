@@ -19,8 +19,6 @@ spec:
       targetRevision: k3s-monitoring
       path: k3s/apps/monitoring/kube-prometheus-stack/manifests
       ref: values
-      directory:
-        recurse: true
   project: default
   syncPolicy:
     syncOptions:
