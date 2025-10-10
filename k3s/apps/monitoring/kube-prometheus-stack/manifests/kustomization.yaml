@@ -3,6 +3,14 @@ kind: Kustomization
 
 namespace: monitoring
 
+configMapGenerator:
+  - name: test-dashboard
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - grafana/dashboards/test-dashboard.json
+
 resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml
