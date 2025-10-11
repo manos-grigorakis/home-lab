@@ -10,6 +10,12 @@ configMapGenerator:
         grafana_dashboard: "1"
     files:
       - grafana/dashboards/test-dashboard.json
+  - name: kubernetes-dashboard
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - grafana/dashboards/kubernetes-dashboard.json
 
 resources:
   # Secrets
