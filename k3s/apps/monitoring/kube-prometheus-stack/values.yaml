@@ -47,17 +47,17 @@ defaultRules:
     kubeApiserverBurnrate: true
     kubeApiserverHistogram: true
     kubeApiserverSlos: true
-    kubeControllerManager: true
+    kubeControllerManager: false
     kubelet: true
-    kubeProxy: true
+    kubeProxy: false
     kubePrometheusGeneral: true
     kubePrometheusNodeRecording: true
     kubernetesApps: true
     kubernetesResources: true
     kubernetesStorage: true
     kubernetesSystem: true
-    kubeSchedulerAlerting: true
-    kubeSchedulerRecording: true
+    kubeSchedulerAlerting: false
+    kubeSchedulerRecording: false
     kubeStateMetrics: true
     network: true
     node: true
@@ -196,41 +196,7 @@ grafana:
 
   ## Deploy default dashboards
   ##
-  defaultDashboardsEnabled: true
-
-  ## Deploy GrafanaDashboard CRDs that reference dashboards from ConfigMaps when grafana-operator is used
-  ## These settings control how dashboards are integrated with the Grafana Operator
-  ## Note: End user still need to create is own kind: GrafanaDataSource for Prometheus
-  ## eg:
-  ## apiVersion: grafana.integreatly.org/v1beta1
-  ## kind: GrafanaDatasource
-  ## metadata:
-  ##   name: prometheus
-  ##   annotations: {}
-  ## spec:
-  ##   allowCrossNamespaceImport: true
-  ##   instanceSelector:
-  ##     matchLabels:
-  ##       app: grafana
-  ##   datasource:
-  ##     name: prometheus
-  ##     type: prometheus
-  ##     access: proxy
-  ##     url: http://prometheus-operated.prometheus-stack.svc.cluster.local:9090
-  ##     isDefault: true
-  ##     jsonData:
-  ##       "tlsSkipVerify": true
-  ##       "timeInterval": "5s"
-  ##
-  operator:
-    ## Enable references to ConfigMaps containing dashboards in GrafanaDashboard CRs
-    ## Set to true to allow dashboards to be loaded from ConfigMap references
-    dashboardsConfigMapRefEnabled: false
-
-    ## How frequently the operator should resync resources (in duration format)
-    ## Controls how often dashboards are reconciled by the operator
-    ##
-    resyncPeriod: 10m
+  defaultDashboardsEnabled: false
 
   ## Timezone for the default dashboards
   ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
@@ -375,14 +341,7 @@ kubelet:
 ## Component scraping the kube controller manager
 ##
 kubeControllerManager:
-  enabled: true
-
-  ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
-  ##
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
+  enabled: false
 
 ## Component scraping coreDns. Use either this or kubeDns
 ##
@@ -401,26 +360,12 @@ kubeEtcd:
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
-  enabled: true
-
-  ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
-  ##
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
+  enabled: false
 
 ## Component scraping kube proxy
 ##
 kubeProxy:
-  enabled: true
-
-  ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
-  ##
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
+  enabled: false
 
 ## Component scraping kube state metrics
 ##
