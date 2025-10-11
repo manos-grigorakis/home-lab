@@ -9,7 +9,7 @@ configMapGenerator:
       labels:
         grafana_dashboard: "1"
     files:
-      - grafana/dashboards/test-dashboard.json
+      - grafana/dashboards/main-dashboard.json
   - name: kubernetes-dashboard
     options:
       labels:
