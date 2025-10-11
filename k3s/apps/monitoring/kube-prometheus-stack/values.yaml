@@ -238,7 +238,7 @@ grafana:
       label: grafana_dashboard
       labelValue: "1"
       # Allow discovery in all namespaces for dashboards
-      searchNamespace: ALL
+      searchNamespace: "monitoring"
 
       # Support for new table panels, when enabled grafana auto migrates the old table panels to newer table panels
       enableNewTablePanelSyntax: false
