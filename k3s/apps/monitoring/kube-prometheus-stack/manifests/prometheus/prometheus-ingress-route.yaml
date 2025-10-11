@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`prometheus2.poolnode.net`)
+    - match: Host(`prometheus.poolnode.net`)
       kind: Rule
       services:
         - name: kube-prometheus-stack-prometheus

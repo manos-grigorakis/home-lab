@@ -7,7 +7,7 @@ spec:
   secretName: monitoring-wildcard-tls
   issuerRef:
     kind: ClusterIssuer
-    name: letsencrypt-dns01-staging
+    name: letsencrypt-dns01
   dnsNames:
     - "poolnode.net"
     - "*.poolnode.net"

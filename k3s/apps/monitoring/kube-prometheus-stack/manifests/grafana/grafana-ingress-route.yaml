@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`grafana2.poolnode.net`)
+    - match: Host(`grafana.poolnode.net`)
       kind: Rule
       services:
         - name: kube-prometheus-stack-grafana
