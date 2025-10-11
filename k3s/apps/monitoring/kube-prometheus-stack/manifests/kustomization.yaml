@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: monitoring
 
 configMapGenerator:
-  - name: test-dashboard
+  - name: main-dashboard
     options:
       labels:
         grafana_dashboard: "1"
