@@ -236,7 +236,7 @@ grafana:
     dashboards:
       enabled: true
       label: grafana_dashboard
-      labelValue: "1"
+      labelValue: "my_custom_dashboards"
       # Allow discovery in all namespaces for dashboards
       searchNamespace: "monitoring"
 

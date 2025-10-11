@@ -7,13 +7,13 @@ configMapGenerator:
   - name: main-dashboard
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/main-dashboard.json
   - name: kubernetes-dashboard
     options:
       labels:
-        grafana_dashboard: "1"
+        grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/kubernetes-dashboard.json
 
