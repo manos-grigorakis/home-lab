@@ -16,7 +16,7 @@ spec:
           - $values/k3s/apps/monitoring/kube-prometheus-stack/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: k3s-monitoring
+      targetRevision: main
       path: k3s/apps/monitoring/kube-prometheus-stack/manifests
       ref: values
   project: default
