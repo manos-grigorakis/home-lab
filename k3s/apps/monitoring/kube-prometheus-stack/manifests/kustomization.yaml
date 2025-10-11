@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+configMapGenerator:
+  - name: main-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/main-dashboard.json
+  - name: kubernetes-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/kubernetes-dashboard.json
+
+resources:
+  # Secrets
+  - pve-exporter/config-secret.sealed.yaml
+  - grafana/grafana-cred-secret.sealed.yaml
+
+  # Services
+  - pve-exporter/service.yaml
+  - pve-exporter/service-monitor.yaml
+
+  # Ingress Routes
+  - alert-manager/alertmanager-ingress-route.yaml
+  - grafana/grafana-ingress-route.yaml
+  - prometheus/prometheus-ingress-route.yaml
+
+  # Deployments
+  - pve-exporter/deploy.yaml
+
+  # Other (CRDs...)
+  - pve-exporter/scrape-config.yaml

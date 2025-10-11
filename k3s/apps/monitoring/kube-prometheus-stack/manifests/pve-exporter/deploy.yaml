@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pve-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pve-exporter
+  template:
+    metadata:
+      labels:
+        app: pve-exporter
+    spec:
+      containers:
+        - name: pve-exporter
+          image: "prompve/prometheus-pve-exporter:3.5.5"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9221
+              name: http-metrics
+          envFrom:
+            - secretRef:
+                name: pve-exporter-config-secret

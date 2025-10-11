@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-dashboard
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`grafana.poolnode.net`)
+      kind: Rule
+      services:
+        - name: kube-prometheus-stack-grafana
+          kind: Service
+          namespace: monitoring
+          scheme: http
+          port: 80
+  tls:
+    secretName: monitoring-wildcard-tls
