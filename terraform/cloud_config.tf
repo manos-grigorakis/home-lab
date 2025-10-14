@@ -1,10 +1,14 @@
+locals {
+  vms_group = merge(local.k3s_servers, local.k3s_agents)
+}
+
 data "local_file" "ssh_public_keys" {
   filename = "./ssh_keys.pub"
 }
 
 resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
-  for_each = local.k3s_servers
-  
+  for_each = local.vms_group
+
   content_type = "snippets"
   datastore_id = "local"
   node_name    = var.pve_node_name

@@ -51,9 +51,9 @@ variable "bios" {
 
 # Network
 variable "gateway" {
-  type = string
+  type        = string
   description = "The IPv4 Gateway"
-  nullable = false
+  nullable    = false
 }
 
 variable "dns_servers" {
