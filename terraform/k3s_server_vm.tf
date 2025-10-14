@@ -8,8 +8,8 @@ resource "proxmox_virtual_environment_vm" "k3s_server_vm" {
   tags        = each.value.tags
 
   machine       = "q35"
-  bios          = var.bios
-  started       = true # Start after creation
+  bios          = "ovmf"
+  started       = true  # Start after creation
   on_boot       = false # Start at server boot
   scsi_hardware = "virtio-scsi-single"
   boot_order    = ["scsi0"]
@@ -31,15 +31,12 @@ resource "proxmox_virtual_environment_vm" "k3s_server_vm" {
     dedicated = each.value.memory
   }
 
-  # Create an EFI disk when the bios is set to ovmf
-  dynamic "efi_disk" {
-    for_each = (var.bios == "ovmf" ? [1] : [])
-    content {
-      datastore_id      = "local-lvm"
-      file_format       = "raw"
-      type              = "4m"
-      pre_enrolled_keys = true
-    }
+  # Create an EFI disk for ovmf bios
+  efi_disk {
+    datastore_id      = "local-lvm"
+    file_format       = "raw"
+    type              = "4m"
+    pre_enrolled_keys = true
   }
 
   disk {
@@ -66,7 +63,6 @@ resource "proxmox_virtual_environment_vm" "k3s_server_vm" {
     }
 
     # Cloud config
-    #user_data_file_id = proxmox_virtual_environment_file.user_data_cloud_config.id
     user_data_file_id = proxmox_virtual_environment_file.user_data_cloud_config[each.key].id
 
   }

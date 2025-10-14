@@ -38,17 +38,7 @@ variable "pve_node_name" {
   nullable    = false
 }
 
-# VM
-variable "bios" {
-  type        = string
-  description = "VM bios, setting to `ovmf` will automatically create a EFI disk."
-  default     = "seabios"
-  validation {
-    condition     = contains(["seabios", "ovmf"], var.bios)
-    error_message = "Invalid bios setting: ${var.bios}. Valid options 'seabios' or 'ovmf'."
-  }
-}
-
+## VM
 # Network
 variable "gateway" {
   type        = string
