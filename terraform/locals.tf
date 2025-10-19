@@ -43,26 +43,26 @@ locals {
     # }
   }
 
-  debian_containers = {
+  ubuntu_containers = {
     "K3s-database" = {
-      id           = 108
-      hostname     = "k3s-database"
-      tags         = ["terraform", "cluster"]
-      cpu_cores    = 2
-      memory       = 4096
-      ipv4         = "192.168.10.44/24"
-      storage_size = 40
+      id            = 108
+      hostname      = "k3s-database"
+      tags          = ["terraform", "cluster"]
+      cpu_cores     = 2
+      memory        = 4096
+      ipv4          = "192.168.10.44/24"
+      storage_size  = 40
       startup_order = 2
     }
 
     "K3s-proxy" = {
-      id           = 109
-      hostname     = "k3s-proxy"
-      tags         = ["terraform", "cluster"]
-      cpu_cores    = 2
-      memory       = 1024
-      ipv4         = "192.168.10.45/24"
-      storage_size = 8
+      id            = 109
+      hostname      = "k3s-proxy"
+      tags          = ["terraform", "cluster"]
+      cpu_cores     = 2
+      memory        = 1024
+      ipv4          = "192.168.10.45/24"
+      storage_size  = 8
       startup_order = 2
     }
 
