@@ -1,0 +1,19 @@
+- name: Install Basic Packages
+  hosts: k3s_api
+
+  tasks:
+    - name: Update Packages
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name:
+          - curl
+          - wget
+          - nano
+          - git
+          - unzip
+          - zip
+          - tar
+        state: present
