@@ -1,5 +1,5 @@
-resource "proxmox_virtual_environment_container" "debian_container" {
-  for_each = local.debian_containers
+resource "proxmox_virtual_environment_container" "ubuntu_container" {
+  for_each = local.ubuntu_containers
 
   node_name     = var.pve_node_name
   vm_id         = each.value.id
@@ -34,8 +34,7 @@ resource "proxmox_virtual_environment_container" "debian_container" {
     }
 
     user_account {
-      keys     = [trimspace(data.local_file.ssh_public_keys.content)]
-      password = var.container_debian_password
+      keys = [trimspace(data.local_file.ssh_public_keys.content)]
     }
   }
 
@@ -51,8 +50,10 @@ resource "proxmox_virtual_environment_container" "debian_container" {
   }
 
   operating_system {
-    template_file_id = proxmox_virtual_environment_download_file.debian_12_standard_lxc_img.id
-    type             = "debian"
+    # Download template manually on PVE from CT Templates -> Templates
+    # pvesm list <storage>
+    template_file_id = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+    type             = "ubuntu"
   }
 
   mount_point {

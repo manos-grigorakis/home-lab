@@ -7,10 +7,3 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
   # need to rename the file to *.qcow2 to indicate the actual file format for import
   file_name = "ubuntu-server-24-04-lts-noble-server-cloudimg-amd64.qcow2"
 }
-
-resource "proxmox_virtual_environment_download_file" "debian_12_standard_lxc_img" {
-  content_type = "vztmpl"
-  datastore_id = "local"
-  node_name    = var.pve_node_name
-  url          = "https://mirror.twds.com.tw/proxmox/images/system/debian-12-standard_12.7-1_amd64.tar.zst"
-}

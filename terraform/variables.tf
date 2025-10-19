@@ -74,12 +74,3 @@ variable "vm_password_hashed" {
   sensitive   = true
   nullable    = false
 }
-
-# Container
-variable "container_debian_password" {
-  type        = string
-  description = "Password for Container based on Debian"
-  sensitive   = true
-  nullable    = false
-  default     = "admin"
-}
