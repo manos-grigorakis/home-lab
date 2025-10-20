@@ -1,0 +1,68 @@
+- name: Setup Git
+  hosts: k3s_api
+  vars:
+    git_username: manos
+    git_email: manos.grigorakis03@gmail.com
+
+  tasks:
+    - name: Update Packages & Install Git (If not present)
+      ansible.builtin.apt:
+        name: ["git"]
+        update_cache: true
+        state: present
+
+    - name: Setup Git User Name
+      community.general.git_config:
+        name: user.name
+        value: "{{ git_username }}"
+        scope: global
+      when: git_username is defined
+
+    - name: Setup Git User Email
+      community.general.git_config:
+        name: user.email
+        value: "{{ git_email }}"
+        scope: global
+      when: git_email is defined
+
+    - name: Setup Git Log Date Format
+      community.general.git_config:
+        name: log.date
+        value: local
+        scope: global
+
+    - name: Setup Default Branch to main
+      community.general.git_config:
+        name: init.defaultBranch
+        value: main
+        scope: global
+
+    - name: Enable Git SSH Signing
+      ansible.builtin.command:
+        cmd: git config --global gpg.format ssh
+
+    - name: Copy All Public SSH Keys to Remote
+      ansible.builtin.copy:
+        src: ../public_ssh_keys/{{ item }}
+        dest: ~/.ssh/
+      loop:
+        - id_ed25519_github_linux_mint.pub
+        - id_ed25519_github_mac.pub
+        - id_ed25519_github_windows.pub
+
+    - name: Set the Default Public Key as Signing Key
+      ansible.builtin.shell:
+        cmd: git config --global user.signingkey "$(cat ~/.ssh/id_ed25519_github_linux_mint.pub)"
+
+    - name: Enable Global Signing Commit
+      ansible.builtin.command:
+        cmd: git config --global commit.gpgsign true
+
+    - name: Verify Git Setup
+      ansible.builtin.command:
+        cmd: git config --list
+      register: verify_git
+
+    - name: Print Git Setup Verification
+      ansible.builtin.debug:
+        var: verify_git.stdout_lines
