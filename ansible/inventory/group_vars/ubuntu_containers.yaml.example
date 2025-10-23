@@ -1,0 +1,2 @@
+# Generate hashed password with `openssl passwd -6`
+hashed_password: ""

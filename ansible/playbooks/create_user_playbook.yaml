@@ -1,0 +1,42 @@
+- name: Create User `manos` & Setup SSH
+  hosts: ubuntu_containers
+  become: true
+  become_user: root
+
+  tasks:
+    - name: Create User `manos` with a Home Directory and sudo Previleges
+      ansible.builtin.user:
+        name: manos
+        create_home: yes
+        group: sudo
+        shell: /bin/bash
+        password: "{{ hashed_password }}"
+
+    - name: Create SSH Directory for User `manos`
+      ansible.builtin.file:
+        path: /home/manos/.ssh
+        state: directory
+        owner: manos
+        group: sudo
+        mode: "700"
+
+    - name: Copy Authorized Keys from `root` to `manos`
+      ansible.builtin.copy:
+        remote_src: true
+        src: ~/.ssh/authorized_keys
+        dest: /home/manos/.ssh/
+        owner: manos
+        group: sudo
+        mode: "600"
+
+    - name: Disable SSH Password Authentication
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^#?PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        state: present
+
+    - name: Restart SSH Service
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
