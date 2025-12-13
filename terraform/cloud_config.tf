@@ -1,5 +1,5 @@
 locals {
-  vms_group = merge(local.k3s_servers, local.k3s_agents)
+  vms_group = merge(local.k3s_servers, local.k3s_agents, local.other_vm)
 }
 
 data "local_file" "ssh_public_keys" {
