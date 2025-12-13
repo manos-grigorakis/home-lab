@@ -1,5 +1,5 @@
 - name: Install Docker
-  hosts: k3s_api
+  hosts: "{{ target | default('k3s_api') }}"
 
   tasks:
     - name: Update Packages
@@ -62,6 +62,19 @@
         enabled: true
         name: docker
         state: started
+
+    - name: Ensure docker group exists
+      ansible.builtin.group:
+        name: docker
+        system: true
+      become: true
+
+    - name: Add manos to docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+      become: true
 
     - name: Verify Docker Installation
       ansible.builtin.shell: |
