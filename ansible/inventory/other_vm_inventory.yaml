@@ -1,0 +1,8 @@
+other_vm:
+  children:
+    logistics_platform:
+
+logistics_platform:
+  hosts:
+    logistics-platform-vm:
+      ansible_host: 192.168.10.240
