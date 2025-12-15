@@ -15,23 +15,24 @@
 ![Open PRs](https://img.shields.io/github/issues-pr/manos-grigorakis/home-lab)
 
 ## Hardware
+
 <details>
 <summary><b>Servers</b></summary>
 
-| **Name**   | **Device**           | **CPU**            | **RAM**   | **Storage**            | **GPU**        | **Notes**      |
-|------------|----------------------|--------------------|-----------|------------------------|----------------|----------------|
-| Nexus      | Custom               | Intel i5-13500     | 128GB     | 1TB NVMe, 4TB HDD      | iGPU           | Main Node      |
-| Pi         | Raspberry Pi 5       |                    | 8GB       | 240GB NVMe             | N/A            | Home Assistant |
+| **Name** | **Device**     | **CPU**        | **RAM** | **Storage**                      | **GPU** | **Notes**      |
+| -------- | -------------- | -------------- | ------- | -------------------------------- | ------- | -------------- |
+| Nexus    | Custom         | Intel i5-13500 | 128GB   | 1TB NVMe, 2TB NVMe, <br> 4TB HDD | iGPU    | Main Node      |
+| Pi       | Raspberry Pi 5 |                | 8GB     | 240GB NVMe                       | N/A     | Home Assistant |
 
 </details>
 
 <details>
 <summary><b>Networking</b></summary>
 
-| **Role**       | **Device**                                      |
-|----------------|-------------------------------------------------|
-| Modem          | Telekom Speedport Plus 2                        |
-| Router         | GL.iNet Flint 2 (GL-MT6000)                     |
-| Switch         | TP-Link Omada Easy-Smart Switch 1Gbps (DS108GE) |
+| **Role** | **Device**                                      |
+| -------- | ----------------------------------------------- |
+| Modem    | Telekom Speedport Plus 2                        |
+| Router   | GL.iNet Flint 2 (GL-MT6000)                     |
+| Switch   | TP-Link Omada Easy-Smart Switch 1Gbps (DS108GE) |
 
 </details>
