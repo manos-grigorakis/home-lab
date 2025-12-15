@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: databases
 
 resources:
-  - secret.sealed.yaml
-  - pvc.yaml
-  - deployment.yaml
-  - service.yaml
+  - databases-ns.yaml
+  - mariadb/
+  - mysql/
