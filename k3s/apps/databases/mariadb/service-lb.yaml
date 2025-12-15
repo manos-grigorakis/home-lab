@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-lb
+  namespace: databases
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.10.122
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - name: mariadb
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: LoadBalancer

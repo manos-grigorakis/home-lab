@@ -5,6 +5,6 @@ namespace: databases
 
 resources:
   - secret.sealed.yaml
-  - pvc.yaml
-  - deployment.yaml
+  - sts.yaml
   - service.yaml
+  - service-lb.yaml

@@ -5,8 +5,9 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.10.120/32 # Ingress
-  - 192.168.10.121/32 # MySQL
-  - 192.168.10.123/32 # Pi-hole DNS
-  - 192.168.10.124/32 # Plex Service LB
-  - 192.168.10.125/32 # Wazuh
+    - 192.168.10.120/32 # Ingress
+    - 192.168.10.121/32 # MySQL
+    - 192.168.10.122/32 # MariaDB
+    - 192.168.10.123/32 # Pi-hole DNS
+    - 192.168.10.124/32 # Plex Service LB
+    - 192.168.10.125/32 # Wazuh
