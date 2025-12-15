@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  namespace: databases
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  serviceName: mariadb-service
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: "mariadb:11.8"
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: mariadb-secrets
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: longhorn
+        resources:
+          requests:
+            storage: 20Gi
