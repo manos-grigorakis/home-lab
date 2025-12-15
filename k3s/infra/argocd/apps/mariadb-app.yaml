@@ -10,7 +10,7 @@ spec:
   source:
     path: k3s/apps/databases/mariadb
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: feat/mariadb
+    targetRevision: main
   sources: []
   project: default
   syncPolicy:
