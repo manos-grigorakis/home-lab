@@ -36,3 +36,18 @@
 | Switch   | TP-Link Omada Easy-Smart Switch 1Gbps (DS108GE) |
 
 </details>
+
+## Project Directory Structure
+```bash
+home-lab
+├── ansible                        # Host configuration
+├── Dockerfiles                    # Custom Docker images
+├── k3s                      
+│   ├── apps                       # Cluster core applications grouped by domain
+│   └── infra                      # Cluster infrastructure
+├── LICENSE
+├── lxc                            # Proxmox LXCs (e.g. docker-compose)
+├── README.md
+├── scripts                        # Helper scripts
+└── terraform                      # Infrastructure provisioning (Proxmox VMs & LXCs)
+```
