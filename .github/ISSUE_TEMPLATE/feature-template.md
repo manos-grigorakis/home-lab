@@ -14,7 +14,7 @@ Short description of the feature.
 - What will be affected?
 
 ## Tasks
-- [] Task 1
+- [ ] Task 1
 
 ## Notes
 Extra notes

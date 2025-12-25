@@ -18,5 +18,8 @@ Scope of documentation.
 ## Location
 Where is stored?
 
+## Tasks
+- [ ] Task 1
+
 ## Notes
 Notes, diagrams, ideas.
