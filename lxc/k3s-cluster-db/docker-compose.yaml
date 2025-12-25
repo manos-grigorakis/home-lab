@@ -1,7 +1,7 @@
 services:
   db:
     container_name: mariadb
-    image: "mariadb:10.11"
+    image: "mariadb:12.1"
     restart: always
     ports:
       - "3306:3306"
