@@ -17,6 +17,7 @@ Reason for making this change
 Downtime, breaking changes
 
 ## Scope
-- Proxmox
+- What will be affected?
 
 ## Notes
+Extra notes
