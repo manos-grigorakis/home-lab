@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-server
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-server
+  template:
+    metadata:
+      labels:
+        app: paperless-server
+    spec:
+      containers:
+        - name: server
+          image: "ghcr.io/paperless-ngx/paperless-ngx:2.20.3"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: web-ui
+          envFrom:
+            - configMapRef:
+                name: server-configmap
+            - secretRef:
+                name: server-secrets
+          volumeMounts:
+            - name: data
+              mountPath: /usr/src/paperless/data
+            - name: media
+              mountPath: /usr/src/paperless/media
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-data-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: paperless-media-pvc

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-paperless
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-paperless
+  template:
+    metadata:
+      labels:
+        app: redis-paperless
+    spec:
+      containers:
+        - name: redis
+          image: "docker.io/library/redis:7.2"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+              name: redis
