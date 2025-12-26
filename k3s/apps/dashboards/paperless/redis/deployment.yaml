@@ -8,15 +8,15 @@ spec:
   selector:
     matchLabels:
       app: redis-paperless
-    template:
-      metadata:
-        labels:
-          app: redis-paperless
-      spec:
-        containers:
-          - name: redis
-            image: "docker.io/library/redis:7.2"
-            imagePullPolicy: IfNotPresent
-            ports:
-              - containerPort: 6379
-                name: redis
+  template:
+    metadata:
+      labels:
+        app: redis-paperless
+    spec:
+      containers:
+        - name: redis
+          image: "docker.io/library/redis:7.2"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+              name: redis
