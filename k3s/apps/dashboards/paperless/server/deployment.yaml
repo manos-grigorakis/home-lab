@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: server-configmap
+            - secretRef:
+                name: server-secrets
           volumeMounts:
             - name: data
               mountPath: /usr/src/paperless/data

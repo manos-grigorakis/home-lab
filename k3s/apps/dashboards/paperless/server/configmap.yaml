@@ -5,3 +5,6 @@ metadata:
   namespace: paperless
 data:
   PAPERLESS_REDIS: "redis://redis-service:6379"
+  PAPERLESS_DBHOST: "postgres.databases"
+  PAPERLESS_DBPORT: "5432"
+  PAPERLESS_DBNAME: "paperless"

@@ -8,6 +8,7 @@ resources:
   - media-pvc.yaml
 
   - configmap.yaml
+  - secret.sealed.yaml
   - service.yaml
 
   - deployment.yaml
