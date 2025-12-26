@@ -10,7 +10,7 @@ spec:
   source:
     path: k3s/apps/databases/postgres
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: service/paperless-ngx
+    targetRevision: main
   sources: []
   project: default
   syncPolicy:
