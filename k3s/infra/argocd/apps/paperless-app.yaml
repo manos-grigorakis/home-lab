@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paperless
+  namespace: argocd
+spec:
+  destination:
+    namespace: paperless
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/manos-grigorakis/home-lab.git
+    path: k3s/apps/dashboards/paperless
+    targetRevision: service/paperless-ngx
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
