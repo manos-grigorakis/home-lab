@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-configmap
+  namespace: paperless
+data:
+  PAPERLESS_REDIS: "redis://redis-service:6379"

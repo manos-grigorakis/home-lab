@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: paperless-ui
+  namespace: paperless
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`paperless.poolnode.net`)
+      services:
+        - name: paperless-server-service
+          kind: Service
+          namespace: paperless
+          scheme: http
+          port: 80
+  tls:
+    secretName: paperless-wildcard-tls
