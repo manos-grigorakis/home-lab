@@ -7,7 +7,6 @@
 ![Repo Size](https://img.shields.io/github/repo-size/manos-grigorakis/home-lab)
 ![Top Language](https://img.shields.io/github/languages/top/manos-grigorakis/home-lab)
 ![Languages Count](https://img.shields.io/github/languages/count/manos-grigorakis/home-lab)
-![Lines of Code](https://tokei.rs/b1/github/manos-grigorakis/home-lab)
 
 ![Commits (total)](https://img.shields.io/github/commit-activity/t/manos-grigorakis/home-lab)
 ![Commits/month](https://img.shields.io/github/commit-activity/m/manos-grigorakis/home-lab)
@@ -38,11 +37,13 @@
 </details>
 
 ## Project Directory Structure
+
 ```bash
 home-lab
-├── ansible                        # Host configuration
+├── .github                        # GitHub related
+├── ansible                        # Host configuration (WIP)
 ├── Dockerfiles                    # Custom Docker images
-├── k3s                      
+├── k3s
 │   ├── apps                       # Cluster core applications grouped by domain
 │   └── infra                      # Cluster infrastructure
 ├── LICENSE
@@ -51,3 +52,77 @@ home-lab
 ├── scripts                        # Helper scripts
 └── terraform                      # Infrastructure provisioning (Proxmox VMs & LXCs)
 ```
+
+## Services
+
+<details>
+<summary><b>Services</b></summary>
+
+### Cluster Infrastructure
+
+| **Service**                                                     | **Category**            | **Runtime** |
+| --------------------------------------------------------------- | ----------------------- | ----------- |
+| [Argo CD](https://argo-cd.readthedocs.io/en/stable/)            | GitOps                  | Cluster     |
+| [cert-manager](https://cert-manager.io/)                        | Certificates            | Cluster     |
+| [Longhorn](https://longhorn.io/)                                | Storage                 | Cluster     |
+| [MetalLB](https://metallb.io/)                                  | IP Pool                 | Cluster     |
+| [Traefik](https://traefik.io/)                                  | Ingress / Load Balancer | Cluster     |
+| [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) | Cluster Dashboard       | Cluster     |
+
+### Monitoring & Security
+
+| **Service**                                                              | **Category**       | **Runtime** |
+| ------------------------------------------------------------------------ | ------------------ | ----------- |
+| [Grafana](https://grafana.com/)                                          | Data Visualization | Cluster     |
+| [Prometheus](https://prometheus.io/)                                     | Monitoring         | Cluster     |
+| [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerts             | Cluster     |
+| [Wazuh](https://wazuh.com/)                                              | SIEM               | Cluster     |
+| [Suricata](https://suricata.io/)                                         | IDS                | VM          |
+
+### Networking
+
+| **Service**                                             | **Category**  | **Runtime** | **Notes**                  |
+| ------------------------------------------------------- | ------------- | ----------- | -------------------------- |
+| [Pi-hole](https://pi-hole.net/)                         | AdBlocker     | Cluster     |                            |
+| [Unbound](https://nlnetlabs.nl/projects/unbound/about/) | Recursive DNS | Cluster     |                            |
+| [nginx](https://nginx.org/)                             | Load Balancer | LXC         | K3s External Load Balancer |
+| [Nginx Proxy Manager](https://nginxproxymanager.com/)   | Reverse Proxy | LXC         |                            |
+
+### Databases & Storage
+
+| **Service**                                                   | **Category** | **Runtime** | **Notes**             |
+| ------------------------------------------------------------- | ------------ | ----------- | --------------------- |
+| [MariaDB](https://mariadb.org/)                               | Database     | Cluster     |                       |
+| [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                       |
+| [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                       |
+| [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database |
+| [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          |                       |
+
+### Applications
+
+| **Service**                                               | **Category**        | **Runtime**                 |
+| --------------------------------------------------------- | ------------------- | --------------------------- |
+| [Homarr](https://homarr.dev/)                             | Dashboard           | Cluster                     |
+| [Mealie](https://mealie.io/)                              | Recipes             | Cluster                     |
+| [CloudBeaver](https://github.com/dbeaver/cloudbeaver)     | Database Management | Cluster                     |
+| [Immich](https://immich.app/)                             | Images              | Cluster                     |
+| [Plex](https://www.plex.tv/)                              | Movies              | Cluster                     |
+| [Paperless-ngx](https://docs.paperless-ngx.com/)          | Document Management | Cluster                     |
+| [Home Assistant](https://www.home-assistant.io/)          | Smart Home          | Raspberry Pi 5 (Bare Metal) |
+| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Passwords Manager   | LXC                         |
+
+</details>
+
+## Screenshots
+
+### Homarr Dashboard
+
+![Homarr](/screenshots/homarr_dashboard.png)
+
+### Grafana Kubernetes Dashboard
+
+![Grafana](/screenshots/grafana_kubernetes.png)
+
+### ArgoCD
+
+![ArgoCD](/screenshots/argocd.png)
