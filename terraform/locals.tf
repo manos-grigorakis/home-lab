@@ -44,6 +44,17 @@ locals {
   }
 
   ubuntu_containers = {
+    "uptime-kuma" = {
+      id            = 103
+      hostname      = "uptime-kuma"
+      tags          = ["terraform", "monitoring"]
+      cpu_cores     = 1
+      memory        = 1024
+      ipv4          = "192.168.10.43/24"
+      storage_size  = 20
+      startup_order = 5
+    }
+
     "K3s-database" = {
       id            = 108
       hostname      = "k3s-database"
