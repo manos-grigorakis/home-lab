@@ -18,10 +18,10 @@
 <details>
 <summary><b>Servers</b></summary>
 
-| **Name** | **Device**     | **CPU**        | **RAM** | **Storage**                      | **GPU** | **Notes**      |
-| -------- | -------------- | -------------- | ------- | -------------------------------- | ------- | -------------- |
-| Nexus    | Custom         | Intel i5-13500 | 128GB   | 1TB NVMe, 2TB NVMe, <br> 4TB HDD | iGPU    | Main Node      |
-| Pi       | Raspberry Pi 5 |                | 8GB     | 240GB NVMe                       | N/A     | Home Assistant |
+| **Name** | **Device**     | **CPU**        | **RAM** | **Storage**                               | **GPU** | **Notes**      |
+| -------- | -------------- | -------------- | ------- | ----------------------------------------- | ------- | -------------- |
+| Nexus    | Custom         | Intel i5-13500 | 128GB   | 1TB NVMe, 2TB NVMe, <br> 4TB HDD, 6TB HDD | iGPU    | Main Node      |
+| Pi       | Raspberry Pi 5 |                | 8GB     | 240GB NVMe                                | N/A     | Home Assistant |
 
 </details>
 
@@ -78,6 +78,7 @@ home-lab
 | [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerts             | Cluster     |
 | [Wazuh](https://wazuh.com/)                                              | SIEM               | Cluster     |
 | [Suricata](https://suricata.io/)                                         | IDS                | VM          |
+| [Uptime Kuma](https://uptimekuma.org/)                                   | Monitoring         | LXC         |
 | [Speedtest Tracker](https://docs.speedtest-tracker.dev/) | Network Monitoring | LXC |
 
 ### Networking
@@ -91,13 +92,13 @@ home-lab
 
 ### Databases & Storage
 
-| **Service**                                                   | **Category** | **Runtime** | **Notes**             |
-| ------------------------------------------------------------- | ------------ | ----------- | --------------------- |
-| [MariaDB](https://mariadb.org/)                               | Database     | Cluster     |                       |
-| [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                       |
-| [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                       |
-| [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database |
-| [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          |                       |
+| **Service**                                                   | **Category** | **Runtime** | **Notes**                |
+| ------------------------------------------------------------- | ------------ | ----------- | ------------------------ |
+| [MariaDB](https://mariadb.org/)                               | Database     | Cluster     |                          |
+| [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                          |
+| [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                          |
+| [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database    |
+| [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          | Mirrored (4TB + 6TB HDD) |
 
 ### Applications
 
