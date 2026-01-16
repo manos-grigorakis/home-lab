@@ -1,0 +1,11 @@
+services:
+  speedtest-tracker:
+    image: "linuxserver/speedtest-tracker:1.13.5"
+    restart: unless-stopped
+    container_name: speedtest-tracker
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    volumes:
+      - ./data:/config

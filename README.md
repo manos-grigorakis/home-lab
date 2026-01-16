@@ -78,6 +78,7 @@ home-lab
 | [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerts             | Cluster     |
 | [Wazuh](https://wazuh.com/)                                              | SIEM               | Cluster     |
 | [Suricata](https://suricata.io/)                                         | IDS                | VM          |
+| [Speedtest Tracker](https://docs.speedtest-tracker.dev/) | Network Monitoring | LXC |
 
 ### Networking
 
