@@ -79,6 +79,7 @@ home-lab
 | [Wazuh](https://wazuh.com/)                                              | SIEM               | Cluster     |
 | [Suricata](https://suricata.io/)                                         | IDS                | VM          |
 | [Uptime Kuma](https://uptimekuma.org/)                                   | Monitoring         | LXC         |
+| [Speedtest Tracker](https://docs.speedtest-tracker.dev/) | Network Monitoring | LXC |
 
 ### Networking
 
