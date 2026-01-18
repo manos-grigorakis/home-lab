@@ -16,7 +16,7 @@ spec:
           - $values/k3s/apps/monitoring/loki/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: feat/grafana-loki-alloy
+      targetRevision: main
       path: k3s/apps/monitoring/loki
       ref: values
   project: default
