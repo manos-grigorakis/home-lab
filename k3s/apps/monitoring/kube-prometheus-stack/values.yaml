@@ -19,8 +19,7 @@ crds:
 
 ## custom Rules to override "for" and "severity" in defaultRules
 ##
-customRules:
-  {}
+customRules: {}
   # AlertmanagerFailedReload:
   #   for: 3m
   # AlertmanagerMembersInconsistent:
@@ -232,6 +231,19 @@ grafana:
     create: true
     autoMount: true
 
+  datasources:
+  datasources.yaml:
+    apiVersion: 1
+
+    datasources:
+      - name: Loki
+        type: loki
+        uid: loki
+        url: http://loki-gateway.monitoring.svc.cluster.local
+        access: proxy
+        isDefault: false
+        editable: false
+
   sidecar:
     dashboards:
       enabled: true
@@ -276,8 +288,7 @@ grafana:
 
       ## Field with internal link pointing to existing data source in Grafana.
       ## Can be provisioned via additionalDataSources
-      exemplarTraceIdDestinations:
-        {}
+      exemplarTraceIdDestinations: {}
         # datasourceUid: Jaeger
         # traceIdLabelName: trace_id
         # urlDisplayLabel: View traces
@@ -605,8 +616,7 @@ prometheus:
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
-    additionalScrapeConfigsSecret:
-      {}
+    additionalScrapeConfigsSecret: {}
       # enabled: false
       # name:
       # key:

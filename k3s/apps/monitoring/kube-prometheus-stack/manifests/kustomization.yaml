@@ -16,6 +16,12 @@ configMapGenerator:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/kubernetes-dashboard.json
+  - name: loki-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/loki-dashboard.json
 
 resources:
   # Secrets
