@@ -179,6 +179,33 @@ alertmanager:
     ##
     podAntiAffinityTopologyKey: kubernetes.io/hostname
 
+    ## Settings affecting alertmanagerSpec
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#alertmanagerspec
+    ##
+    alertmanagerSpec:
+      ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
+      ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
+      ##
+      secrets:
+        - alertmanager-smtp
+
+    ## Alertmanager configuration directives
+    ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
+    ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
+    ##
+    config:
+      global:
+        smtp_smarthost: smtp.gmail.com:587
+        smtp_from: ${SMTP_USER}
+        smtp_auth_username: ${SMTP_USER}
+        smtp_auth_password: ${SMTP_PASSWORD}
+      route:
+        receiver: email-notifications
+      receivers:
+        - name: email-notifications
+          email_configs:
+            - to: manos.grigorakis03@gmail.com
+
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
 grafana:
