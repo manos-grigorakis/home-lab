@@ -1,0 +1,135 @@
+# -- Deployment mode lets you specify how to deploy Loki.
+# There are 3 options:
+# - SingleBinary: Loki is deployed as a single binary, useful for small installs typically without HA, up to a few tens of GB/day.
+# - SimpleScalable: Loki is deployed as 3 targets: read, write, and backend. Useful for medium installs easier to manage than distributed, up to a about 1TB/day.
+# - Distributed: Loki is deployed as individual microservices. The most complicated but most capable, useful for large installs, typically over 1TB/day.
+# There are also 2 additional modes used for migrating between deployment modes:
+# - SingleBinary<->SimpleScalable: Migrate from SingleBinary to SimpleScalable (or vice versa)
+# - SimpleScalable<->Distributed: Migrate from SimpleScalable to Distributed (or vice versa)
+# Note: SimpleScalable and Distributed REQUIRE the use of object storage.
+deploymentMode: SingleBinary
+
+######################################################################################################################
+#
+# Single Binary Deployment
+#
+# For small Loki installations up to a few 10's of GB per day, or for testing and development.
+#
+######################################################################################################################
+
+# Configuration for the single binary node(s)
+singleBinary:
+  # -- Number of replicas for the single binary
+  replicas: 1
+  # -- Resource requests and limits for the single binary
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "2Gi"
+    limits:
+      cpu: "2000m"
+      memory: "4Gi"
+  persistence:
+    # -- What to do with the volume when the StatefulSet is scaled down.
+    whenScaled: Retain
+    # -- What to do with the volumes when the StatefulSet is deleted.
+    whenDeleted: Retain
+    # -- Enable StatefulSetAutoDeletePVC feature
+    enableStatefulSetAutoDeletePVC: false
+    # -- Enable StatefulSetRecreation for changes to PVC size.
+    # This means that the StatefulSet will be deleted, recreated (with the same name) and rolled when a change to the
+    # PVC size is detected. That way the PVC can be resized without manual intervention.
+    enableStatefulSetRecreationForSizeChange: false
+    # -- Enable persistent disk
+    enabled: true
+    # -- Set access modes on the PersistentVolumeClaim
+    accessModes:
+      - ReadWriteOnce
+    # -- Size of persistent disk
+    size: 20Gi
+    # -- Storage class to be used.
+    # If defined, storageClassName: <storageClass>.
+    # If set to "-", storageClassName: "", which disables dynamic provisioning.
+    # If empty or set to null, no storageClassName spec is
+    # set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+    storageClass: longhorn
+
+# Zero out replica counts of other deployment modes
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
+
+######################################################################################################################
+#
+# Base Loki Configs including kubernetes configurations and configurations for Loki itself,
+# see below for more specifics on Loki's configuration.
+#
+######################################################################################################################
+# -- Configuration for running Loki
+# @default -- See values.yaml
+loki:
+  # Should authentication be enabled
+  auth_enabled: false
+
+  # -- Check https://grafana.com/docs/loki/latest/configuration/#common_config for more info on how to provide a common configuration
+  commonConfig:
+    path_prefix: /var/loki
+    replication_factor: 1
+
+    # -- Check https://grafana.com/docs/loki/latest/configuration/#schema_config for more info on how to configure schemas
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+
+  # -- Limits config
+  limits_config:
+    retention_period: 336h # 14 days
+    reject_old_samples: true
+    reject_old_samples_max_age: 168h
+    max_cache_freshness_per_query: 10m
+    split_queries_by_interval: 15m
+    query_timeout: 300s
+    volume_enabled: true
+
+  storage:
+    type: "filesystem"
+    bucketNames:
+      chunks: "chunks"
+      admin: "admin"
+
+  # --  Optional compactor configuration
+  compactor:
+    working_directory: /var/loki/compactor
+    compaction_interval: 10m
+    retention_enabled: true
+    retention_delete_delay: 2h
+    retention_delete_worker_count: 150
+    delete_request_store: filesystem

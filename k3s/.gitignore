@@ -8,3 +8,4 @@
 !apps/media/plex/configmap.yaml
 !apps/dashboards/cloudbeaver/values.yaml
 !apps/monitoring/kube-prometheus-stack/values.yaml
+!apps/monitoring/loki/values.yaml
