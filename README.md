@@ -74,12 +74,14 @@ home-lab
 | **Service**                                                              | **Category**       | **Runtime** |
 | ------------------------------------------------------------------------ | ------------------ | ----------- |
 | [Grafana](https://grafana.com/)                                          | Data Visualization | Cluster     |
+| [Grafana Alloy](https://grafana.com/docs/alloy/latest/)                  | Log Collector      | Cluster     |
+| [Loki](https://grafana.com/oss/loki/)                                    | Log Aggregator     | Cluster     |
 | [Prometheus](https://prometheus.io/)                                     | Monitoring         | Cluster     |
 | [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) | Alerts             | Cluster     |
 | [Wazuh](https://wazuh.com/)                                              | SIEM               | Cluster     |
 | [Suricata](https://suricata.io/)                                         | IDS                | VM          |
 | [Uptime Kuma](https://uptimekuma.org/)                                   | Monitoring         | LXC         |
-| [Speedtest Tracker](https://docs.speedtest-tracker.dev/) | Network Monitoring | LXC |
+| [Speedtest Tracker](https://docs.speedtest-tracker.dev/)                 | Network Monitoring | LXC         |
 
 ### Networking
 
