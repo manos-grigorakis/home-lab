@@ -195,7 +195,7 @@ alertmanager:
     ##
     config:
       global:
-        smtp_smarthost: smtp.gmail.com:587
+        smtp_smarthost: mail.privateemail.com:587
         smtp_from: ${SMTP_USER}
         smtp_auth_username: ${SMTP_USER}
         smtp_auth_password: ${SMTP_PASSWORD}
