@@ -11,3 +11,4 @@
 !apps/monitoring/loki/values.yaml
 !apps/monitoring/grafana-alloy/values.yaml
 !apps/monitoring/grafana-alloy/alloy-configmap.yaml
+!apps/monitoring/kube-prometheus-stack/manifests/grafana/datasources/loki-datasource-configmap.yaml

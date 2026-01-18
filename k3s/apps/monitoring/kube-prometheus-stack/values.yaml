@@ -231,14 +231,6 @@ grafana:
     create: true
     autoMount: true
 
-  additionalDataSources:
-    - name: Loki
-      type: loki
-      uid: loki
-      url: http://loki-gateway.monitoring.svc.cluster.local
-      access: proxy
-      editable: false
-
   sidecar:
     dashboards:
       enabled: true
@@ -279,7 +271,7 @@ grafana:
       createPrometheusReplicasDatasources: false
       prometheusServiceName: prometheus-operated
       label: grafana_datasource
-      labelValue: "1"
+      labelValue: "my_custom_datasources"
 
       ## Field with internal link pointing to existing data source in Grafana.
       ## Can be provisioned via additionalDataSources

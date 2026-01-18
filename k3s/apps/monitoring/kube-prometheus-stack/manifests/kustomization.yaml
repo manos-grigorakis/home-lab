@@ -23,6 +23,14 @@ configMapGenerator:
     files:
       - grafana/dashboards/loki-dashboard.json
 
+  # Datasources
+  - name: loki-datasource
+    options:
+      labels:
+        grafana_datasource: "my_custom_datasources"
+    files:
+      - grafana/datasources/loki-datasource-configmap.yaml
+
 resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml

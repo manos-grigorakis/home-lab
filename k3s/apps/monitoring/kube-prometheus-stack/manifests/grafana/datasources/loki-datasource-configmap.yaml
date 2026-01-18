@@ -1,0 +1,9 @@
+loki.yaml: |
+  apiVersion: 1
+  datasources:
+    - name: Loki
+      type: loki
+      uid: loki
+      url: http://loki-gateway.monitoring.svc.cluster.local
+      access: proxy
+      editable: false
