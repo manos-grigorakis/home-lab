@@ -35,6 +35,7 @@ resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml
   - grafana/grafana-cred-secret.sealed.yaml
+  - alert-manager/alertmanager-smtp-secret.sealed.yaml
 
   # Services
   - pve-exporter/service.yaml
