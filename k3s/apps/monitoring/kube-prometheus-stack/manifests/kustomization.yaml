@@ -51,3 +51,6 @@ resources:
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
+
+  # Rules
+  - prometheus/rules/host-prometheus-rule.yaml
