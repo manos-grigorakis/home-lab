@@ -29,7 +29,7 @@ configMapGenerator:
       labels:
         grafana_datasource: "my_custom_datasources"
     files:
-      - grafana/datasources/loki-datasource-configmap.yaml
+      - grafana/datasources/loki.yaml
 
 resources:
   # Secrets
