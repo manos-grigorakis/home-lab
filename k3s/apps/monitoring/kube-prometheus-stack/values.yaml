@@ -141,10 +141,31 @@ alertmanager:
     targetPort: 9093
     type: ClusterIP
 
+  ## Define resources requests and limits for single Pods.
+  ## ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+  ##
+  resources: {}
+    # requests:
+    #   memory: 400Mi
+
+  ## Settings affecting alertmanagerSpec
+  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#alertmanagerspec
+  ##
+  alertmanagerSpec:
+    ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
+    ##
+    externalUrl: "https://alertmanager.poolnode.net"
+
     ## Time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression
     ## [0-9]+(ms|s|m|h) (milliseconds seconds minutes hours).
     ##
     retention: 120h
+
+    ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
+    ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
+    ##
+    secrets:
+      - alertmanager-smtp
 
     ## Storage is the definition of how storage will be used by the Alertmanager instances.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/platform/storage.md
@@ -158,53 +179,50 @@ alertmanager:
             requests:
               storage: 2Gi
 
-    ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
-    ##
-    externalUrl: "https://alertmanager.poolnode.net"
-
-    ## Define which Nodes the Pods are scheduled on.
-    ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
-    ##
-    nodeSelector: {}
-
-    ## Define resources requests and limits for single Pods.
-    ## ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-    ##
-    resources: {}
-    # requests:
-    #   memory: 400Mi
-
-    ## If anti-affinity is enabled sets the topologyKey to use for anti-affinity.
-    ## This can be changed to, for example, failure-domain.beta.kubernetes.io/zone
-    ##
-    podAntiAffinityTopologyKey: kubernetes.io/hostname
-
-    ## Settings affecting alertmanagerSpec
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#alertmanagerspec
-    ##
-    alertmanagerSpec:
-      ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
-      ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
-      ##
-      secrets:
-        - alertmanager-smtp
-
-    ## Alertmanager configuration directives
-    ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
-    ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
-    ##
-    config:
-      global:
-        smtp_smarthost: mail.privateemail.com:587
-        smtp_from: ${SMTP_USER}
-        smtp_auth_username: ${SMTP_USER}
-        smtp_auth_password: ${SMTP_PASSWORD}
-      route:
-        receiver: email-notifications
-      receivers:
-        - name: email-notifications
-          email_configs:
-            - to: manos.grigorakis03@gmail.com
+  ## Alertmanager configuration directives
+  ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
+  ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
+  ##
+  config:
+    global:
+      resolve_timeout: 20m
+      smtp_smarthost: mail.privateemail.com:587
+      smtp_from: admin@poolnode.net
+      smtp_auth_username: admin@poolnode.net
+      smtp_auth_password_file: /etc/alertmanager/secrets/alertmanager-smtp/SMTP_PASSWORD
+      smtp_require_tls: true
+    route:
+      group_by: ["job"]
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: email-notifications
+      routes:
+        - receiver: email-notifications
+          matchers:
+            - alertname =~ ".+"
+          continue: true
+        - receiver: "null"
+          matchers:
+            - alertname = "Watchdog"
+    receivers:
+      - name: "null"
+      - name: email-notifications
+        email_configs:
+          - to: manos.grigorakis03@gmail.com
+            send_resolved: true
+            headers:
+              Subject: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Alertmanager Notification'
+            html: |
+              {{ range .Alerts }}
+              <b>Alert:</b> {{ .Annotations.summary }}<br>
+              <b>Severity:</b> {{ .Labels.severity }}<br>
+              <b>Description:</b> {{ .Annotations.description }}<br>
+              <b>Details:</b><br>
+              {{ range .Labels.SortedPairs }}
+              • {{ .Name }}: {{ .Value }}<br>
+              {{ end }}
+              {{ end }}
 
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
