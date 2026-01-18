@@ -19,8 +19,7 @@ crds:
 
 ## custom Rules to override "for" and "severity" in defaultRules
 ##
-customRules:
-  {}
+customRules: {}
   # AlertmanagerFailedReload:
   #   for: 3m
   # AlertmanagerMembersInconsistent:
@@ -272,12 +271,11 @@ grafana:
       createPrometheusReplicasDatasources: false
       prometheusServiceName: prometheus-operated
       label: grafana_datasource
-      labelValue: "1"
+      labelValue: "my_custom_datasources"
 
       ## Field with internal link pointing to existing data source in Grafana.
       ## Can be provisioned via additionalDataSources
-      exemplarTraceIdDestinations:
-        {}
+      exemplarTraceIdDestinations: {}
         # datasourceUid: Jaeger
         # traceIdLabelName: trace_id
         # urlDisplayLabel: View traces
@@ -605,8 +603,7 @@ prometheus:
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
-    additionalScrapeConfigsSecret:
-      {}
+    additionalScrapeConfigsSecret: {}
       # enabled: false
       # name:
       # key:
