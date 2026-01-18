@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alloy-config
+  namespace: monitoring
+data:
+  config.alloy: |
+    logging {
+      level = "info"
+    }
+
+    // Discover Pods
+    discovery.kubernetes "pods" {
+      role = "pod"
+    }
+
+    // Convert metadata to labels
+    discovery.relabel "kubernetes_logs" {
+      targets = discovery.kubernetes.pods.targets
+
+      rule {
+        source_labels = ["__meta_kubernetes_namespace"]
+        target_label  = "namespace"
+      }
+
+      rule {
+        source_labels = ["__meta_kubernetes_pod_name"]
+        target_label  = "pod"
+      }
+
+      rule {
+        source_labels = ["__meta_kubernetes_pod_container_name"]
+        target_label  = "container"
+      }
+      
+      rule {
+        source_labels = ["__meta_kubernetes_pod_node_name"]
+        target_label  = "node"
+      }
+    }
+
+    // Collect logs using new labels
+    loki.source.kubernetes "pods" {
+      targets    = discovery.relabel.kubernetes_logs.output
+      forward_to = [loki.write.local_loki.receiver]
+    }
+
+    // Send to Loki
+    loki.write "local_loki" {
+      endpoint {
+        url = "http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push"
+      }
+    }
