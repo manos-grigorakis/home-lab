@@ -10,7 +10,7 @@ spec:
     - name: "node.rules"
       rules:
         - alert: NodeDown
-          expr: up == 0
+          expr: up == 1
           for: 2m
           labels:
             severity: critical
