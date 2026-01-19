@@ -1,0 +1,60 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cpu-memory-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: "cpu-memory.rules"
+      rules:
+        - alert: HighCpuUsage
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+          for: 20m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High CPU usage on {{ $labels.instance }}"
+            description: 'CPU usage is above 85% (Current: {{ printf "%.2f" $value }}%) for more than 20 minutes.'
+            type: "Infrastructure"
+
+        - alert: HighCpuUsage
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High CPU usage on {{ $labels.instance }}"
+            description: 'CPU usage is above 85% (Current: {{ printf "%.2f" $value }}%) for more than 10 minutes.'
+            type: "Infrastructure"
+
+        - alert: HighMemoryUsage
+          expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 85
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High Memory Usage on {{ $labels.instance }}"
+            description: 'Memory usage is at {{ printf "%.2f" $value }}% for more than 10 minutes on node {{ $labels.instance }}.'
+            type: "Infrastructure"
+
+        - alert: HighMemoryUsage
+          expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 95
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High Memory Usage on {{ $labels.instance }}"
+            description: 'Memory usage is at {{ printf "%.2f" $value }}% for more than 5 minutes on node {{ $labels.instance }}.'
+            type: "Infrastructure"
+
+        - alert: HighSwapUsage
+          expr: ((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / (node_memory_SwapTotal_bytes)) * 100 > 20
+          for: 20m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High Swap Usage on {{ $labels.instance }}"
+            description: 'Swap usage is at {{ printf "%.2f" $value }}% for more than 20 minutes on node {{ $labels.instance }}.'
+            type: "Infrastructure"

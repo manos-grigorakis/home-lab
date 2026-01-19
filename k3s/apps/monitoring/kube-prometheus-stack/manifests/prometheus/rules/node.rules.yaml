@@ -1,0 +1,40 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: node-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: "node.rules"
+      rules:
+        - alert: NodeDown
+          expr: up == 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "{{ $labels.node }} ({{ $labels.instance }}) is OFFLINE"
+            description: "The {{ $labels.instance }} is unreachable for more than 2 minutes."
+            type: "Infrastructure"
+
+        - alert: NodeHighDiskIOWait
+          expr: avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 30
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High Disk I/O wait on {{ $labels.instance }}"
+            description: "CPU I/O wait is above 30% for more than 5 minutes on node {{ $labels.instance }}, indicating disk I/O saturation."
+            type: "Infrastructure"
+
+        - alert: NodeFilesystemReadOnly
+          expr: node_filesystem_readonly{fstype!~"tmpfs|overlay|squashfs|proc|sysfs|cgroup.*"} == 1
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Filesystem is read-only on {{ $labels.instance }}"
+            description: "The filesystem mounted at {{ $labels.mountpoint }} on node {{ $labels.instance }} has become read-only."
+            type: "Infrastructure"

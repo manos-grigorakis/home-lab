@@ -53,4 +53,6 @@ resources:
   - pve-exporter/scrape-config.yaml
 
   # Rules
-  - prometheus/rules/host-prometheus-rule.yaml
+  - prometheus/rules/cpu-memory.rules.yaml
+  - prometheus/rules/disk-storage.rules.yaml
+  - prometheus/rules/node.rules.yaml

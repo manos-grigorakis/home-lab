@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: disk-storage-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    # Host (Nexus Server)
+    - name: "disk-storage.rules"
+      rules:
+        - alert: HostStorageHighUsage
+          expr: (pve_disk_usage_bytes{job="pve-exporter-svc", id=~"storage/.+"} / pve_disk_size_bytes) * 100 > 85
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox Storage {{ $labels.id }} is filling up"
+            description: 'Storage {{ $labels.id }} on Proxmox has used more than 85% of its capacity (Current: {{ printf "%.2f" $value }}%).'
+            type: "Infrastructure"
