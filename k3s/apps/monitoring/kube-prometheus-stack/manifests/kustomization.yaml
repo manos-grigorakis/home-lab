@@ -35,6 +35,7 @@ resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml
   - grafana/grafana-cred-secret.sealed.yaml
+  - alert-manager/alertmanager-smtp-secret.sealed.yaml
 
   # Services
   - pve-exporter/service.yaml
@@ -50,3 +51,8 @@ resources:
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
+
+  # Rules
+  - prometheus/rules/cpu-memory.rules.yaml
+  - prometheus/rules/disk-storage.rules.yaml
+  - prometheus/rules/node.rules.yaml

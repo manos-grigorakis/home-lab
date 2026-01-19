@@ -1,0 +1,42 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: disk-storage-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: "disk-storage.rules"
+      rules:
+        # Host (Nexus Server)
+        - alert: HostStorageHighUsage
+          expr: (pve_disk_usage_bytes{job="pve-exporter-svc", id=~"storage/.+"} / pve_disk_size_bytes) * 100 > 85
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox Storage {{ $labels.id }} is filling up"
+            description: 'Storage {{ $labels.id }} on Proxmox has used more than 85% of its capacity (Current: {{ printf "%.2f" $value }}%).'
+            type: "Infrastructure"
+
+        # PVC
+        - alert: PVCUsageHigh
+          expr: (kubelet_volume_stats_used_bytes/kubelet_volume_stats_capacity_bytes) * 100 > 80 and kubelet_volume_stats_capacity_bytes > 0
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "PVC {{ $labels.persistentvolumeclaim }} usage high"
+            description: 'PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is using {{ printf "%.2f" $value }}% of its capacity.'
+            type: "Storage"
+
+        - alert: PVCUsageHigh
+          expr: (kubelet_volume_stats_used_bytes/kubelet_volume_stats_capacity_bytes) * 100 > 90 and kubelet_volume_stats_capacity_bytes > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "PVC {{ $labels.persistentvolumeclaim }} usage high"
+            description: 'PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is using {{ printf "%.2f" $value }}% of its capacity.'
+            type: "Storage"
