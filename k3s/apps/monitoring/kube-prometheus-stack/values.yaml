@@ -185,7 +185,7 @@ alertmanager:
   ##
   config:
     global:
-      resolve_timeout: 20m
+      resolve_timeout: 10m
       smtp_smarthost: mail.privateemail.com:587
       smtp_from: admin@poolnode.net
       smtp_auth_username: admin@poolnode.net
