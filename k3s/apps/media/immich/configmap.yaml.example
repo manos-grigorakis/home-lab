@@ -18,5 +18,5 @@ data:
   REDIS_PORT: "6379"
 
   # Machine Learning
-  ML_HOST: immich-machine-learning-service
+  ML_HOST: immich-machine-learning
   ML_PORT: "3003"
