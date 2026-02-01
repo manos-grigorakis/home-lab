@@ -16,13 +16,10 @@ spec:
           - $values/k3s/infra/velero/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: feat/velero
+      targetRevision: main
       path: k3s/infra/velero
       ref: values
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true

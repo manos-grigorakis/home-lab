@@ -10,14 +10,11 @@ spec:
   source:
     path: k3s/infra/argocd/infra
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: feat/velero
+    targetRevision: main
     directory:
       recurse: true
   sources: []
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
