@@ -230,27 +230,19 @@ snapshotsEnabled: false
 # Whether to deploy the node-agent daemonset.
 deployNodeAgent: false
 
-# Backup schedules to create.
-# Eg:
-# schedules:
-#   mybackup:
-#     disabled: false
-#     labels:
-#       myenv: foo
-#     annotations:
-#       myenv: foo
-#     schedule: "0 0 * * *"
-#     useOwnerReferencesInBackup: false
-#     paused: false
-#     skipImmediately: false
-#     template:
-#       ttl: "240h"
-#       storageLocation: default
-#       includedNamespaces:
-#       - foo
-#       # See: https://velero.io/docs/v1.14/resource-filtering/#excludes
-#       excludedNamespaceScopedResources:
-#       - persistentVolumeClaims
-#       excludedClusterScopedResources:
-#       - persistentVolumes
-schedules: {}
+schedules:
+  daily-full-backup:
+    disabled: false
+    schedule: "0 18 * * *" # Daily at 18:00
+    template:
+      ttl: "168h" # 7 Days retain
+      storageLocation: default
+      includedNamespaces:
+        - "*"
+      excludedNamespaces:
+        - kube-system
+        - kube-public
+        - kube-node-lease
+        - longhorn-system
+        - velero
+        - metallb-system
