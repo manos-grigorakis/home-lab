@@ -233,7 +233,7 @@ deployNodeAgent: false
 schedules:
   daily-full-backup:
     disabled: false
-    schedule: "0 18 * * *" # Daily at 18:00
+    schedule: "10 16 * * *" # Daily at 18:00 UTC
     template:
       ttl: "168h" # 7 Days retain
       storageLocation: default
