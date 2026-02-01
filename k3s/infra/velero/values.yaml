@@ -177,16 +177,11 @@ configuration:
       # accessMode determines if velero can write to this backup storage location. Optional.
       # default to ReadWrite, ReadOnly is used during migrations and restores.
       accessMode: ReadWrite
-      credential:
-        # name of the secret used by this backupStorageLocation.
-        name:
-        # name of key that contains the secret data to be used.
-        key:
       # Additional provider-specific configuration. See link above
       # for details of required/optional fields for your provider.
       config:
         region: "eu-central-1"
-        s3ForcePathStyle: true
+        s3ForcePathStyle: "true"
         s3Url: "http://192.168.10.100:9000"
 
 ##
