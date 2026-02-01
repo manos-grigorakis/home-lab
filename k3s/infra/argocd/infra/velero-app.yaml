@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   sources:
     - repoURL: https://vmware-tanzu.github.io/helm-charts
-      chart: vmware-tanzu/velero
+      chart: velero
       targetRevision: 11.3.2
       helm:
         valueFiles:
