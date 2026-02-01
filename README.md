@@ -65,6 +65,7 @@ home-lab
 | [Argo CD](https://argo-cd.readthedocs.io/en/stable/)            | GitOps                  | Cluster     |
 | [cert-manager](https://cert-manager.io/)                        | Certificates            | Cluster     |
 | [Longhorn](https://longhorn.io/)                                | Storage                 | Cluster     |
+| [Velero](https://velero.io/)                                    | Cluster Backups         | Cluster     |
 | [MetalLB](https://metallb.io/)                                  | IP Pool                 | Cluster     |
 | [Traefik](https://traefik.io/)                                  | Ingress / Load Balancer | Cluster     |
 | [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) | Cluster Dashboard       | Cluster     |
