@@ -9,7 +9,7 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: immich-server 
+      app: immich-server
   template:
     metadata:
       labels:
@@ -42,7 +42,14 @@ spec:
           volumeMounts:
             - name: library
               mountPath: /data
+
+            - name: google-photos-external-library
+              mountPath: /photos/google
+              readOnly: true
       volumes:
         - name: library
           persistentVolumeClaim:
             claimName: immich-library-nfs-pvc
+        - name: google-photos-external-library
+          persistentVolumeClaim:
+            claimName: immich-google-photos-library-nfs-pvc
