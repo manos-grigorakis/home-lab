@@ -10,8 +10,14 @@ resources:
   - secret.sealed.yaml
 
   - db/pvc.yaml
-  - server/library-nfs-pv.yaml
-  - server/library-pvc.yaml
+
+  # Libraries
+  - server/libraries/library-nfs-pv.yaml
+  - server/libraries/library-pvc.yaml
+  - server/libraries/google-photos-library-nfs-pv.yaml
+  - server/libraries/google-photos-library-pvc.yaml
+  - server/libraries/usb-backups-library-nfs-pv.yaml
+  - server/libraries/usb-backups-library-pvc.yaml
 
   - db/deployment.yaml
   - redis/deployment.yaml

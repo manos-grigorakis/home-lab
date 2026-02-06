@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-usb-backups-library-nfs-pvc
+  namespace: immich
+  labels:
+    app: immich-server
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 3.5Ti
+  volumeName: immich-usb-backups-library-nfs-pv
