@@ -1,0 +1,7 @@
+containers:
+  children:
+    netbox_app:
+      hosts:
+        netbox:
+          ansible_host: 192.168.10.48
+          ansible_user: root

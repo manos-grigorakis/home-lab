@@ -66,6 +66,17 @@ locals {
       startup_order = 100
     }
 
+    "netbox" = {
+      id            = 105
+      hostname      = "netbox"
+      tags          = ["terraform"]
+      cpu_cores     = 2
+      memory        = 4096
+      ipv4          = "192.168.10.48/24"
+      storage_size  = 20
+      startup_order = 100
+    }
+
     "K3s-database" = {
       id            = 108
       hostname      = "k3s-database"
