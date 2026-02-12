@@ -1,4 +1,4 @@
-other_vm:
+vms:
   children:
     logistics_platform:
 

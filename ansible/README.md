@@ -36,11 +36,16 @@
 - ### Run Playbook Using `target` Variable
 
   Playbook must have:
-
   - Variable with fallback: `hosts: "{{ target | default('<fallback_group_name') }}"`
 
   ```bash
   ansible-playbook -i inventory/<file_name_inventory.yaml> \
   playbooks/<file_name_playbook.yaml> \
   -e "target=<host-name>"
+  ```
+
+- ### Run Playbook For Specific Host Only
+  ```bash
+  ansible-playbook -i inventory/<file_name_inventory.yaml> \
+  playbooks/<file_name_playbook.yaml> --limit <host-name>
   ```
