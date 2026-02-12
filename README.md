@@ -28,11 +28,11 @@
 <details>
 <summary><b>Networking</b></summary>
 
-| **Role** | **Device**                                      |
-| -------- | ----------------------------------------------- |
-| Modem    | Telekom Speedport Plus 2                        |
-| Router   | GL.iNet Flint 2 (GL-MT6000)                     |
-| Switch   | TP-Link Omada Easy-Smart Switch 1Gbps (DS108GE) |
+| **Role** | **Device**                  |
+| -------- | --------------------------- |
+| Modem    | ZTE ZXHN F8648P             |
+| Router   | GL.iNet Flint 2 (GL-MT6000) |
+| Switch   | TP-LINK TL-SG3428X-M2       |
 
 </details>
 
@@ -92,6 +92,7 @@ home-lab
 | [Unbound](https://nlnetlabs.nl/projects/unbound/about/) | Recursive DNS | Cluster     |                            |
 | [nginx](https://nginx.org/)                             | Load Balancer | LXC         | K3s External Load Balancer |
 | [Nginx Proxy Manager](https://nginxproxymanager.com/)   | Reverse Proxy | LXC         |                            |
+| [NetBox](https://netboxlabs.com)                        | IPAM / DCIM   | LXC         |                            |
 
 ### Databases & Storage
 
