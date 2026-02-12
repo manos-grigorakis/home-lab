@@ -1,0 +1,67 @@
+- name: Create User "{{ linux_user }}" & Setup SSH and Groups
+  hosts: ubuntu_containers
+  become: true
+  become_user: root
+  vars:
+    linux_user: manos
+
+  tasks:
+    - name: Create group "{{ linux_user }}" for User "{{ linux_user }}"
+      ansible.builtin.group:
+        name: "{{ linux_user }}"
+
+    - name: Create group docker for User "{{ linux_user }}"
+      ansible.builtin.group:
+        name: docker
+        system: true
+
+    - name: Create User "{{ linux_user }}" with a Home Directory and sudo Privileges
+      ansible.builtin.user:
+        name: "{{ linux_user }}"
+        create_home: yes
+        group: "{{ linux_user }}"
+        groups:
+          - sudo
+          - docker
+        shell: /bin/bash
+        password: "{{ hashed_password }}"
+        append: yes
+
+    - name: Create SSH Directory for User "{{ linux_user }}"
+      ansible.builtin.file:
+        path: /home/manos/.ssh
+        state: directory
+        owner: manos
+        group: sudo
+        mode: "700"
+
+    - name: Copy Authorized Keys from "root" to "{{ linux_user }}"
+      ansible.builtin.copy:
+        remote_src: true
+        src: ~/.ssh/authorized_keys
+        dest: /home/manos/.ssh/
+        owner: manos
+        group: sudo
+        mode: "600"
+
+    - name: Disable SSH Password Authentication
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^#?PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        state: present
+
+    - name: Restart SSH Service
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+
+    - name: Verify User "{{ linux_user }}"
+      ansible.builtin.command:
+        cmd: id
+      become_user: "{{ linux_user }}"
+      register: user_verifycation
+
+    - name: Print User Verifycation
+      ansible.builtin.debug:
+        var: user_verifycation.stdout

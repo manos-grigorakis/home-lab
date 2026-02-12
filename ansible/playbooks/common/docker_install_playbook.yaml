@@ -1,0 +1,104 @@
+- name: Install Docker
+  hosts: "{{ target | default('k3s_api') }}"
+
+  tasks:
+    - name: Update Packages
+      ansible.builtin.apt:
+        update_cache: true
+      become: true
+
+    - name: Install Ca-Certificates & Curl
+      ansible.builtin.apt:
+        name:
+          - ca-certificates
+          - curl
+      become: true
+
+    - name: Create Directory for Docker GPG Key
+      ansible.builtin.shell:
+        cmd: install -m 0755 -d /etc/apt/keyrings
+        creates: /etc/apt/keyrings
+      become: true
+
+    - name: Add Docker GPG Key
+      ansible.builtin.shell:
+        cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        creates: /etc/apt/keyrings/docker.asc
+      become: true
+
+    - name: Set Permissions for `docker.asc`
+      ansible.builtin.shell:
+        cmd: chmod a+r /etc/apt/keyrings/docker.asc
+      become: true
+
+    - name: Add the repository to Apt sources
+      ansible.builtin.shell: |
+        echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+        $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+        tee /etc/apt/sources.list.d/docker.list > /dev/null
+      args:
+        creates: /etc/apt/sources.list.d/docker.list
+      become: true
+
+    - name: Update Packages
+      ansible.builtin.apt:
+        update_cache: true
+      become: true
+
+    - name: Install Docker Packages
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+      become: true
+
+    - name: Ensure Docker Service is Running
+      ansible.builtin.service:
+        enabled: true
+        name: docker
+        state: started
+
+    - name: Ensure docker group exists
+      ansible.builtin.group:
+        name: docker
+        system: true
+      become: true
+
+    - name: Add manos to docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+      become: true
+
+    - name: Verify Docker Installation
+      ansible.builtin.shell: |
+        docker --version
+        docker compose version
+      register: docker_verification
+
+    - name: Print Docker Verification
+      ansible.builtin.debug:
+        var: docker_verification.stdout_lines
+
+    - name: Pull & Run Docker Test Image
+      ansible.builtin.command:
+        cmd: docker run hello-world
+
+    - name: Verify Running Test Image
+      ansible.builtin.command:
+        cmd: docker images
+      register: docker_test_image
+
+    - name: Print Docker Test Image Verification
+      ansible.builtin.debug:
+        var: docker_test_image.stdout_lines
+
+    - name: Remove Docker Test Image
+      ansible.builtin.command:
+        cmd: docker rmi hello-world -f
