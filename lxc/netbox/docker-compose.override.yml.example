@@ -1,0 +1,17 @@
+services:
+  netbox:
+    ports:
+      - "8000:8080"
+    env_file:
+      - ../env/netbox.env
+  postgres:
+    env_file:
+      - ../env/postgres.env
+    
+  redis:
+    env_file:
+      - ../env/redis.env
+      
+  redis-cache:
+    env_file:
+      - ../env/redis-cache.env
