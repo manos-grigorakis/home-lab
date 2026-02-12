@@ -44,7 +44,7 @@
 
     - name: Copy All Public SSH Keys to Remote
       ansible.builtin.copy:
-        src: ../public_ssh_keys/{{ item }}
+        src: ../../public_ssh_keys/{{ item }}
         dest: ~/.ssh/
       loop:
         - id_ed25519_github_linux_mint.pub
