@@ -1,9 +1,23 @@
 services:
   netbox:
+    image: netbox:latest-plugins
+    pull_policy: never
+    build:
+      context: ../
+      dockerfile: Dockerfile-Plugins
     ports:
       - "8000:8080"
     env_file:
       - ../env/netbox.env
+    volumes:
+      - ../configuration/plugins.py:/etc/netbox/config/plugins.py:ro
+
+  netbox-worker:
+    image: netbox:latest-plugins
+    pull_policy: never
+    volumes:
+      - ../configuration/plugins.py:/etc/netbox/config/plugins.py:ro
+
   postgres:
     env_file:
       - ../env/postgres.env
