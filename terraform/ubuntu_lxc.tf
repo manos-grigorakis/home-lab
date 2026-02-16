@@ -46,7 +46,7 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
 
   disk {
     datastore_id = "local-lvm"
-    size         = 4
+    size         = 8
   }
 
   operating_system {
