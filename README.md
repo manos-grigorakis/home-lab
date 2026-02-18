@@ -13,6 +13,12 @@
 ![Issues](https://img.shields.io/github/issues/manos-grigorakis/home-lab)
 ![Open PRs](https://img.shields.io/github/issues-pr/manos-grigorakis/home-lab)
 
+## Setup
+
+<img src="screenshots/rack.png" width="500" alt="Home Lab Rack">
+
+[Photo Gallery](https://photos.app.goo.gl/yr2DCLmaNbhbLmsD6)
+
 ## Hardware
 
 <details>
