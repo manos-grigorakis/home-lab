@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: logistics-platform
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobName: "logistics_platform"
+  staticConfigs:
+    # TODO: DEV IP CHANGES IT TO PROD
+    - targets: ["192.168.10.237:8080"]
+  metricsPath: /actuator/prometheus
+  scheme: HTTP
+  relabelings:
+    - sourceLabels: [__address__]
+      targetLabel: instance

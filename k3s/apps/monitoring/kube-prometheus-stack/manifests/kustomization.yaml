@@ -22,6 +22,12 @@ configMapGenerator:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/loki-dashboard.json
+  - name: logistics-platform-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/logistics-platform-dashboard.json
 
   # Datasources
   - name: loki-datasource
@@ -51,6 +57,7 @@ resources:
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
+  - prometheus/scrape-configs/logistics-platform-scape-config.yaml
 
   # Rules
   - prometheus/rules/cpu-memory.rules.yaml
