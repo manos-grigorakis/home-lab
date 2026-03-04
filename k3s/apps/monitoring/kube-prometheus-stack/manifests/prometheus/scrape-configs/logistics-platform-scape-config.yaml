@@ -9,7 +9,7 @@ spec:
   jobName: "logistics_platform"
   staticConfigs:
     # TODO: DEV IP CHANGES IT TO PROD
-    - targets: ["192.168.10.237:8080"]
+    - targets: ["192.168.10.237:9090"]
   metricsPath: /actuator/prometheus
   scheme: HTTP
   relabelings:
