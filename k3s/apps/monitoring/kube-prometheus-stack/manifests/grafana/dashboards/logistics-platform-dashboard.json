@@ -37,7 +37,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 184,
+  "id": 189,
   "links": [],
   "panels": [
     {
@@ -4954,8 +4954,8 @@
       },
       {
         "current": {
-          "text": "192.168.10.240:8080",
-          "value": "192.168.10.240:8080"
+          "text": "192.168.10.240:9090",
+          "value": "192.168.10.240:9090"
         },
         "datasource": {
           "type": "prometheus",
