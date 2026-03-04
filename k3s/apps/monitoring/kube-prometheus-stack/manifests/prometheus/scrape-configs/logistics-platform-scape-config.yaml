@@ -8,8 +8,7 @@ metadata:
 spec:
   jobName: "logistics_platform"
   staticConfigs:
-    # TODO: DEV IP CHANGES IT TO PROD
-    - targets: ["192.168.10.237:9090"]
+    - targets: ["192.168.10.240:9090"]
   metricsPath: /actuator/prometheus
   scheme: HTTP
   relabelings:
