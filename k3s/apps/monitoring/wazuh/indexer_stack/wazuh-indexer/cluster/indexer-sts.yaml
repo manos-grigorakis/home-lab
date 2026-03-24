@@ -71,12 +71,15 @@ spec:
           image: "wazuh/wazuh-indexer:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
+            requests:
+              cpu: "1"
+              memory: "3Gi"
             limits:
               cpu: "1"
               memory: "3Gi"
           env:
             - name: OPENSEARCH_JAVA_OPTS
-              value: "-Xms1g -Xmx1g -Dlog4j2.formatMsgNoLookups=true"
+              value: "-Xms2g -Xmx2g -Dlog4j2.formatMsgNoLookups=true"
             - name: CLUSTER_NAME
               value: wazuh
             - name: NETWORK_HOST
