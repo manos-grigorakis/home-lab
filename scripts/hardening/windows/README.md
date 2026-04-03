@@ -10,6 +10,8 @@ This PowerShell script applies security hardening settings (registry, audit poli
 
 - Windows 11
 
+> Some audit policy commands rely on English subcategory names. On non-English systems these commands may fail.
+
 ## Instructions
 
 1. Open PowerShell as Administrator
