@@ -136,14 +136,6 @@ Set-RegistryValue `
     -Type "DWord" `
     -Value 2
 
-# ID: 26061
-Write-Host "[Registry] RestrictSendingNTLMTraffic -> 2 (Audit / Restrict)"
-Set-RegistryValue `
-    -Path "HKLM:\System\CurrentControlSet\Control\Lsa\MSV1_0" `
-    -Name "RestrictSendingNTLMTraffic" `
-    -Type "DWord" `
-    -Value 2
-
 # === Printers ===
 
 # ID: 26015
