@@ -4,13 +4,17 @@
 
 This PowerShell script applies security hardening settings (registry, audit policies, account policies) based on CIS Benchmark recommendations, as referenced by Wazuh (CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0)
 
+## Disclaimer
+
+- Intended for personal / homelab use
+
+> Some audit policy commands rely on English subcategory names. On non-English systems these commands may fail.
+
 ## Compatibility
 
 **Tested on:**
 
 - Windows 11
-
-> Some audit policy commands rely on English subcategory names. On non-English systems these commands may fail.
 
 ## Instructions
 
