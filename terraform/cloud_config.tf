@@ -13,6 +13,8 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
   datastore_id = "local"
   node_name    = var.pve_node_name
 
+
+
   source_raw {
     data = <<-EOF
     #cloud-config
@@ -44,5 +46,12 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
     EOF
 
     file_name = "${each.value.hostname}-user-data-cloud-config.yaml"
+  }
+
+  # Prevents recreation of VMs when SSH keys change in cloud-init
+  lifecycle {
+    ignore_changes = [
+      source_raw[0].data
+    ]
   }
 }

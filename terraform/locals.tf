@@ -59,6 +59,8 @@ locals {
       id            = 104
       hostname      = "oracle-db"
       tags          = ["terraform"]
+      started       = false
+      start_on_boot = false
       cpu_cores     = 2
       memory        = 4096
       ipv4          = "192.168.10.47/24"
@@ -102,6 +104,16 @@ locals {
   }
 
   other_vm = {
+    hardening-ubuntu = {
+      id        = 210
+      cpu_cores = 2
+      memory    = 4096
+      size      = 40
+      ipv4      = "192.168.10.141/24"
+      hostname  = "hardening-ubuntu"
+      tags      = ["terraform"]
+    }
+
     logistics-platform = {
       id        = 420
       cpu_cores = 4
