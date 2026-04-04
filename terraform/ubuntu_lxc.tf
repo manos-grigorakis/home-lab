@@ -8,6 +8,8 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
   start_on_boot = true
   tags          = each.value.tags
 
+
+
   # newer linux distributions require unprivileged user namespaces
   unprivileged = true
   features {
@@ -66,6 +68,13 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
 
   startup {
     order = each.value.startup_order
+  }
+
+  # Prevents recreation of containers when SSH keys changes
+  lifecycle {
+    ignore_changes = [
+      initialization[0].user_account[0].keys
+    ]
   }
 }
 
