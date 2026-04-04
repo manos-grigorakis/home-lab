@@ -3,6 +3,3 @@
 *.tfstate*
 *.tfstate.*
 *.tfvars
-
-# Other
-ssh_keys.pub
