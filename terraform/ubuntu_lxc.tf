@@ -4,11 +4,9 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
   node_name     = var.pve_node_name
   vm_id         = each.value.id
   description   = "Managed by Terraform"
-  started       = true
-  start_on_boot = true
+  started       = try(each.value.started, true)
+  start_on_boot = try(each.value.start_on_boot, true)
   tags          = each.value.tags
-
-
 
   # newer linux distributions require unprivileged user namespaces
   unprivileged = true

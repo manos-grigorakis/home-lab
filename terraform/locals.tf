@@ -59,6 +59,8 @@ locals {
       id            = 104
       hostname      = "oracle-db"
       tags          = ["terraform"]
+      started       = false
+      start_on_boot = false
       cpu_cores     = 2
       memory        = 4096
       ipv4          = "192.168.10.47/24"
