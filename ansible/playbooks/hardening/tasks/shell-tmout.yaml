@@ -1,0 +1,20 @@
+- name: Find profile.d scripts with TMOUT
+  ansible.builtin.find:
+    paths: /etc/profile.d
+    patterns: "*.sh"
+    contains: "^(export )?TMOUT="
+  register: tmout_files
+
+- name: Comment TMOUT in profile.d scripts
+  ansible.builtin.replace:
+    path: "{{ item.path }}"
+    regexp: "^([^#]*TMOUT=.*)"
+    replace: '# Disabled by hardening: \1'
+  loop: "{{ tmout_files.files }}"
+
+- name: Create hardening.sh for TMOUT
+  ansible.builtin.blockinfile:
+    path: /etc/profile.d/hardening.sh
+    create: yes
+    mode: "644"
+    block: readonly TMOUT=900 ; export TMOUT
