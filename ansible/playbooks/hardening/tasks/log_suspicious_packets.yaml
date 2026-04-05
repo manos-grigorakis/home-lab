@@ -9,5 +9,4 @@
       net.ipv4.route.flush = 1
 
 - name: Reload sysctl
-  ansible.builtin.sysctl:
-    reload: yes
+  ansible.builtin.command: sysctl --system
