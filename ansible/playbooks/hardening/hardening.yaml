@@ -5,3 +5,4 @@
   tasks:
     - import_tasks: tasks/packages.yaml
     - import_tasks: tasks/daemons.yaml
+    - import_tasks: tasks/log_suspicious_packets.yaml
