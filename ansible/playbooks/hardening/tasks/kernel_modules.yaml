@@ -1,0 +1,28 @@
+- name: Disable Unused Kernel Modules
+  ansible.builtin.blockinfile:
+    path: /etc/modprobe.d/hardening.conf
+    create: yes
+    prepend_newline: true
+    owner: root
+    group: root
+    mode: "0644"
+    block: |
+      install freevxfs /bin/false
+      install hfs /bin/false
+      install hfsplus /bin/false
+      install jffs2 /bin/false
+      install udf /bin/false
+
+- name: Blacklist Unused Kernel Modules
+  ansible.builtin.blockinfile:
+    path: /etc/modprobe.d/hardening-blacklist.conf
+    create: yes
+    prepend_newline: true
+    owner: root
+    group: root
+    mode: "0644"
+    block: |
+      blacklist hfs
+      blacklist hfsplus
+      blacklist jffs2
+      blacklist udf
