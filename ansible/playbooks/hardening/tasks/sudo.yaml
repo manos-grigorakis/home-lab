@@ -1,0 +1,6 @@
+- name: Configure SUDO Logging
+  ansible.builtin.blockinfile:
+    path: /etc/sudoers
+    block: |
+      Defaults logfile="/var/log/sudo.log"
+    validate: "visudo -cf %s"
