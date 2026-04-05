@@ -7,5 +7,14 @@
       -w /var/log/lastlog -p wa -k logins
       -w /var/run/faillock -p wa -k logins
 
+- name: Enable Logging to administrator scope
+  ansible.builtin.blockinfile:
+    path: /etc/audit/rules.d/50-scope.rules
+    create: yes
+    block: |
+      # Enable Logging to administrator scope
+      -w /etc/sudoers -p wa -k scope
+      -w /etc/sudoers.d -p wa -k scope
+
 - name: Merge Rules
   ansible.builtin.command: augenrules --load
