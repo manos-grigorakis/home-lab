@@ -1,8 +1,14 @@
 vms:
   children:
     logistics_platform:
+    hardening_test:
 
 logistics_platform:
   hosts:
     logistics-platform-vm:
       ansible_host: 192.168.10.240
+
+hardening_test:
+  hosts:
+    hardening-test-vm:
+      ansible_host: 192.168.10.141
