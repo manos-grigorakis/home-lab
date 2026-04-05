@@ -1,0 +1,7 @@
+- name: System Hardening
+  hosts: hardening-test-vm
+  become: true
+
+  tasks:
+    - import_tasks: tasks/packages.yaml
+    - import_tasks: tasks/daemons.yaml

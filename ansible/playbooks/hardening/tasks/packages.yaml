@@ -1,0 +1,21 @@
+- name: Update Packages
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - apparmor
+      - apparmor-utils
+      - auditd
+      - audispd-plugins
+    state: present
+
+- name: Remove insecure packages
+  ansible.builtin.apt:
+    name:
+      - telnet
+      - inetutils-telnet
+      - ftp
+      - tnftp
+    state: absent
