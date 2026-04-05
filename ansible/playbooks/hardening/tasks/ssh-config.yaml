@@ -1,0 +1,46 @@
+- name: Disable root login via SSH
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PermitRootLogin"
+    line: "PermitRootLogin no"
+    validate: sshd -t -f %s
+
+- name: Set MaxAuthTries
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?MaxAuthTries"
+    line: "MaxAuthTries 4"
+    validate: sshd -t -f %s
+
+- name: Set LoginGraceTime
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?LoginGraceTime"
+    line: "LoginGraceTime 60"
+    validate: sshd -t -f %s
+
+- name: Set ClientAliveInterval
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?ClientAliveInterval"
+    line: "ClientAliveInterval 45"
+    validate: sshd -t -f %s
+
+- name: Set ClientAliveCountMax
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?ClientAliveCountMax"
+    line: "ClientAliveCountMax 3"
+    validate: sshd -t -f %s
+
+- name: Set MaxStartups
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?MaxStartups"
+    line: "MaxStartups 10:30:60"
+    validate: sshd -t -f %s
+
+- name: Restart SSH service
+  ansible.builtin.service:
+    name: ssh
+    state: restarted

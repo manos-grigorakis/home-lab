@@ -9,3 +9,4 @@
     - import_tasks: tasks/bootloader.yaml
     - import_tasks: tasks/audit-logging-rules.yaml
     - import_tasks: tasks/shell-tmout.yaml
+    - import_tasks: tasks/ssh-config.yaml
