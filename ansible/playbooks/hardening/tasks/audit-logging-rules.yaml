@@ -1,0 +1,11 @@
+- name: Enable logging of login and logout events
+  ansible.builtin.blockinfile:
+    path: /etc/audit/rules.d/50-login.rules
+    create: yes
+    block: |
+      # Enable Logging of Login and Logout Events
+      -w /var/log/lastlog -p wa -k logins
+      -w /var/run/faillock -p wa -k logins
+
+- name: Merge Rules
+  ansible.builtin.command: augenrules --load
