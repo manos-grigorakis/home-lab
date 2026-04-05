@@ -7,6 +7,7 @@
     group: root
     mode: "0644"
     block: |
+      install cramfs /bin/false
       install freevxfs /bin/false
       install hfs /bin/false
       install hfsplus /bin/false
@@ -22,6 +23,7 @@
     group: root
     mode: "0644"
     block: |
+      blacklist cramfs
       blacklist hfs
       blacklist hfsplus
       blacklist jffs2

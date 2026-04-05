@@ -18,4 +18,9 @@
       - inetutils-telnet
       - ftp
       - tnftp
+      - gdm3
     state: absent
+
+- name: Autoremove unused packages
+  ansible.builtin.apt:
+    autoremove: yes
