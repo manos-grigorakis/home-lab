@@ -1,0 +1,20 @@
+authentik:
+  existingSecret: "authentik-secrets"
+  # This sends anonymous usage-data, stack traces on errors and
+  # performance data to sentry.io, and is fully opt-in
+  error_reporting:
+    enabled: true
+  postgresql:
+    host: "postgres.databases.svc.cluster.local"
+    port: 5432
+    name: "authentik"
+    user: "authentik"
+    existingSecret: "authentik-secrets"
+    secretKey: "postgresql-password"
+
+server:
+  ingress:
+    enabled: false
+
+postgresql:
+  enabled: false
