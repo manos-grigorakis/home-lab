@@ -8,6 +8,9 @@ configMapGenerator:
     literals:
       - server.insecure=true
 
+patches:
+  - path: argocd-cm-patch.yaml
+
 resources:
   - argocd-ns.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/v3.1.8/manifests/install.yaml
