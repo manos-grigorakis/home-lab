@@ -16,7 +16,7 @@ spec:
           - $values/k3s/apps/auth/authentik/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: feat/authentik # TODO: Update to main
+      targetRevision: main
       path: k3s/apps/auth/authentik
       ref: values
   project: default
