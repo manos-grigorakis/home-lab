@@ -12,3 +12,30 @@ server:
 
 postgresql:
   enabled: false
+
+global:
+  env:
+    - name: AUTHENTIK_EMAIL__HOST
+      value: "mail.privateemail.com"
+
+    - name: AUTHENTIK_EMAIL__PORT
+      value: "587"
+
+    - name: AUTHENTIK_EMAIL__USERNAME
+      value: "admin@poolnode.net"
+
+    - name: AUTHENTIK_EMAIL__USE_TLS
+      value: "true"
+
+    - name: AUTHENTIK_EMAIL__USE_SSL
+      value: "false"
+
+    - name: AUTHENTIK_EMAIL__TIMEOUT
+      value: "10"
+
+    - name: AUTHENTIK_EMAIL__FROM
+      value: "admin@poolnode.net"
+
+  envFrom:
+    - secretRef:
+        name: "authentik-secrets"
