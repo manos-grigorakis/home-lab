@@ -25,7 +25,7 @@ env:
   # -- Your local time zone
   TZ: "Europe/Athens"
   # -- Enabled authentication methods. Multiple providers can be enabled with by separating them with , (ex. AUTH_PROVIDERS=credentials,oidc, it is highly recommended to just enable one provider).
-  AUTH_PROVIDERS: "credentials"
+  AUTH_PROVIDERS: "oidc, credentials"
   # -- URL to redirect to after clicking logging out.
   AUTH_LOGOUT_REDIRECT_URL:
   # -- Time for the session to time out. Can be set as pure number, which will automatically be used in seconds, or followed by s, m, h or d for seconds, minutes, hours or days. (ex: "30m")
@@ -53,7 +53,7 @@ env:
   # -- Extra arguments for user's groups search filter (& based)
   AUTH_LDAP_GROUP_FILTER_EXTRA_ARG:
   # -- Issuer URI of OIDC provider without trailing slash (/)
-  AUTH_OIDC_ISSUER:
+  AUTH_OIDC_ISSUER: "https://authentik.company/application/o/homarr/"
   # -- Display name of provider (in login screen)
   AUTH_OIDC_CLIENT_NAME: "OIDC"
   # -- Automatically redirect to OIDC login
