@@ -25,37 +25,15 @@ env:
   # -- Your local time zone
   TZ: "Europe/Athens"
   # -- Enabled authentication methods. Multiple providers can be enabled with by separating them with , (ex. AUTH_PROVIDERS=credentials,oidc, it is highly recommended to just enable one provider).
-  AUTH_PROVIDERS: "credentials"
+  AUTH_PROVIDERS: "oidc, credentials"
   # -- URL to redirect to after clicking logging out.
-  AUTH_LOGOUT_REDIRECT_URL:
+  AUTH_LOGOUT_REDIRECT_URL: "https://home.poolnode.net/auth/login"
   # -- Time for the session to time out. Can be set as pure number, which will automatically be used in seconds, or followed by s, m, h or d for seconds, minutes, hours or days. (ex: "30m")
   AUTH_SESSION_EXPIRY_TIME: "30d"
-  # -- URI of your LDAP server
-  AUTH_LDAP_URI:
-  # -- Base dn of your LDAP server
-  AUTH_LDAP_BASE:
-  # -- User used for finding users and groups
-  AUTH_LDAP_BIND_DN:
-  # -- Attribute used for username
-  AUTH_LDAP_USERNAME_ATTRIBUTE: "uid"
-  # -- Attribute used for mail field
-  AUTH_LDAP_USER_MAIL_ATTRIBUTE: "mail"
-  # -- Class used for querying groups
-  AUTH_LDAP_GROUP_CLASS: "groupOfUniqueNames"
-  # -- Attribute used for querying group member
-  AUTH_LDAP_GROUP_MEMBER_ATTRIBUTE: "member"
-  # -- User attribute used for comparing with group member
-  AUTH_LDAP_GROUP_MEMBER_USER_ATTRIBUTE: "dn"
-  # -- LDAP search scope between base, one or sub
-  AUTH_LDAP_SEARCH_SCOPE: "base"
-  # -- Extra arguments for user search filter (& based)
-  AUTH_LDAP_USERNAME_FILTER_EXTRA_ARG:
-  # -- Extra arguments for user's groups search filter (& based)
-  AUTH_LDAP_GROUP_FILTER_EXTRA_ARG:
   # -- Issuer URI of OIDC provider without trailing slash (/)
-  AUTH_OIDC_ISSUER:
+  AUTH_OIDC_ISSUER: "https://authentik.poolnode.net/application/o/homarr/"
   # -- Display name of provider (in login screen)
-  AUTH_OIDC_CLIENT_NAME: "OIDC"
+  AUTH_OIDC_CLIENT_NAME: "Authentik"
   # -- Automatically redirect to OIDC login
   AUTH_OIDC_AUTO_LOGIN: "false"
   # -- Override the OIDC scopes
@@ -64,6 +42,8 @@ env:
   AUTH_OIDC_GROUPS_ATTRIBUTE: "groups"
   # -- Overwrite name attribute. By default, it will use preferred_username if it does not contain a @ and otherwise name.
   AUTH_OIDC_NAME_ATTRIBUTE_OVERWRITE:
+  # Optional: Enable this if you want to allow migrating Homarr accounts between OIDC providers.
+  AUTH_OIDC_ENABLE_DANGEROUS_ACCOUNT_LINKING: "true"
 
 database:
   # -- Enable external database
@@ -85,12 +65,6 @@ envSecrets:
     oidcClientId: "oidc-client-id"
     # -- Secret of OIDC client (application) secret key
     oidcClientSecret: "oidc-client-secret"
-  # The name of Auth LDAP existing secret
-  authLdapCredentials:
-    # -- Name of existing secret containing LDAP credentials
-    existingSecret: "auth-ldap-secret"
-    # -- Password for bind user secret key
-    ldapBindingPassword: "bind-password"
   # The name of DB Credentials existing secret
   dbCredentials:
     # -- Name of existing secret containing DB credentials

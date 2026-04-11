@@ -89,6 +89,7 @@ home-lab
 | [Suricata](https://suricata.io/)                                         | IDS                | VM          |
 | [Uptime Kuma](https://uptimekuma.org/)                                   | Monitoring         | LXC         |
 | [Speedtest Tracker](https://docs.speedtest-tracker.dev/)                 | Network Monitoring | LXC         |
+| [Authentik](https://goauthentik.io/)                                     | Identity Provider  | Cluster     |
 
 ### Networking
 
