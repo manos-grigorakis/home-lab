@@ -31,11 +31,11 @@ env:
   # -- Time for the session to time out. Can be set as pure number, which will automatically be used in seconds, or followed by s, m, h or d for seconds, minutes, hours or days. (ex: "30m")
   AUTH_SESSION_EXPIRY_TIME: "30d"
   # -- Issuer URI of OIDC provider without trailing slash (/)
-  AUTH_OIDC_ISSUER: "https://authentik.poolnode.net/application/o/homarr"
+  AUTH_OIDC_ISSUER: "https://authentik.poolnode.net/application/o/homarr/"
   # -- Display name of provider (in login screen)
   AUTH_OIDC_CLIENT_NAME: "Authentik"
   # -- Automatically redirect to OIDC login
-  AUTH_OIDC_AUTO_LOGIN: "false"
+  AUTH_OIDC_AUTO_LOGIN: "true"
   # -- Override the OIDC scopes
   AUTH_OIDC_SCOPE_OVERWRITE: "openid email profile groups"
   # -- Attribute used for groups (roles) claim
@@ -63,12 +63,6 @@ envSecrets:
     oidcClientId: "oidc-client-id"
     # -- Secret of OIDC client (application) secret key
     oidcClientSecret: "oidc-client-secret"
-  # The name of Auth LDAP existing secret
-  authLdapCredentials:
-    # -- Name of existing secret containing LDAP credentials
-    existingSecret: "auth-ldap-secret"
-    # -- Password for bind user secret key
-    ldapBindingPassword: "bind-password"
   # The name of DB Credentials existing secret
   dbCredentials:
     # -- Name of existing secret containing DB credentials
