@@ -42,6 +42,8 @@ env:
   AUTH_OIDC_GROUPS_ATTRIBUTE: "groups"
   # -- Overwrite name attribute. By default, it will use preferred_username if it does not contain a @ and otherwise name.
   AUTH_OIDC_NAME_ATTRIBUTE_OVERWRITE:
+  # Optional: Enable this if you want to allow migrating Homarr accounts between OIDC providers.
+  AUTH_OIDC_ENABLE_DANGEROUS_ACCOUNT_LINKING: "true"
 
 database:
   # -- Enable external database
