@@ -10,7 +10,7 @@ spec:
   source:
     path: k3s/infra/argocd/apps
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: main
+    targetRevision: feat/authentik-grafana
     directory:
       recurse: true
   sources: []
