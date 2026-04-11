@@ -53,9 +53,9 @@ env:
   # -- Extra arguments for user's groups search filter (& based)
   AUTH_LDAP_GROUP_FILTER_EXTRA_ARG:
   # -- Issuer URI of OIDC provider without trailing slash (/)
-  AUTH_OIDC_ISSUER: "https://authentik.poolnode.net/application/o/homarr/"
+  AUTH_OIDC_ISSUER: "https://authentik.poolnode.net/application/o/homarr"
   # -- Display name of provider (in login screen)
-  AUTH_OIDC_CLIENT_NAME: "authentik"
+  AUTH_OIDC_CLIENT_NAME: "Authentik"
   # -- Automatically redirect to OIDC login
   AUTH_OIDC_AUTO_LOGIN: "false"
   # -- Override the OIDC scopes
