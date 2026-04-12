@@ -1,2 +1,1 @@
 argocd-secret-patch.yaml
-!argocd-cmd-params-cm-configmap.yaml
