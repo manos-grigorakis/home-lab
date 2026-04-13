@@ -14,5 +14,5 @@ spec:
           kind: Service
           namespace: homarr
           port: 7575
-  tls: 
-    secretName: homarr-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls
