@@ -15,5 +15,5 @@ spec:
           namespace: immich
           scheme: http
           port: 2283
-  tls: 
-    secretName: immich-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls

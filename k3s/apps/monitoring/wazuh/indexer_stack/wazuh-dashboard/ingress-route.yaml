@@ -16,5 +16,5 @@ spec:
           namespace: wazuh
           scheme: http
           port: 5601
-  tls: 
-    secretName: wazuh-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls

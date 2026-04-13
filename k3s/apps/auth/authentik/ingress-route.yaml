@@ -13,4 +13,4 @@ spec:
         - name: authentik-server
           port: 80
   tls:
-    secretName: authentik-wildcard-tls
+    secretName: poolnode-wildcard-tls

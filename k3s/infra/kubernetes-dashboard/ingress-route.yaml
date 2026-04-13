@@ -15,4 +15,4 @@ spec:
           scheme: https
           serversTransport: dashboard-skipverify
   tls:
-    secretName: k3s-wildcard-tls
+    secretName: poolnode-wildcard-tls

@@ -15,4 +15,4 @@ spec:
           scheme: http
           port: 80
   tls:
-    secretName: paperless-wildcard-tls
+    secretName: poolnode-wildcard-tls

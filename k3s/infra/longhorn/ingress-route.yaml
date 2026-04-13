@@ -14,5 +14,5 @@ spec:
           kind: Service
           namespace: longhorn-system
           port: 80
-  tls: 
-    secretName: longhorn-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls
