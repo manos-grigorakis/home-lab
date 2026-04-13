@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   sources:
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: feat/argocd-app-metallb
+      targetRevision: main
       path: k3s/infra/metallb
   project: default
   syncPolicy:
