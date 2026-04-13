@@ -1,0 +1,14 @@
+preUpgradeChecker:
+  # -- Setting that allows Longhorn to perform pre-upgrade checks. Disable this setting when installing Longhorn using Argo CD or other GitOps solutions.
+  jobEnabled: false
+  # -- Setting that allows Longhorn to perform upgrade version checks after starting the Longhorn Manager DaemonSet Pods. Disabling this setting also disables `preUpgradeChecker.jobEnabled`. Longhorn recommends keeping this setting enabled.
+  upgradeVersionCheck: true
+
+# -- Setting that allows you to update the default backupstore.
+defaultBackupStore:
+  # -- Endpoint used to access the default backupstore.
+  backupTarget: "nfs://192.168.10.100:/mnt/tank/backups/services/k3s/longhorn"
+  # -- Name of the Kubernetes secret associated with the default backup target.
+  #backupTargetCredentialSecret: ~
+  # -- Number of seconds that Longhorn waits before checking the default backupstore for new backups.
+  pollInterval: 300
