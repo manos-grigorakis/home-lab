@@ -1,0 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: readonly-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: readonly-user
+    namespace: kubernetes-dashboard
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: readonly-user
+  namespace: kubernetes-dashboard
+
+---
+# Long Lived Token
+apiVersion: v1
+kind: Secret
+metadata:
+  name: readonly-user-token
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/service-account.name: readonly-user
+type: kubernetes.io/service-account-token

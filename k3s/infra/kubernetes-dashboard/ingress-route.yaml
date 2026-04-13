@@ -10,7 +10,7 @@ spec:
     - match: Host(`dashboard.k3s.poolnode.net`)
       kind: Rule
       services:
-        - name: kubernetes-dashboard-kong-proxy
+        - name: kubernetes-dashboard
           port: 443
           scheme: https
           serversTransport: dashboard-skipverify
