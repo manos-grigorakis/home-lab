@@ -16,4 +16,4 @@ spec:
           scheme: http
           port: 9093
   tls:
-    secretName: monitoring-wildcard-tls
+    secretName: poolnode-wildcard-tls

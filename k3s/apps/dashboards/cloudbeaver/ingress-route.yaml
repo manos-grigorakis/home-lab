@@ -13,5 +13,5 @@ spec:
         - name: cloudbeaver
           kind: Service
           port: 8978
-  tls: 
-    secretName: cloudbeaver-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls

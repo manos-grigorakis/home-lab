@@ -15,5 +15,5 @@ spec:
           namespace: plex
           scheme: http
           port: 32400
-  tls: 
-    secretName: plex-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls

@@ -12,5 +12,5 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
-  tls: 
-    secretName: k3s-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls

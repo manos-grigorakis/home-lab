@@ -17,5 +17,5 @@ spec:
           namespace: dns
           scheme: http
           port: 80
-  tls: 
-    secretName: dns-wildcard-tls
+  tls:
+    secretName: poolnode-wildcard-tls
