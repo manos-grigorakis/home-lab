@@ -15,7 +15,7 @@
 
 ## Setup
 
-<img src="screenshots/rack.png" width="500" alt="Home Lab Rack">
+<img src="docs/screenshots/rack.png" width="500" alt="Home Lab Rack">
 
 [Photo Gallery](https://photos.app.goo.gl/yr2DCLmaNbhbLmsD6)
 
@@ -130,12 +130,18 @@ home-lab
 
 ### Homarr Dashboard
 
-![Homarr](/screenshots/homarr_dashboard.png)
+![Homarr](/docs/screenshots/homarr_dashboard.png)
 
 ### Grafana Kubernetes Dashboard
 
-![Grafana](/screenshots/grafana_kubernetes.png)
+![Grafana](/docs/screenshots/grafana_kubernetes.png)
 
 ### ArgoCD
 
-![ArgoCD](/screenshots/argocd.png)
+**Apps**
+
+![ArgoCD](/docs/screenshots/argocd_apps.png)
+
+**DNS**
+
+![ArgoCD](/docs/gifs/argocd_dns.gif)
