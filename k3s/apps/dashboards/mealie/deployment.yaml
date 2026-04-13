@@ -30,6 +30,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: mealie-configmap
+            - secretRef:
+                name: mealie-secret
           volumeMounts:
             - name: mealie-data
               mountPath: /app/data
