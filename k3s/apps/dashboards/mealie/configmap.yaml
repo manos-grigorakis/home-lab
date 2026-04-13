@@ -11,12 +11,12 @@ data:
   BASE_URL: "https://mealie.poolnode.net"
 
   # === SSO ===
-  OIDC_AUTH_ENABLED: true
+  OIDC_AUTH_ENABLED: "true"
   OIDC_PROVIDER_NAME: "authentik"
   OIDC_CONFIGURATION_URL: "https://authentik.poolnode.net/application/o/mealie/.well-known/openid-configuration"
   OIDC_CLIENT_ID: "mDKE1FJGUETNVXvgiEeXUOWCzhtLtuvzQm1Jposm"
-  OIDC_SIGNUP_ENABLED: true
+  OIDC_SIGNUP_ENABLED: "true"
   # OIDC_USER_GROUP=<Your users group created in authentik>
   # OIDC_ADMIN_GROUP=<Your admins group created in authentik>
-  OIDC_AUTO_REDIRECT: false # Optional: The login page will be bypassed and you will be sent directly to your Identity Provider.
-  OIDC_REMEMBER_ME: true # Optional: By setting this value to true, a session will be extended as if "Remember Me" was checked.
+  OIDC_AUTO_REDIRECT: "false" # Optional: The login page will be bypassed and you will be sent directly to your Identity Provider.
+  OIDC_REMEMBER_ME: "true" # Optional: By setting this value to true, a session will be extended as if "Remember Me" was checked.
