@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   sources:
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: feat/argocd-traefik-app
+      targetRevision: main
       path: k3s/infra/traefik
   project: default
   syncPolicy:
