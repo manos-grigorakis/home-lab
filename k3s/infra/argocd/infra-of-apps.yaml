@@ -10,7 +10,7 @@ spec:
   source:
     path: k3s/infra/argocd/infra
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: main
+    targetRevision: feat/kubernetes-dashboard
     directory:
       recurse: true
   sources: []
