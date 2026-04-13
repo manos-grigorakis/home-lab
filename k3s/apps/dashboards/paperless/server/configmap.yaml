@@ -15,21 +15,3 @@ data:
   PAPERLESS_LOGOUT_REDIRECT_URL: "https://authentik.poolnode.net/application/o/paperless/end-session/"
   PAPERLESS_SOCIAL_AUTO_SIGNUP: "false"
   PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "false"
-  PAPERLESS_SOCIALACCOUNT_PROVIDERS: |
-    {
-      "openid_connect": {
-        "OAUTH_PKCE_ENABLED": true,
-        "APPS": [
-          {
-            "provider_id": "authentik",
-            "name": "authentik",
-            "client_id": "p6PYG38UfHB4n4LwDSFygY2mRK8XNzQjT0a6ryzU",
-            "secret": "<client_secret>", 
-            "settings": {
-              "server_url": "https://authentik.poolnode.net/application/o/paperless/.well-known/openid-configuration",
-              "fetch_userinfo": true
-            }
-          }], 
-        "SCOPE": ["openid", "profile", "email"]
-      }
-    }
