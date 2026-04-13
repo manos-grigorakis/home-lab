@@ -11,6 +11,8 @@ services:
       - ../env/netbox.env
     volumes:
       - ../configuration/plugins.py:/etc/netbox/config/plugins.py:ro
+      - ../configuration/extra.py:/etc/netbox/config/extra.py:ro
+      - ../configuration/custom_pipeline.py:/opt/netbox/netbox/netbox/custom_pipeline.py
 
   netbox-worker:
     image: netbox:latest-plugins
