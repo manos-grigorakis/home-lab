@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: kubernetes-dashboard
 
 resources:
-  - dashboard.yaml
+  - https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
   - admin-user.yaml
   - service-user.yaml
   - ingress-route.yaml
