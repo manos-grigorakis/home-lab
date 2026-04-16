@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: argocd
+spec:
+  destination:
+    namespace: n8n
+    server: https://kubernetes.default.svc
+  sources:
+    - repoURL: oci://ghcr.io/n8n-io/n8n-helm-chart/n8n
+      targetRevision: 1.0.0
+      helm:
+        valueFiles:
+          - $values/k3s/apps/automations/n8n/values.yaml
+
+    - repoURL: https://github.com/manos-grigorakis/home-lab.git
+      targetRevision: main
+      path: k3s/apps/automations/n8n
+      ref: values
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
