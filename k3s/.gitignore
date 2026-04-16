@@ -13,6 +13,7 @@
 !apps/monitoring/grafana-alloy/alloy-configmap.yaml
 !apps/monitoring/kube-prometheus-stack/manifests/grafana/datasources/loki-datasource-configmap.yaml
 !apps/auth/authentik/values.yaml
+!apps/databases/redis/values.yaml
 
 # == Infra ==
 !infra/velero/values.yaml
