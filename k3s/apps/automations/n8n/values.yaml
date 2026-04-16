@@ -109,15 +109,9 @@ config:
   # System: N8N_GRACEFUL_SHUTDOWN_TIMEOUT, N8N_PROXY_HOPS, etc.
   # Dev: N8N_DEV_RELOAD, N8N_REINSTALL_MISSING_PACKAGES, etc.
   # See documentation for complete list of supported variables
-  extraEnv: []
-  # Example:
-  # extraEnv:
-  #   - name: HTTP_PROXY
-  #     value: "http://proxy.example.com:8080"
-  #   - name: N8N_EDITOR_BASE_URL
-  #     value: "https://n8n.example.com"
-  #   - name: N8N_DISABLE_UI
-  #     value: "false"
+  extraEnv:
+    - name: N8N_PROXY_HOPS
+      value: "1"
   extraEnvFrom: []
 
 # ----- License (for n8n Enterprise) -----
