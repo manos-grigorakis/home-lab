@@ -8,7 +8,8 @@ spec:
     namespace: n8n
     server: https://kubernetes.default.svc
   sources:
-    - repoURL: oci://ghcr.io/n8n-io/n8n-helm-chart/n8n
+    - repoURL: oci://ghcr.io/n8n-io/n8n-helm-chart
+      chart: n8n
       targetRevision: 1.0.0
       helm:
         valueFiles:
