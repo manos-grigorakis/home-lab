@@ -137,10 +137,7 @@ config:
 # ----- Secrets -----
 secretRefs:
   existingSecret: "n8n-secrets"
-  # env:
-  # N8N_HOST: "n8n.poolnode.com" # <-- Change to your actual domain
-  # N8N_PORT: "5678"
-  # N8N_PROTOCOL: "http"
+  env: {}
 
 # ----- Database (PostgreSQL - required for queue mode) -----
 database:
