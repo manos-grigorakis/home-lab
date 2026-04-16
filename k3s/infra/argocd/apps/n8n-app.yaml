@@ -15,7 +15,7 @@ spec:
           - $values/k3s/apps/automations/n8n/values.yaml
 
     - repoURL: https://github.com/manos-grigorakis/home-lab.git
-      targetRevision: main
+      targetRevision: feat/n8n
       path: k3s/apps/automations/n8n
       ref: values
   project: default
