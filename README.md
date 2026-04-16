@@ -109,20 +109,22 @@ home-lab
 | [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                          |
 | [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                          |
 | [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database    |
+| [Redis](https://redis.io/)                                    | Cache        | Cluster     |                          |
 | [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          | Mirrored (4TB + 6TB HDD) |
 
 ### Applications
 
-| **Service**                                               | **Category**        | **Runtime**                 |
-| --------------------------------------------------------- | ------------------- | --------------------------- |
-| [Homarr](https://homarr.dev/)                             | Dashboard           | Cluster                     |
-| [Mealie](https://mealie.io/)                              | Recipes             | Cluster                     |
-| [CloudBeaver](https://github.com/dbeaver/cloudbeaver)     | Database Management | Cluster                     |
-| [Immich](https://immich.app/)                             | Images              | Cluster                     |
-| [Plex](https://www.plex.tv/)                              | Movies              | Cluster                     |
-| [Paperless-ngx](https://docs.paperless-ngx.com/)          | Document Management | Cluster                     |
-| [Home Assistant](https://www.home-assistant.io/)          | Smart Home          | Raspberry Pi 5 (Bare Metal) |
-| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Passwords Manager   | LXC                         |
+| **Service**                                               | **Category**          | **Runtime**                 |
+| --------------------------------------------------------- | --------------------- | --------------------------- |
+| [Homarr](https://homarr.dev/)                             | Dashboard             | Cluster                     |
+| [Mealie](https://mealie.io/)                              | Recipes               | Cluster                     |
+| [CloudBeaver](https://github.com/dbeaver/cloudbeaver)     | Database Management   | Cluster                     |
+| [Immich](https://immich.app/)                             | Images                | Cluster                     |
+| [Plex](https://www.plex.tv/)                              | Movies                | Cluster                     |
+| [Paperless-ngx](https://docs.paperless-ngx.com/)          | Document Management   | Cluster                     |
+| [Home Assistant](https://www.home-assistant.io/)          | Smart Home            | Raspberry Pi 5 (Bare Metal) |
+| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Passwords Manager     | LXC                         |
+| [n8n](https://n8n.io/)                                    | Workflows Automations | Cluster                     |
 
 </details>
 

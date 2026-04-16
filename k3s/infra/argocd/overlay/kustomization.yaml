@@ -7,6 +7,7 @@ resources:
   - github-repo-secret.yaml
   - ingress-route.yaml
   - argocd-secret.sealed.yaml
+  - oci-registry-ghcr-secret.sealed.yaml
 
 configMapGenerator:
   - name: argocd-cmd-params-cm
