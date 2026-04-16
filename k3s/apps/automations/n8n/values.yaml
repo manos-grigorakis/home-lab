@@ -29,7 +29,15 @@ multiMain:
 taskRunners:
   # Enable task runners for executing user-provided JavaScript and Python code
   # When enabled, a sidecar container (n8nio/runners) is added to main and worker pods
-  enabled: false
+  enabled: true
+
+  # Authentication token for task runners to connect to the broker
+  # This should be a random secure shared secret
+  # You can generate one with: openssl rand -base64 32
+  authToken:
+    # Use existing secret for auth token
+    existingSecret: "n8n-secrets"
+    existingSecretKey: "N8N_RUNNER_AUTH_TOKEN"
 
 # ----- Main replicas (when multi-main is disabled) -----
 replicaCount: 1
