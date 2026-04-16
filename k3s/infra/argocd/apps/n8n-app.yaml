@@ -8,9 +8,9 @@ spec:
     namespace: n8n
     server: https://kubernetes.default.svc
   sources:
-    - repoURL: oci://ghcr.io/n8n-io/n8n-helm-chart
-      chart: n8n
-      targetRevision: 1.0.0
+    - repoURL: https://github.com/n8n-io/n8n-hosting.git
+      targetRevision: v1.3.1
+      path: charts/n8n
       helm:
         valueFiles:
           - $values/k3s/apps/automations/n8n/values.yaml
