@@ -134,6 +134,17 @@ config:
   #     value: "false"
   extraEnvFrom: []
 
+# ----- License (for n8n Enterprise) -----
+license:
+  # Set to true if using n8n Enterprise
+  enabled: true
+  # License activation key (leave empty to use secret)
+  activationKey: ""
+  # Or reference existing secret containing the license key
+  existingSecret:
+    name: "n8n-secrets" # <-- K8s Secret name
+    key: "N8N_LICENSE_KEY" # <-- Key inside the secret
+
 # ----- Secrets -----
 secretRefs:
   existingSecret: "n8n-secrets"
