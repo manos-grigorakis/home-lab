@@ -12,7 +12,7 @@ image:
 #      No workers, no Redis, no external database. Requires persistence for SQLite storage.
 queueMode:
   enabled: true
-  workerReplicaCount: 2
+  workerReplicaCount: 1
   # Worker concurrency (number of jobs each worker can handle simultaneously)
   workerConcurrency: 10
 
@@ -20,24 +20,10 @@ queueMode:
 webhookProcessor:
   # Enable dedicated webhook processing pods for high-throughput webhook scenarios
   enabled: false
-  replicaCount: 2
-  # Disable webhook processing in main process when webhook processors are enabled
-  disableProductionWebhooksOnMainProcess: true
 
 # ----- Multi-main (optional, requires queue mode) -----
 multiMain:
   enabled: false
-  replicas: 2
-  antiAffinity:
-    type: preferred
-  topologySpreadConstraints:
-    enabled: false
-    maxSkew: 1
-    whenUnsatisfiable: ScheduleAnyway
-  # Multi-main setup configuration (requires enterprise license)
-  setup:
-    keyTtl: 10 # <-- Leader key TTL (seconds)
-    checkInterval: 3 # <-- Leader check interval (seconds)
 
 # ----- Task Runners (external mode with sidecar containers) -----
 taskRunners:
@@ -103,7 +89,7 @@ webhook:
   enabled: true
   # Custom webhook URL base domain (if not set, will use ingress host)
   # Format: https://your-domain.com (n8n adds /webhook path automatically)
-  url: ""
+  url: "n8n.poolnode.net"
   # Timeout for webhook requests in milliseconds
   timeout: 120000
   # Additional webhook environment variables
