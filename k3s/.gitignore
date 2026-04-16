@@ -14,6 +14,7 @@
 !apps/monitoring/kube-prometheus-stack/manifests/grafana/datasources/loki-datasource-configmap.yaml
 !apps/auth/authentik/values.yaml
 !apps/databases/redis/values.yaml
+!apps/automations/n8n/values.yaml
 
 # == Infra ==
 !infra/velero/values.yaml

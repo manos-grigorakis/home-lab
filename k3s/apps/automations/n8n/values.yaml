@@ -1,0 +1,168 @@
+# ----- Image -----
+image:
+  repository: docker.n8n.io/n8nio/n8n
+  tag: "stable"
+  pullPolicy: IfNotPresent
+
+# ----- Queue mode -----
+# Two deployment modes are supported:
+#   1. Queue mode (enabled: true, default) — main + workers + optional webhook processors.
+#      Requires external PostgreSQL and Redis.
+#   2. Standalone mode (enabled: false) — single main pod with SQLite.
+#      No workers, no Redis, no external database. Requires persistence for SQLite storage.
+queueMode:
+  enabled: true
+  workerReplicaCount: 2
+  # Worker concurrency (number of jobs each worker can handle simultaneously)
+  workerConcurrency: 10
+
+# ----- Webhook processors (optional scaling layer) -----
+webhookProcessor:
+  # Enable dedicated webhook processing pods for high-throughput webhook scenarios
+  enabled: false
+  replicaCount: 2
+  # Disable webhook processing in main process when webhook processors are enabled
+  disableProductionWebhooksOnMainProcess: true
+
+# ----- Multi-main (optional, requires queue mode) -----
+multiMain:
+  enabled: false
+  replicas: 2
+  antiAffinity:
+    type: preferred
+  topologySpreadConstraints:
+    enabled: false
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway
+  # Multi-main setup configuration (requires enterprise license)
+  setup:
+    keyTtl: 10 # <-- Leader key TTL (seconds)
+    checkInterval: 3 # <-- Leader check interval (seconds)
+
+# ----- Task Runners (external mode with sidecar containers) -----
+taskRunners:
+  # Enable task runners for executing user-provided JavaScript and Python code
+  # When enabled, a sidecar container (n8nio/runners) is added to main and worker pods
+  enabled: false
+
+# ----- Main replicas (when multi-main is disabled) -----
+replicaCount: 1
+
+# ----- Service -----
+service:
+  type: ClusterIP
+  port: 5678
+
+# ----- Ingress -----
+ingress:
+  enabled: false
+
+# ----- Persistence -----
+persistence:
+  enabled: false
+
+# ----- Resources -----
+resources:
+  main:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  worker:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  webhookProcessor:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# ----- RBAC ServiceAccount & Network Policy -----
+rbac:
+  create: true
+
+networkPolicy:
+  enabled: false
+
+# ----- Pod Disruption Budget -----
+pdb:
+  enabled: true
+  minAvailable: 1
+
+# ----- Webhook config -----
+webhook:
+  # Enable webhook functionality
+  enabled: true
+  # Custom webhook URL base domain (if not set, will use ingress host)
+  # Format: https://your-domain.com (n8n adds /webhook path automatically)
+  url: ""
+  # Timeout for webhook requests in milliseconds
+  timeout: 120000
+  # Additional webhook environment variables
+  extraEnv: []
+
+# ----- App config -----
+config:
+  timezone: Europe/Athens
+  # Additional environment variables for n8n container
+  # All n8n environment variables can be set here including:
+  # Proxy: HTTP_PROXY, HTTPS_PROXY, ALL_PROXY, NO_PROXY
+  # Core: N8N_EDITOR_BASE_URL, N8N_CONFIG_FILES, N8N_USER_FOLDER, etc.
+  # Features: N8N_DISABLE_UI, N8N_PREVIEW_MODE, N8N_TEMPLATES_ENABLED, etc.
+  # Network: N8N_LISTEN_ADDRESS, N8N_SSL_KEY, N8N_SSL_CERT, etc.
+  # Telemetry: N8N_DIAGNOSTICS_ENABLED, N8N_VERSION_NOTIFICATIONS_ENABLED, etc.
+  # API: N8N_PUBLIC_API_DISABLED, N8N_PUBLIC_API_ENDPOINT, etc.
+  # System: N8N_GRACEFUL_SHUTDOWN_TIMEOUT, N8N_PROXY_HOPS, etc.
+  # Dev: N8N_DEV_RELOAD, N8N_REINSTALL_MISSING_PACKAGES, etc.
+  # See documentation for complete list of supported variables
+  extraEnv: []
+  # Example:
+  # extraEnv:
+  #   - name: HTTP_PROXY
+  #     value: "http://proxy.example.com:8080"
+  #   - name: N8N_EDITOR_BASE_URL
+  #     value: "https://n8n.example.com"
+  #   - name: N8N_DISABLE_UI
+  #     value: "false"
+  extraEnvFrom: []
+
+# ----- Secrets -----
+secretRefs:
+  existingSecret: "n8n-secrets"
+  env:
+    N8N_HOST: "n8n.poolnode.com" # <-- Change to your actual domain
+    N8N_PORT: "5678"
+    N8N_PROTOCOL: "http"
+
+# ----- Database (PostgreSQL - required for queue mode) -----
+database:
+  type: postgresdb
+  # External database is required for queue mode
+  useExternal: true
+  host: "postgres.databases.svc.cluster.local" # <-- Change to your actual PostgreSQL host
+  port: 5432
+  database: n8n
+  schema: "public" # <-- PostgreSQL schema name
+  user: n8n
+  passwordSecret:
+    name: "n8n-secrets" # <-- K8s Secret name
+    key: "POSTGRES_DB_PASSWORD" # <-- Key inside the secret
+  # SSL configuration
+  ssl:
+    enabled: false # <-- Enable SSL connection
+
+# ----- Redis (required for queue mode) -----
+redis:
+  # Redis is required for queue mode
+  enabled: true
+  useExternal: true
+  host: "redis-master.databases.svc.cluster.local" # <-- Change to your actual Redis host
+  port: 6379
