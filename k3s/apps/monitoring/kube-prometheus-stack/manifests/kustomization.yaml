@@ -48,7 +48,6 @@ resources:
   - pve-exporter/service.yaml
   - pve-exporter/service-monitor.yaml
   - nut-exporter/service.yaml
-  - nut-exporter/service-monitor.yaml
 
   # Ingress Routes
   - alert-manager/alertmanager-ingress-route.yaml
