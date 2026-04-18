@@ -10,18 +10,28 @@ configMapGenerator:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/main-dashboard.json
+
   - name: kubernetes-dashboard
     options:
       labels:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/kubernetes-dashboard.json
+
   - name: loki-dashboard
     options:
       labels:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/loki-dashboard.json
+
+  - name: ups-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/ups-dashboard.json
+
   - name: logistics-platform-dashboard
     options:
       labels:
@@ -47,6 +57,7 @@ resources:
   # Services
   - pve-exporter/service.yaml
   - pve-exporter/service-monitor.yaml
+  - nut-exporter/service.yaml
 
   # Ingress Routes
   - alert-manager/alertmanager-ingress-route.yaml
@@ -55,9 +66,11 @@ resources:
 
   # Deployments
   - pve-exporter/deploy.yaml
+  - nut-exporter/deploy.yaml
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
+  - nut-exporter/bitmore-scrape-config.yaml
   - prometheus/scrape-configs/logistics-platform-scape-config.yaml
 
   # Rules
