@@ -10,18 +10,28 @@ configMapGenerator:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/main-dashboard.json
+
   - name: kubernetes-dashboard
     options:
       labels:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/kubernetes-dashboard.json
+
   - name: loki-dashboard
     options:
       labels:
         grafana_dashboard: "my_custom_dashboards"
     files:
       - grafana/dashboards/loki-dashboard.json
+
+  - name: ups-dashboard
+    options:
+      labels:
+        grafana_dashboard: "my_custom_dashboards"
+    files:
+      - grafana/dashboards/ups-dashboard.json
+
   - name: logistics-platform-dashboard
     options:
       labels:
