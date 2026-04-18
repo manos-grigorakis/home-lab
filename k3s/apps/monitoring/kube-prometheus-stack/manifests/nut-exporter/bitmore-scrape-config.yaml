@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: nut-exporter
+  name: bitmore-nut-exporter
   namespace: monitoring
   labels:
     release: kube-prometheus-stack
 spec:
-  jobName: "nut"
+  jobName: "nut-bitmore"
   staticConfigs:
     - targets: ["nut-exporter.monitoring.svc.cluster.local:9199"]
   metricsPath: /ups_metrics
@@ -14,9 +14,11 @@ spec:
   params:
     target: ["192.168.10.1"]
   relabelings:
-    - sourceLabels: [__address__]
-      targetLabel: instance
+    - targetLabel: instance
       replacement: "bitmore"
-    - sourceLabels: [__address__]
-      targetLabel: ups
+    - targetLabel: ups
       replacement: "bitmore"
+    - targetLabel: mfr
+      replacement: "Bitmore"
+    - targetLabel: model
+      replacement: "U1200LCD"

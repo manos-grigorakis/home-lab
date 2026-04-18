@@ -62,7 +62,7 @@ resources:
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
-  - nut-exporter/scrape-config.yaml
+  - nut-exporter/bitmore-scrape-config.yaml
   - prometheus/scrape-configs/logistics-platform-scape-config.yaml
 
   # Rules
