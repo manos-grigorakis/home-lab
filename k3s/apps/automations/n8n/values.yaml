@@ -120,6 +120,8 @@ config:
   extraEnv:
     - name: N8N_PROXY_HOPS
       value: "1"
+    - name: GENERIC_TIMEZONE
+      value: "Europe/Athens"
   extraEnvFrom: []
 
 # ----- License (for n8n Enterprise) -----
