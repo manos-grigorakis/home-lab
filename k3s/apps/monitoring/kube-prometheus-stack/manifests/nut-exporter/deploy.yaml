@@ -15,21 +15,13 @@ spec:
     spec:
       containers:
         - name: nut-exporter
-          image: "druggeri/nut_exporter:3.2"
+          image: "hon95/prometheus-nut-exporter:1.2.1"
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9199
+            - containerPort: 9995
               name: metrics
           env:
-            - name: NUT_EXPORTER_SERVER
-              value: "192.168.10.1"
-            - name: NUT_EXPORTER_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: nut-exporter-secrets
-                  key: username
-            - name: NUT_EXPORTER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: nut-exporter-secrets
-                  key: password
+            - name: TZ
+              value: "Europe/Athens"
+            - name: HTTP_PATH
+              value: "/metrics"

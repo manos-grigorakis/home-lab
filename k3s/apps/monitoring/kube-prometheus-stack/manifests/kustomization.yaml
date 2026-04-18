@@ -40,7 +40,6 @@ configMapGenerator:
 resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml
-  - nut-exporter/secret.sealed.yaml
   - grafana/grafana-cred-secret.sealed.yaml
   - grafana/grafana-authentik-secret.sealed.yaml
   - alert-manager/alertmanager-smtp-secret.sealed.yaml

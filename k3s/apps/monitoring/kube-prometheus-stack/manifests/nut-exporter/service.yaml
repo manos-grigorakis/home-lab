@@ -10,5 +10,5 @@ spec:
     app: nut-exporter
   ports:
     - name: metrics
-      port: 9199
-      targetPort: 9199
+      port: 9995
+      targetPort: 9995
