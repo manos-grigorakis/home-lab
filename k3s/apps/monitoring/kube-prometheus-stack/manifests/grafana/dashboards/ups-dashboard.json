@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 298,
+  "id": 301,
   "links": [],
   "panels": [
     {
@@ -1291,8 +1291,8 @@
     "list": [
       {
         "current": {
-          "text": ["bitmore"],
-          "value": ["bitmore"]
+          "text": "All",
+          "value": ["$__all"]
         },
         "datasource": "prometheus",
         "definition": "nut_ups_info",
@@ -1363,5 +1363,5 @@
   "timezone": "",
   "title": "UPS",
   "uid": "80-PUnWMk2",
-  "version": 10
+  "version": 1
 }
