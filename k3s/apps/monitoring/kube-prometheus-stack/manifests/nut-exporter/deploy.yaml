@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nut-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nut-exporter
+  template:
+    metadata:
+      labels:
+        app: nut-exporter
+    spec:
+      containers:
+        - name: nut-exporter
+          image: "druggeri/nut_exporter:3.2"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9199
+              name: metrics
+          env:
+            - name: NUT_EXPORTER_SERVER
+              value: "192.168.10.1"
+            - name: NUT_EXPORTER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: nut-exporter-secrets
+                  key: username
+            - name: NUT_EXPORTER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nut-exporter-secrets
+                  key: password

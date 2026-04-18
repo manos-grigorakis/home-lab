@@ -40,6 +40,7 @@ configMapGenerator:
 resources:
   # Secrets
   - pve-exporter/config-secret.sealed.yaml
+  - nut-exporter/secret.sealed.yaml
   - grafana/grafana-cred-secret.sealed.yaml
   - grafana/grafana-authentik-secret.sealed.yaml
   - alert-manager/alertmanager-smtp-secret.sealed.yaml
@@ -47,6 +48,8 @@ resources:
   # Services
   - pve-exporter/service.yaml
   - pve-exporter/service-monitor.yaml
+  - nut-exporter/service.yaml
+  - nut-exporter/service-monitor.yaml
 
   # Ingress Routes
   - alert-manager/alertmanager-ingress-route.yaml
@@ -55,6 +58,7 @@ resources:
 
   # Deployments
   - pve-exporter/deploy.yaml
+  - nut-exporter/deploy.yaml
 
   # Other (CRDs...)
   - pve-exporter/scrape-config.yaml
