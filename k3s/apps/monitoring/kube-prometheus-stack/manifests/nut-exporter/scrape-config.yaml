@@ -15,5 +15,5 @@ spec:
     target: ["192.168.10.1"]
   relabelings:
     - sourceLabels: [__address__]
-      targetLabel: instance
+      targetLabel: ups
       replacement: "bitmore"
