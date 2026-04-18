@@ -13,13 +13,14 @@ spec:
   params:
     target: ["192.168.10.1"]
   relabelings:
-    - sourceLabels: [__address__]
-      targetLabel: __param_target
     - sourceLabels: [__param_target]
       targetLabel: instance
+
     - targetLabel: ups
       replacement: "bitmore"
+
     - targetLabel: model
       replacement: "U1200LCD"
+
     - targetLabel: description
       replacement: "Living Room (Router)"
