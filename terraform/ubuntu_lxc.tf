@@ -71,7 +71,8 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
   # Prevents recreation of containers when SSH keys changes
   lifecycle {
     ignore_changes = [
-      initialization[0].user_account[0].keys
+      initialization[0].user_account[0].keys,
+      mount_point
     ]
   }
 }
