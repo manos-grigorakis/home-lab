@@ -15,4 +15,4 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - ./data:/config
-      # - /path/to/downloads:/downloads #optional
+      - /mnt/nas_qbittorent:/downloads
