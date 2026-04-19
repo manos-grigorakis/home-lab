@@ -5,3 +5,8 @@ containers:
         netbox:
           ansible_host: 192.168.10.48
           ansible_user: root
+    qbittorent:
+      hosts:
+        qbittorent:
+          ansible_host: 192.168.10.50
+          ansible_user: root
