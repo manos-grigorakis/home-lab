@@ -79,6 +79,17 @@ locals {
       startup_order = 100
     }
 
+    "qbittorent" = {
+      id            = 106
+      hostname      = "qbittorent"
+      tags          = ["terraform"]
+      cpu_cores     = 1
+      memory        = 1024
+      ipv4          = "192.168.10.50/24"
+      storage_size  = 20
+      startup_order = 100
+    }
+
     "K3s-database" = {
       id            = 108
       hostname      = "k3s-database"
