@@ -8,11 +8,11 @@ services:
       - 6881:6881
       - 6881:6881/udp
     environment:
-      - PUID=3007 # Default: 1000
-      - PGID=3011 # Default: 1000
+      - PUID=3002
+      - PGID=3005
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
       - ./data:/config
-      - /mnt/nas_qbittorent:/downloads
+      - /data/downloads:/downloads # Mount from PVE
