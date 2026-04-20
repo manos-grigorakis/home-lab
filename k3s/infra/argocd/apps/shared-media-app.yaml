@@ -12,7 +12,7 @@ spec:
   source:
     path: k3s/apps/media/shared
     repoURL: https://github.com/manos-grigorakis/home-lab.git
-    targetRevision: feat/media-stack
+    targetRevision: main
   sources: []
   project: default
   syncPolicy:
