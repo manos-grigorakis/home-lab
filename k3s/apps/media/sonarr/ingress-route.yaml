@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`sonarr.poolnode.net`)
+      kind: Rule
+      services:
+        - name: radarr-service
+          kind: Service
+          namespace: media
+          scheme: http
+          port: 8989
+  tls:
+    secretName: poolnode-wildcard-tls
