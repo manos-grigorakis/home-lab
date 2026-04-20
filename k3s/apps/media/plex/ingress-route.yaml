@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: plex
-  namespace: plex
+  namespace: media
 spec:
   entryPoints:
     - websecure
@@ -12,7 +12,7 @@ spec:
       services:
         - name: plex-service
           kind: Service
-          namespace: plex
+          namespace: media
           scheme: http
           port: 32400
   tls:
