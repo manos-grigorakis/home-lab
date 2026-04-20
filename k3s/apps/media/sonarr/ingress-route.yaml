@@ -10,7 +10,7 @@ spec:
     - match: Host(`sonarr.poolnode.net`)
       kind: Rule
       services:
-        - name: radarr-service
+        - name: sonarr-service
           kind: Service
           namespace: media
           scheme: http
