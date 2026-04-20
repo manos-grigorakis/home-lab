@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: media
+  labels:
+    app: prowlarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+        - name: prowlarr
+          image: "linuxserver/prowlarr:amd64-2.3.5"
+          ports:
+            - containerPort: 9696
+          envFrom:
+            - configMapRef:
+                name: media-env
+          volumeMounts:
+            - name: prowlarr-config
+              mountPath: /config
+
+      volumes:
+        - name: prowlarr-config
+          persistentVolumeClaim:
+            claimName: prowlarr-pvc

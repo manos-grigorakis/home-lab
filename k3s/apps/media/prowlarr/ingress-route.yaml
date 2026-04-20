@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prowlarr.poolnode.net`)
+      kind: Rule
+      services:
+        - name: prowlarr-service
+          kind: Service
+          namespace: media
+          scheme: http
+          port: 9696
+  tls:
+    secretName: poolnode-wildcard-tls
