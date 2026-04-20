@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: plex-configmap
-  namespace: plex
+  namespace: media
 data:
   # User and Groups IDs
   PLEX_UID: "3002"

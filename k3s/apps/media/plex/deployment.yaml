@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: plex
-  namespace: plex
+  namespace: media
 spec:
   replicas: 1
   strategy:
@@ -30,7 +30,7 @@ spec:
                       - "true"
       containers:
         - name: plex
-          image: plexinc/pms-docker:latest
+          image: "plexinc/pms-docker:1.43.1.10611-1e34174b1"
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -52,22 +52,27 @@ spec:
           volumeMounts:
             - name: plex-config
               mountPath: /config
-            - name: plex-media
+
+            - name: media
               mountPath: /data
-              readOnly: true
+
             - name: transcode
               mountPath: /transcode
+
             - name: igpu-device
               mountPath: /dev/dri
       volumes:
         - name: plex-config
           persistentVolumeClaim:
             claimName: plex-pvc
-        - name: plex-media
+
+        - name: media
           persistentVolumeClaim:
-            claimName: plex-media-pvc
+            claimName: media-pvc
+
         - name: transcode
           emptyDir: {}
+
         - name: igpu-device
           hostPath:
             path: /dev/dri

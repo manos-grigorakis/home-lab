@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: plex
+  name: prowlarr
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -10,7 +10,7 @@ spec:
     namespace: media
     server: https://kubernetes.default.svc
   source:
-    path: k3s/apps/media/plex
+    path: k3s/apps/media/prowlarr
     repoURL: https://github.com/manos-grigorakis/home-lab.git
     targetRevision: main
   sources: []
