@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bazarr
+  namespace: media
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`bazarr.poolnode.net`)
+      kind: Rule
+      services:
+        - name: bazarr-service
+          kind: Service
+          namespace: media
+          scheme: http
+          port: 6767
+  tls:
+    secretName: poolnode-wildcard-tls
