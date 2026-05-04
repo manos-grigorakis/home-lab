@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: nut-exporter-cyberpower-rack
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobName: "nut-cyberpower-rack"
+  staticConfigs:
+    - targets: ["nut-exporter.monitoring.svc.cluster.local:9995"]
+  metricsPath: /metrics
+  params:
+    target: ["192.168.10.20"]
+  relabelings:
+    - sourceLabels: [__param_target]
+      targetLabel: instance
+
+    - targetLabel: ups
+      replacement: "cyberpower"
+
+    - targetLabel: model
+      replacement: "CP1600EPFCLCD"
+
+    - targetLabel: description
+      replacement: "Office (Rack)"
