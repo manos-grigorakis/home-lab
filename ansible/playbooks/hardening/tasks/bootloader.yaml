@@ -1,0 +1,20 @@
+- name: Backup bootloader configuration
+  ansible.builtin.copy:
+    src: /etc/default/grub
+    dest: /etc/default/grub.bak
+    owner: root
+    group: root
+    mode: "0644"
+    remote_src: true
+
+- name: Update GRUB_CMDLINE_LINUX
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: 'GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor audit=1"'
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Update grub
+  ansible.builtin.command: update-grub

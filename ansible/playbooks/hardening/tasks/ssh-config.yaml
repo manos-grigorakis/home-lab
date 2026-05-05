@@ -1,0 +1,73 @@
+- name: Disable root login via SSH
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PermitRootLogin"
+    line: "PermitRootLogin no"
+    validate: sshd -t -f %s
+
+- name: Set MaxAuthTries
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?MaxAuthTries"
+    line: "MaxAuthTries 4"
+    validate: sshd -t -f %s
+
+- name: Set LoginGraceTime
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?LoginGraceTime"
+    line: "LoginGraceTime 60"
+    validate: sshd -t -f %s
+
+- name: Set ClientAliveInterval
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?ClientAliveInterval"
+    line: "ClientAliveInterval 45"
+    validate: sshd -t -f %s
+
+- name: Set ClientAliveCountMax
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?ClientAliveCountMax"
+    line: "ClientAliveCountMax 3"
+    validate: sshd -t -f %s
+
+- name: Set MaxStartups
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?MaxStartups"
+    line: "MaxStartups 10:30:60"
+    validate: sshd -t -f %s
+
+- name: Set SSH Banner Content
+  ansible.builtin.copy:
+    dest: /etc/issue.net
+    content: |
+      #################################################################
+      #                   _    _           _   _                      #
+      #                  / \  | | ___ _ __| |_| |                     #
+      #                 / _ \ | |/ _ \ '__| __| |                     #
+      #                / ___ \| |  __/ |  | |_|_|                     #
+      #               /_/   \_\_|\___|_|   \__(_)                     #
+      #                                                               #
+      #             You are entering into a secured area!             #
+      #                                                               #
+      #        This service is restricted to authorized users only.   #
+      #           All activities on this system are logged.           # 
+      #################################################################
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure SSH Banner Path
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?Banner"
+    line: "Banner /etc/issue.net"
+    validate: sshd -t -f %s
+
+- name: Restart SSH service
+  ansible.builtin.service:
+    name: ssh
+    state: restarted

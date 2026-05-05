@@ -1,0 +1,4 @@
+- name: Make sure a auditd is running
+  ansible.builtin.systemd_service:
+    state: started
+    name: auditd
