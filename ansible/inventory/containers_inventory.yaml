@@ -1,12 +1,17 @@
 containers:
   children:
-    netbox_app:
+    netbox_group:
       hosts:
         netbox:
           ansible_host: 192.168.10.48
           ansible_user: root
-    qbittorent:
+    qbittorent_group:
       hosts:
         qbittorent:
           ansible_host: 192.168.10.50
+          ansible_user: root
+    coolify_group:
+      hosts:
+        coolify:
+          ansible_host: 192.168.10.56
           ansible_user: root

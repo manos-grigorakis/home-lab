@@ -125,6 +125,7 @@ home-lab
 | [Home Assistant](https://www.home-assistant.io/)          | Smart Home            | Raspberry Pi 5 (Bare Metal) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Passwords Manager     | LXC                         |
 | [n8n](https://n8n.io/)                                    | Workflows Automations | Cluster                     |
+| [Coolify](https://coolify.io/)                            | Deployment Platform   | LXC                         |
 
 </details>
 
