@@ -83,7 +83,7 @@ services:
     volumes:
       - ./data/coolify/ssh:/var/www/html/storage/app/ssh
     environment:
-      APP_NAME: "Coolify"
+      APP_NAME: "${APP_ENV}"
       SOKETI_DEBUG: "false"
       SOKETI_DEFAULT_APP_ID: "${PUSHER_APP_ID}"
       SOKETI_DEFAULT_APP_KEY: "${PUSHER_APP_KEY}"
