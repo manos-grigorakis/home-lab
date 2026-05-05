@@ -9,8 +9,8 @@ resource "proxmox_virtual_environment_vm" "other_vm" {
 
   machine       = "q35"
   bios          = "ovmf"
-  started       = true  # Start after creation
-  on_boot       = false # Start at server boot
+  started       = try(each.value.started, true)        # Start after creation
+  on_boot       = try(each.value.start_on_boot, false) # Start at server boot
   scsi_hardware = "virtio-scsi-single"
   boot_order    = ["scsi0"]
 
