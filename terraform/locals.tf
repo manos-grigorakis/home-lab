@@ -65,7 +65,7 @@ locals {
       memory        = 4096
       ipv4          = "192.168.10.47/24"
       storage_size  = 60
-      startup_order = 100
+      startup_order = null
     }
 
     "netbox" = {
