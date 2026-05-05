@@ -32,6 +32,9 @@ services:
         condition: service_healthy
       soketi:
         condition: service_healthy
+    networks:
+      - coolify
+
   postgres:
     container_name: coolify-db
     image: postgres:17-alpine
@@ -52,6 +55,9 @@ services:
       interval: 5s
       retries: 10
       timeout: 2s
+    networks:
+      - coolify
+
   redis:
     container_name: coolify-redis
     image: redis:alpine
@@ -65,6 +71,9 @@ services:
       interval: 5s
       retries: 10
       timeout: 2s
+    networks:
+      - coolify
+
   soketi:
     container_name: coolify-realtime
     image: coollabsio/coolify-realtime:latest
@@ -89,6 +98,16 @@ services:
       interval: 5s
       retries: 10
       timeout: 2s
+    networks:
+      - coolify
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - coolify
 
 volumes:
   coolify-db:
