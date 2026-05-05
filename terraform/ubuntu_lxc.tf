@@ -64,8 +64,11 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
     backup = true
   }
 
-  startup {
-    order = each.value.startup_order
+  dynamic "startup" {
+    for_each = each.value.startup_order != null ? [1] : []
+    content {
+      order = each.value.startup_order
+    }
   }
 
   # Prevents recreation of containers when SSH keys changes
