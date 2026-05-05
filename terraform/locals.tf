@@ -123,6 +123,7 @@ locals {
       ipv4      = "192.168.10.141/24"
       hostname  = "hardening-ubuntu"
       tags      = ["terraform"]
+      started   = false
     }
 
     logistics-platform = {
