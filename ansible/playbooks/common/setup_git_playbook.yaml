@@ -47,13 +47,12 @@
         src: ../../public_ssh_keys/{{ item }}
         dest: ~/.ssh/
       loop:
-        - id_ed25519_github_linux_mint.pub
         - id_ed25519_github_mac.pub
         - id_ed25519_github_windows.pub
 
     - name: Set the Default Public Key as Signing Key
       ansible.builtin.shell:
-        cmd: git config --global user.signingkey "$(cat ~/.ssh/id_ed25519_github_linux_mint.pub)"
+        cmd: git config --global user.signingkey "$(cat ~/.ssh/id_ed25519_github_windows.pub)"
 
     - name: Enable Global Signing Commit
       ansible.builtin.command:
