@@ -112,6 +112,17 @@ locals {
       startup_order = 2
     }
 
+    "coolify" = {
+      id            = 120
+      hostname      = "coolify"
+      tags          = ["terraform"]
+      cpu_cores     = 4
+      memory        = 8192
+      ipv4          = "192.168.10.56/24"
+      storage_size  = 100
+      startup_order = 20
+    }
+
   }
 
   other_vm = {
