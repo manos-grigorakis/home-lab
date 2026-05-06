@@ -136,15 +136,5 @@ locals {
       tags      = ["terraform"]
       started   = false
     }
-
-    logistics-platform = {
-      id        = 420
-      cpu_cores = 4
-      memory    = 4096
-      size      = 50
-      ipv4      = "192.168.10.240/24"
-      hostname  = "logistics-platform"
-      tags      = ["terraform", "prod"]
-    }
   }
 }
