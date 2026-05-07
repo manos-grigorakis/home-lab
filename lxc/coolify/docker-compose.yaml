@@ -37,7 +37,7 @@ services:
 
   postgres:
     container_name: coolify-db
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     volumes:
       - coolify-db:/var/lib/postgresql/data
     environment:
