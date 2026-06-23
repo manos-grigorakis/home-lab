@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: pi-hole
-          image: pihole/pihole:2025.11.1
+          image: pihole/pihole:2026.06.0
           imagePullPolicy: IfNotPresent
           resources:
             requests:
