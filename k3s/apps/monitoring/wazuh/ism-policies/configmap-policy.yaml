@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wazuh-ism-policy
+  namespace: wazuh
+data:
+  policy.json: |
+    {
+      "policy": {
+        "description": "Delete wazuh-alerts daily indices after 90 days",
+        "default_state": "active",
+        "states": [
+          {
+            "name": "active",
+            "actions": [],
+            "transitions": [
+              { "state_name": "delete", "conditions": { "min_index_age": "90d" } }
+            ]
+          },
+          { "name": "delete", "actions": [ { "delete": {} } ], "transitions": [] }
+        ],
+        "ism_template": [ { "index_patterns": ["wazuh-alerts-*"], "priority": 100 } ]
+      }
+    }

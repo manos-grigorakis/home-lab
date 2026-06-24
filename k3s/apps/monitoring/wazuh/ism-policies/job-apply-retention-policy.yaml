@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: apply-wazuh-alerts-ism-policy
+  namespace: wazuh
+spec:
+  template:
+    spec:
+      # Ensures indexer is up before executing policy
+      initContainers:
+        - name: wait-for-indexer
+          image: curlimages/curl:8.10.1
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for indexer to be ready..."
+              until curl -sk -o /dev/null -w "%{http_code}" "https://indexer:9200" | grep -qE "200|401"; do
+                echo "Indexer not ready yet, retrying in 5s..."
+                sleep 5
+              done
+              echo "Indexer is ready."
+      containers:
+        - name: apply-ism-policy
+          image: curlimages/curl:8.10.1
+          command:
+            - sh
+            - -c
+            - |
+              curl -sk -u "$INDEXER_USERNAME:$INDEXER_PASSWORD" \
+                -X PUT "https://indexer:9200/_plugins/_ism/policies/wazuh_alerts_retention" \
+                -H "Content-Type: application/json" \
+                -d @/config/policy.json
+          env:
+            - name: INDEXER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: indexer-cred
+                  key: username
+            - name: INDEXER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: indexer-cred
+                  key: password
+          volumeMounts:
+            - name: policy-config
+              mountPath: /config
+      volumes:
+        - name: policy-config
+          configMap:
+            name: wazuh-ism-policy
+      restartPolicy: Never
+  backoffLimit: 2

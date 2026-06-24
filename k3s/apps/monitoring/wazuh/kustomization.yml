@@ -58,3 +58,6 @@ resources:
 
   - indexer_stack/wazuh-dashboard/dashboard-svc.yaml
   - indexer_stack/wazuh-dashboard/dashboard-deploy.yaml
+
+  - ism-policies/configmap-policy.yaml
+  - ism-policies/job-apply-retention-policy.yaml
