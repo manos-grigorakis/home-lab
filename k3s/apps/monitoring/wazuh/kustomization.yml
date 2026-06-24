@@ -25,6 +25,9 @@ configMapGenerator:
   - name: wazuh-internal-options
     files:
       - wazuh_managers/wazuh_conf/local_internal_options.conf
+  - name: wazuh-custom-rules
+    files:
+      - wazuh_managers/wazuh_conf/local_rules.xml
 
 resources:
   - base/wazuh-ns.yaml

@@ -50,6 +50,9 @@ spec:
         - name: internal-options
           configMap:
             name: wazuh-internal-options
+        - name: custom-rules
+          configMap:
+            name: wazuh-custom-rules
       securityContext:
         fsGroup: 101
       containers:
@@ -121,6 +124,10 @@ spec:
               subPath: filebeat/var/lib/filebeat
             - name: internal-options
               mountPath: /custom_options
+              readOnly: true
+            - name: custom-rules
+              mountPath: /var/ossec/custom_rules/local_rules.xml
+              subPath: local_rules.xml
               readOnly: true
           ports:
             - containerPort: 1514
