@@ -38,6 +38,9 @@ spec:
           image: "wazuh/wazuh-dashboard:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
+            requests:
+              cpu: "100m"
+              memory: "384Mi"
             limits:
               cpu: "500m"
               memory: "1Gi"

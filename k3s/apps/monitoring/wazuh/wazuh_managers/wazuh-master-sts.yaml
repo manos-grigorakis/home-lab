@@ -53,6 +53,9 @@ spec:
           image: "wazuh/wazuh-manager:4.13.1"
           imagePullPolicy: IfNotPresent
           resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
             limits:
               cpu: "1"
               memory: "2Gi"

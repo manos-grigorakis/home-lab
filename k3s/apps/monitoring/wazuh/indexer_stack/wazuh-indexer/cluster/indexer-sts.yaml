@@ -72,11 +72,11 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: "1"
-              memory: "3Gi"
+              cpu: "500m"
+              memory: "4Gi"
             limits:
               cpu: "1"
-              memory: "3Gi"
+              memory: "5Gi"
           env:
             - name: OPENSEARCH_JAVA_OPTS
               value: "-Xms2g -Xmx2g -Dlog4j2.formatMsgNoLookups=true"
