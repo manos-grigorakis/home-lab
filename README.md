@@ -24,10 +24,10 @@
 <details>
 <summary><b>Servers</b></summary>
 
-| **Name** | **Device**     | **CPU**        | **RAM** | **Storage**                               | **GPU** | **Notes**      |
-| -------- | -------------- | -------------- | ------- | ----------------------------------------- | ------- | -------------- |
-| Nexus    | Custom         | Intel i5-13500 | 128GB   | 1TB NVMe, 2TB NVMe, <br> 4TB HDD, 6TB HDD | iGPU    | Main Node      |
-| Pi       | Raspberry Pi 5 |                | 8GB     | 240GB NVMe                                | N/A     | Home Assistant |
+| **Name** | **Device**     | **CPU**        | **RAM** | **Storage**                                | **GPU** | **Notes**      |
+| -------- | -------------- | -------------- | ------- | ------------------------------------------ | ------- | -------------- |
+| Nexus    | Custom         | Intel i5-13500 | 128GB   | 1TB NVMe, 2TB NVMe, <br>2x6TB HDD, 4TB HDD | iGPU    | Main Node      |
+| Pi       | Raspberry Pi 5 |                | 8GB     | 240GB NVMe                                 | N/A     | Home Assistant |
 
 </details>
 
@@ -93,24 +93,25 @@ home-lab
 
 ### Networking
 
-| **Service**                                             | **Category**  | **Runtime** | **Notes**                  |
-| ------------------------------------------------------- | ------------- | ----------- | -------------------------- |
-| [Pi-hole](https://pi-hole.net/)                         | AdBlocker     | Cluster     |                            |
-| [Unbound](https://nlnetlabs.nl/projects/unbound/about/) | Recursive DNS | Cluster     |                            |
-| [nginx](https://nginx.org/)                             | Load Balancer | LXC         | K3s External Load Balancer |
-| [Nginx Proxy Manager](https://nginxproxymanager.com/)   | Reverse Proxy | LXC         |                            |
-| [NetBox](https://netboxlabs.com)                        | IPAM / DCIM   | LXC         |                            |
+| **Service**                                             | **Category**             | **Runtime** | **Notes**                                          |
+| ------------------------------------------------------- | ------------------------ | ----------- | -------------------------------------------------- |
+| [Pi-hole](https://pi-hole.net/)                         | AdBlocker                | Cluster     |                                                    |
+| [Unbound](https://nlnetlabs.nl/projects/unbound/about/) | Recursive DNS            | Cluster     |                                                    |
+| [AdGuard](https://adguard.com)                          | AdBlocker & Fallback DNS | Flint 2     | AdBlocker and fallback DNS in case Pi-hole is down |
+| [nginx](https://nginx.org/)                             | Load Balancer            | LXC         | K3s External Load Balancer                         |
+| [Nginx Proxy Manager](https://nginxproxymanager.com/)   | Reverse Proxy            | LXC         |                                                    |
+| [NetBox](https://netboxlabs.com)                        | IPAM / DCIM              | LXC         |                                                    |
 
 ### Databases & Storage
 
-| **Service**                                                   | **Category** | **Runtime** | **Notes**                |
-| ------------------------------------------------------------- | ------------ | ----------- | ------------------------ |
-| [MariaDB](https://mariadb.org/)                               | Database     | Cluster     |                          |
-| [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                          |
-| [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                          |
-| [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database    |
-| [Redis](https://redis.io/)                                    | Cache        | Cluster     |                          |
-| [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          | Mirrored (4TB + 6TB HDD) |
+| **Service**                                                   | **Category** | **Runtime** | **Notes**             |
+| ------------------------------------------------------------- | ------------ | ----------- | --------------------- |
+| [MariaDB](https://mariadb.org/)                               | Database     | Cluster     |                       |
+| [MySQL](https://www.mysql.com/)                               | Database     | Cluster     |                       |
+| [PostgreSQL](https://www.postgresql.org/)                     | Database     | Cluster     |                       |
+| [MySQL](https://www.mysql.com/)                               | Database     | LXC         | K3s External Database |
+| [Redis](https://redis.io/)                                    | Cache        | Cluster     |                       |
+| [TrueNas](https://www.truenas.com/truenas-community-edition/) | NAS          | VM          | Mirrored (2x6TB HDD)  |
 
 ### Applications
 
