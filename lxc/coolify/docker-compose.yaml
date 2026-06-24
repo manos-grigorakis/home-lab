@@ -2,6 +2,7 @@ services:
   coolify:
     container_name: coolify
     image: coollabsio/coolify:latest
+    restart: unless-stopped
     volumes:
       - ./.env:/var/www/html/.env:ro
       - ./data/coolify/ssh:/var/www/html/storage/app/ssh
@@ -38,6 +39,7 @@ services:
   postgres:
     container_name: coolify-db
     image: postgres:17-alpine
+    restart: unless-stopped
     volumes:
       - coolify-db:/var/lib/postgresql/data
     environment:
@@ -61,6 +63,7 @@ services:
   redis:
     container_name: coolify-redis
     image: redis:alpine
+    restart: unless-stopped
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     environment:
       REDIS_PASSWORD: "${REDIS_PASSWORD}"
@@ -77,6 +80,7 @@ services:
   soketi:
     container_name: coolify-realtime
     image: coollabsio/coolify-realtime:latest
+    restart: unless-stopped
     ports:
       - "6001:6001"
       - "6002:6002"
