@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $values/k3s/infra/longhorn/values.yaml
 
-    - repoURL: https://github.com/manos-grigorakis/home-lab.git
+    - repoURL: https://github.com/manos-grigorakis/homelab.git
       targetRevision: main
       path: k3s/infra/longhorn
       ref: values

@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: k3s/infra/argocd/apps
-    repoURL: https://github.com/manos-grigorakis/home-lab.git
+    repoURL: https://github.com/manos-grigorakis/homelab.git
     targetRevision: main
     directory:
       recurse: true
