@@ -676,7 +676,7 @@ prometheus:
           - sourceLabels: [__name__]
             regex: (.*)
             targetLabel: cluster
-            replacement: home-lab
+            replacement: homelab
             action: replace
 
 ## Configuration for thanosRuler
