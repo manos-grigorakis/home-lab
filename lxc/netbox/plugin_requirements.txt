@@ -1,1 +1,2 @@
 netbox-topology-views
+netbox-proxbox
