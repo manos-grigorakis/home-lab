@@ -15,7 +15,7 @@
 
 ## Setup
 
-<img src="docs/screenshots/rack.png" width="500" alt="Home Lab Rack">
+<img src="docs/screenshots/rack.png" width="500" alt="Homelab Rack">
 
 [Photo Gallery](https://photos.app.goo.gl/yr2DCLmaNbhbLmsD6)
 
