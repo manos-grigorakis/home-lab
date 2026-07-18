@@ -6,7 +6,13 @@
   "autoApprove": false,
   "packageRules": [
     {
-      "matchFileNames": ["k3s/apps/databases/**"],
+      "matchPackageNames": [
+        "postgres",
+        "mysql",
+        "mariadb",
+        "redis",
+        "bitnami/redis"
+      ],
       "enabled": false
     }
   ]
