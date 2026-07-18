@@ -4,6 +4,6 @@
   tasks:
     - name: Clone GitHub Repository
       ansible.builtin.git:
-        repo: "https://github.com/manos-grigorakis/home-lab.git"
-        dest: /home/manos/home-lab
+        repo: "https://github.com/manos-grigorakis/homelab.git"
+        dest: /home/manos/homelab
         version: "main"
