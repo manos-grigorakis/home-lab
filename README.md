@@ -1,21 +1,21 @@
-# Home Lab
+# Homelab
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
-![Created At](https://img.shields.io/github/created-at/manos-grigorakis/home-lab?color=007ec6)
-![Last Commit](https://img.shields.io/github/last-commit/manos-grigorakis/home-lab)
-![License](https://img.shields.io/github/license/manos-grigorakis/home-lab?color=007ec6)
-![Repo Size](https://img.shields.io/github/repo-size/manos-grigorakis/home-lab)
-![Top Language](https://img.shields.io/github/languages/top/manos-grigorakis/home-lab)
-![Languages Count](https://img.shields.io/github/languages/count/manos-grigorakis/home-lab)
+![Created At](https://img.shields.io/github/created-at/manos-grigorakis/homelab?color=007ec6)
+![Last Commit](https://img.shields.io/github/last-commit/manos-grigorakis/homelab)
+![License](https://img.shields.io/github/license/manos-grigorakis/homelab?color=007ec6)
+![Repo Size](https://img.shields.io/github/repo-size/manos-grigorakis/homelab)
+![Top Language](https://img.shields.io/github/languages/top/manos-grigorakis/homelab)
+![Languages Count](https://img.shields.io/github/languages/count/manos-grigorakis/homelab)
 
-![Commits (total)](https://img.shields.io/github/commit-activity/t/manos-grigorakis/home-lab)
-![Commits/month](https://img.shields.io/github/commit-activity/m/manos-grigorakis/home-lab)
-![Issues](https://img.shields.io/github/issues/manos-grigorakis/home-lab)
-![Open PRs](https://img.shields.io/github/issues-pr/manos-grigorakis/home-lab)
+![Commits (total)](https://img.shields.io/github/commit-activity/t/manos-grigorakis/homelab)
+![Commits/month](https://img.shields.io/github/commit-activity/m/manos-grigorakis/homelab)
+![Issues](https://img.shields.io/github/issues/manos-grigorakis/homelab)
+![Open PRs](https://img.shields.io/github/issues-pr/manos-grigorakis/homelab)
 
 ## Setup
 
-<img src="docs/screenshots/rack.png" width="500" alt="Home Lab Rack">
+<img src="docs/screenshots/rack.png" width="500" alt="Homelab Rack">
 
 [Photo Gallery](https://photos.app.goo.gl/yr2DCLmaNbhbLmsD6)
 
@@ -45,7 +45,7 @@
 ## Project Directory Structure
 
 ```bash
-home-lab
+homelab
 ├── .github                        # GitHub related
 ├── ansible                        # Host configuration (WIP)
 ├── Dockerfiles                    # Custom Docker images

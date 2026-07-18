@@ -120,14 +120,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /mnt/volume/home-lab/lxc/coolify/data/coolify/db
+      device: /mnt/volume/homelab/lxc/coolify/data/coolify/db
   coolify-redis:
     name: coolify-redis
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /mnt/volume/home-lab/lxc/coolify/data/coolify/redis
+      device: /mnt/volume/homelab/lxc/coolify/data/coolify/redis
 
 networks:
   coolify:
