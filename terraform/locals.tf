@@ -16,7 +16,7 @@ locals {
       memory        = 1024
       ipv4          = "192.168.10.43/24"
       storage_size  = 20
-      startup_order = 5
+      startup_order = null
     }
 
     "netbox" = {
@@ -27,7 +27,7 @@ locals {
       memory        = 4096
       ipv4          = "192.168.10.48/24"
       storage_size  = 20
-      startup_order = 100
+      startup_order = null
     }
 
     "qbittorent" = {
@@ -38,7 +38,7 @@ locals {
       memory        = 1024
       ipv4          = "192.168.10.50/24"
       storage_size  = 20
-      startup_order = 100
+      startup_order = 4
     }
 
     "coolify" = {
@@ -49,7 +49,7 @@ locals {
       memory        = 8192
       ipv4          = "192.168.10.56/24"
       storage_size  = 100
-      startup_order = 20
+      startup_order = null
     }
 
   }
