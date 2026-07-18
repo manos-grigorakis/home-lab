@@ -1,4 +1,4 @@
-resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
+resource "proxmox_download_file" "ubuntu_cloud_image" {
   content_type = "import"
   datastore_id = "local"
   node_name    = var.pve_node_name
