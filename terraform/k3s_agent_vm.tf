@@ -45,7 +45,7 @@ resource "proxmox_virtual_environment_vm" "k3s_agent_vm" {
     size         = 20
     discard      = "on"
     iothread     = true
-    import_from  = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    import_from  = proxmox_download_file.ubuntu_cloud_image.id
     ssd          = true
     backup       = true
   }
