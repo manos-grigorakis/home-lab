@@ -5,6 +5,7 @@ services:
     build:
       context: ../
       dockerfile: Dockerfile-Plugins
+    restart: unless-stopped
     ports:
       - "8000:8080"
     env_file:
@@ -17,17 +18,32 @@ services:
   netbox-worker:
     image: netbox:latest-plugins
     pull_policy: never
+    restart: unless-stopped
+    env_file:
+     - ../env/netbox.env
     volumes:
       - ../configuration/plugins.py:/etc/netbox/config/plugins.py:ro
 
   postgres:
+    restart: unless-stopped
     env_file:
       - ../env/postgres.env
-    
+
   redis:
+    restart: unless-stopped
     env_file:
       - ../env/redis.env
-      
+
   redis-cache:
+    restart: unless-stopped
     env_file:
       - ../env/redis-cache.env
+
+  proxbox-api:
+    container_name: proxbox-api
+    image: emersonfelipesp/proxbox-api:latest
+    restart: unless-stopped
+    expose:
+     - "8000"
+    env_file:
+     - ../env/proxbox-api.env

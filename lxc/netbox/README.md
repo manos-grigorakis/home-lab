@@ -27,6 +27,7 @@ cp env/netbox.env.example env/netbox.env
 cp env/postgres.env.example env/postgres.env
 cp env/redis.env.example env/redis.env
 cp env/redis-cache.env.example env/redis-cache.env
+cp env/proxbox-api.env.example env/proxbox-api.env
 ```
 
 ## 4. Configure environment variables
