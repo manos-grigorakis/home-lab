@@ -72,4 +72,10 @@ resource "proxmox_virtual_environment_vm" "other_vm" {
     firewall = true
     model    = "virtio"
   }
+
+  lifecycle {
+    ignore_changes = [
+      description
+    ]
+  }
 }
