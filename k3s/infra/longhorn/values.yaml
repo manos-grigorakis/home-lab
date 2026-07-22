@@ -1,6 +1,7 @@
 defaultSettings:
   # -- Default number of replicas for volumes created using the Longhorn UI. For Kubernetes configuration, modify the `numberOfReplicas` field in the StorageClass. The default value is "{"v1":"3","v2":"3"}".
   defaultReplicaCount: 2
+  taintToleration: "node-role.kubernetes.io/control-plane:NoSchedule"
 
 persistence:
   # -- Reclaim policy that provides instructions for handling of a volume after its claim is released. (Options: "Retain", "Delete")
